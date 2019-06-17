@@ -19,7 +19,7 @@ session_start();
 	</div>
 	<div class="wrapper">
 		coucou
-		<?php include_once 'config/database.php'; ?>
+		<?php include_once 'config/setup.php'; ?>
 	</div>
 </div>
 

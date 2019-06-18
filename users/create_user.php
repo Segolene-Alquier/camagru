@@ -43,9 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	// Validate email
     if (empty(trim($_POST["email"])))
         $email_err = "Please enter an email address.";
-	// elseif(strlen(trim($_POST["password"])) < 6){
-    //     $password_err = "Password must have atleast 6 characters.";
-	// }
+	elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
+        $email_err = "Email must be a valid email.";
 	else
         $email = trim($_POST["email"]);
 
@@ -68,12 +67,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
 
     // Check input errors before inserting in database
-	if (empty($username_err) && empty($password_err) && empty($confirm_password_err))
+	if (empty($username_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err))
 	{
         // Prepare an insert statement
         $sql = "INSERT INTO user (Username, Passwd, Email) VALUES (:username, :password, :email)";
 
-        if ($stmt = $bdd->prepare($sql)){
+		if ($stmt = $bdd->prepare($sql))
+		{
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
@@ -91,11 +91,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 			else
                 echo "Something went wrong. Please try again later.";
         }
-
         // Close statement
         unset($stmt);
     }
-
     // Close connection
     unset($bdd);
 }
@@ -119,22 +117,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <label>Username</label>
-                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                <input required type="text" name="username" class="form-control" value="<?php echo $username; ?>">
                 <span class="help-block"><?php echo $username_err; ?></span>
             </div>
 			<div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
                 <label>Email</label>
-                <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
+                <input required type="text" name="email" class="form-control" value="<?php echo $email; ?>">
                 <span class="help-block"><?php echo $email_err; ?></span>
             </div>
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
-                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
+                <input required type="password" name="password" class="form-control" value="<?php echo $password; ?>">
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
             <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
                 <label>Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+                <input required type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
                 <span class="help-block"><?php echo $confirm_password_err; ?></span>
             </div>
             <div class="form-group">

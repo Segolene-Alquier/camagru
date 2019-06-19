@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             // Set parameters
             $param_username = $username;
             $param_email = $email;
-			$param_password = hash("whirlpool", $password);
+			$param_password = password_hash($password, PASSWORD_DEFAULT);
             // Attempt to execute the prepared statement
             if ($stmt->execute()){
                 // Redirect to login page

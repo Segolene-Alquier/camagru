@@ -4,7 +4,7 @@ session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header ("location: welcome.php");
+    header ("location: ./../index.php");
     exit;
 }
 
@@ -29,7 +29,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $password_err = "Please enter your password.";
     else
         $password = trim($_POST["password"]);
-
     // Validate credentials
 	if (empty($username_err) && empty($password_err))
 	{
@@ -48,9 +47,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 			if ($stmt->execute())
 			{
                 // Check if username exists, if yes then verify password
-				if($stmt->rowCount() == 1)
+				if ($stmt->rowCount() == 1)
 				{
-					if($row = $stmt->fetch())
+					if ($row = $stmt->fetch())
 					{
                         $id = $row["UserID"];
                         $username = $row["Username"];
@@ -66,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                             $_SESSION["username"] = $username;
 
                             // Redirect user to welcome page
-                            header("location: welcome.php");
+                            header("location: ./../index.php");
 						}
 						else {
                             // Display an error message if password is not valid

@@ -1,5 +1,4 @@
 <?php
-// Initialize the session
 session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
@@ -8,10 +7,8 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     exit;
 }
 
-// Include config file
 require_once "../config/database.php";
 
-// Define variables and initialize with empty values
 $username = $password = "";
 $username_err = $password_err = "";
 
@@ -67,10 +64,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                             // Redirect user to welcome page
                             header("location: ./../index.php");
 						}
-						else {
-                            // Display an error message if password is not valid
+						else
                             $password_err = "The password you entered was not valid.";
-                        }
                     }
 				}
 				else
@@ -83,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         unset($stmt);
     }
     // Close connection
-    unset($pdo);
+    unset($bdd);
 }
 ?>
 

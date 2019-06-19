@@ -86,13 +86,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $param_password = password_hash($password, PASSWORD_DEFAULT);
             $cle = md5(microtime(TRUE)*100000);
 
-            // Attempt to execute the prepared statement
-            if ($stmt->execute()){
-                // Redirect to login page
+            if ($stmt->execute())
                 header("location: login.php");
-			}
 			else
                 echo "Something went wrong. Please try again later.";
+
+            // Préparation du mail contenant le lien d'activation
+            $sujet = "Activation de votre compte sur Camagru" ;
+            // $entete = "From: inscription@camagru.com" ;
+            $message = 'Bienvenue sur Camagru,
+
+            Pour activer votre compte, veuillez cliquer sur le lien ci dessous
+            ou copier/coller dans votre navigateur internet.
+
+            http://localhost:8080/camagru/users/validation.php?log='.urlencode($username).'&cle='.urlencode($cle).'
+
+            ---------------
+            Ceci est un mail automatique, Merci de ne pas y répondre.';
+            $message = wordwrap($message, 70, "\n");
+            $headers = 'From: camagru@42.fr' . "\r\n" .
+                    'Reply-To: camagru@42.fr' . "\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+            mail($email, $sujet, $message, $headers) ;
         }
         // Close statement
         unset($stmt);

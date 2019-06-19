@@ -53,7 +53,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         $hashed_password = $row["Passwd"];
 						if (password_verify($password, $hashed_password))
 						{
-                            // Password is correct, so start a new session
                             session_start();
 
                             // Store data in session variables
@@ -61,7 +60,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
 
-                            // Redirect user to welcome page
                             header("location: ./../index.php");
 						}
 						else
@@ -111,6 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
+            <p>Can't remember your password? <a href="reset_pwd.php">Change it</a>.</p>
             <p>Don't have an account? <a href="create_user.php">Sign up now</a>.</p>
         </form>
     </div>

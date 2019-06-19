@@ -11,7 +11,7 @@
 				echo '<div class="log-elem"><a href="/camagru/users/logout.php">Log out</a></div>';
 			 } else {
 				echo '<div class="log-elem"><a href="/camagru/users/login.php">Log in</a>';
-				echo '<div class="log-elem"><a href="/users/create_user.php">Sign up</a></div>';
+				echo '<div class="log-elem"><a href="/camagru/users/create_user.php">Sign up</a></div>';
 			 }
 
 

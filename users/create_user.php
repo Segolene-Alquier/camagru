@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	if (empty($username_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err))
 	{
         // Prepare an insert statement
-        $sql = "INSERT INTO user (Username, Passwd, Email) VALUES (:username, :password, :email)";
+        $sql = "INSERT INTO user (Username, Passwd, Email, Cle) VALUES (:username, :password, :email, :cle)";
 
 		if ($stmt = $bdd->prepare($sql))
 		{
@@ -78,11 +78,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
             $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+            $stmt->bindParam(":cle", $cle, PDO::PARAM_STR);
 
             // Set parameters
             $param_username = $username;
             $param_email = $email;
-			$param_password = password_hash($password, PASSWORD_DEFAULT);
+            $param_password = password_hash($password, PASSWORD_DEFAULT);
+            $cle = md5(microtime(TRUE)*100000);
+
             // Attempt to execute the prepared statement
             if ($stmt->execute()){
                 // Redirect to login page

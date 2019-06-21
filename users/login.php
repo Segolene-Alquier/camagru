@@ -15,21 +15,18 @@ $username_err = $password_err = "";
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    // Check if username is empty
     if (empty(trim($_POST["username"])))
         $username_err = "Please enter username.";
     else
         $username = trim($_POST["username"]);
 
-    // Check if password is empty
     if (empty(trim($_POST["password"])))
         $password_err = "Please enter your password.";
     else
         $password = trim($_POST["password"]);
-    // Validate credentials
-	if (empty($username_err) && empty($password_err))
+
+    if (empty($username_err) && empty($password_err))
 	{
-        // Prepare a select statement
         $sql = "SELECT UserID, Username, Passwd FROM user WHERE Username = :username";
 
 		if ($stmt = $bdd->prepare($sql))
@@ -37,13 +34,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
 
-            // Set parameters
             $param_username = trim($_POST["username"]);
 
             // Attempt to execute the prepared statement
 			if ($stmt->execute())
 			{
-                // Check if username exists, if yes then verify password
 				if ($stmt->rowCount() == 1)
 				{
 					if ($row = $stmt->fetch())
@@ -55,7 +50,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 						{
                             session_start();
 
-                            // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
@@ -72,10 +66,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 			else
                 echo "Oops! Something went wrong. Please try again later.";
         }
-        // Close statement
         unset($stmt);
     }
-    // Close connection
     unset($bdd);
 }
 ?>
@@ -109,7 +101,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Can't remember your password? <a href="reset_pwd.php">Change it</a>.</p>
+            <p>Can't remember your password? <a href="reset_pwd_pending.php">Change it</a>.</p>
             <p>Don't have an account? <a href="create_user.php">Sign up now</a>.</p>
         </form>
     </div>

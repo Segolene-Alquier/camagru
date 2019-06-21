@@ -3,15 +3,13 @@ quand l'utilisateur clique dessus, je recupere les infos via get dans l'url et s
 l'old passwd, j'enregistre le nouveau dans la bdd -->
 
 <?php
-
-
 session_start();
 
 // Check if the user is logged in, if not then redirect to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
-    exit;
-}
+// if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+//     header("location: login.php");
+//     exit;
+// }
 
 require_once "../config/database.php";
 

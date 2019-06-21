@@ -8,7 +8,6 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 
 require_once "../config/database.php";
 
-// Récupération des variables nécessaires à l'activation
 $login = $_GET['log'];
 $cle = $_GET['cle'];
 
@@ -24,7 +23,7 @@ if ($actif == '1')
     echo "Your account is already active!";
 else
 {
-    if($cle == $clebdd)
+    if ($cle == $clebdd)
     {
     	echo "Your account has been successfully activated!";
 
@@ -38,3 +37,4 @@ else
 }
 unset($stmt);
 unset($bdd);
+?>

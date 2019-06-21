@@ -19,10 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 		if ($stmt = $bdd->prepare($sql))
 		{
-            // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
-
-            // Set parameters
             $param_username = trim($_POST["username"]);
 
             // Attempt to execute the prepared statement
@@ -36,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 			else
                 echo "Oops! Something went wrong. Please try again later.";
         }
-        // Close statement
         unset($stmt);
 	}
 

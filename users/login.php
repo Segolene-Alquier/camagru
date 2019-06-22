@@ -31,12 +31,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 		if ($stmt = $bdd->prepare($sql))
 		{
-            // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
-
             $param_username = trim($_POST["username"]);
 
-            // Attempt to execute the prepared statement
 			if ($stmt->execute())
 			{
 				if ($stmt->rowCount() == 1)
@@ -49,11 +46,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 						if (password_verify($password, $hashed_password) && $row["Confirmed"] == 1)
 						{
                             session_start();
-
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
-
                             header("location: ./../index.php");
 						}
                         else

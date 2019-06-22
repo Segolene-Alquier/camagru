@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header ("location: ./../index.php");
-    exit;
-}
+// if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+//     header ("location: ./../index.php");
+//     exit;
+// }
 
 require_once "../config/database.php";
 
@@ -27,12 +27,11 @@ else
     {
     	echo "Your account has been successfully activated!";
 
-        // La requête qui va passer notre champ actif de 0 à 1
         $stmt = $bdd->prepare("UPDATE user SET confirmed = 1 WHERE username like :login ");
         $stmt->bindParam(':login', $login);
         $stmt->execute();
     }
-    else // Si les deux clés sont différentes on provoque une erreur...
+    else
         echo "Erreur ! Votre compte ne peut être activé...";
 }
 unset($stmt);

@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 
 // Check if the user is logged in, if not then redirect to login page
 // if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
@@ -11,8 +11,15 @@
 
     $new_password = $confirm_password = "";
     $new_password_err = $confirm_password_err = "";
-    $email = $_GET['email'];
-    $reset = $_GET['reset'];
+    if (isset($_SESSION['email']))
+        $email = $_SESSION['email'];
+    else
+    {
+        $_SESSION['email'] = $_GET['email'];
+        $email = $_SESSION['email'];
+    }
+    if (!isset($_SESSION['reset']))
+        $_SESSION['reset'] = $_GET['reset'];
 
     // checking if email and reset match
     $stmt = $bdd->prepare("SELECT `reset`, email FROM user WHERE email = :email");
@@ -20,18 +27,18 @@
     {
         $resetbdd = $row['reset'];
     }
-    if ($reset === $resetbdd)
+    if ($_SESSION['reset'] === $resetbdd)
     {
         // Processing form data when form is submitted
-        if($_SERVER["REQUEST_METHOD"] == "POST")
+        if ($_SERVER["REQUEST_METHOD"] == "POST")
         {
             // Validate new password
-            if (empty(trim($_POST["password"])))
+            if (empty(trim($_POST["new_password"])))
                 $password_err = "Please enter a password.";
-            elseif (!preg_match ("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $_POST["password"]))
+            elseif (!preg_match ("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $_POST["new_password"]))
                 $password_err = "Password must have at least 8 characters, one uppercase letter, one lowercase letter and one number.";
             else
-                $password = trim($_POST["password"]);
+                $password = trim($_POST["new_password"]);
 
             // Validate confirm password
             if (empty(trim($_POST["confirm_password"])))
@@ -42,28 +49,28 @@
                 if (empty($password_err) && ($password != $confirm_password))
                     $confirm_password_err = "Password did not match.";
             }
-
             // Check input errors before updating the database
             if(empty($new_password_err) && empty($confirm_password_err))
             {
                 // Prepare an update statement
-                $sql = "UPDATE user SET passwd = :password WHERE UserID = :id";
+                $sql = "UPDATE user SET passwd = :password WHERE Email = :email";
 
                 if($stmt = $bdd->prepare($sql))
                 {
                     // Bind variables to the prepared statement as parameters
                     $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
-                    $stmt->bindParam(":id", $param_id, PDO::PARAM_INT);
+                    // $stmt->bindParam(":id", $param_id, PDO::PARAM_INT);
+                    $stmt->bindParam(":email", $email, PDO::PARAM_INT);
 
                     // Set parameters
-                    $param_password = password_hash($new_password, PASSWORD_DEFAULT);
-                    $param_id = $_SESSION["id"];
+                    $param_password = password_hash($password, PASSWORD_DEFAULT);
+                    $email = $_SESSION['email'];
 
-                    // Attempt to execute the prepared statement
+                    // $param_id = $_SESSION["id"];
                     if($stmt->execute())
                     {
                         // Password updated successfully. Destroy the session, and redirect to login page
-                        session_destroy();
+                        // session_destroy();
                         header("location: login.php");
                         exit();
                     }
@@ -107,7 +114,7 @@
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
-                <a class="btn btn-link" href="welcome.php">Cancel</a>
+                <a class="btn btn-link" href="./../index.php">Cancel</a>
             </div>
         </form>
     </div>

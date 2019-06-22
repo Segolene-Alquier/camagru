@@ -46,8 +46,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         $id = $row["UserID"];
                         $username = $row["Username"];
                         $hashed_password = $row["Passwd"];
+                        echo $password;
+                        echo $hashed_password;
 						if (password_verify($password, $hashed_password))
 						{
+                            echo "yepa";
                             session_start();
 
                             $_SESSION["loggedin"] = true;

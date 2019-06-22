@@ -1,8 +1,6 @@
 <?php
-// Include config file
 require_once "../config/database.php";
 
-// Define variables and initialize with empty values
 $username = $email = $password = $confirm_password = "";
 $username_err = $email_err = $password_err = $confirm_password_err = "";
 
@@ -14,15 +12,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $username_err = "Please enter a username.";
 	else
 	{
-        // Prepare a select statement
-        $sql = "SELECT UserID FROM user WHERE Username = :username";
+        $sql = "SELECT UserID FROM user WHERE username= :username";
 
 		if ($stmt = $bdd->prepare($sql))
 		{
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             $param_username = trim($_POST["username"]);
 
-            // Attempt to execute the prepared statement
 			if ($stmt->execute())
 			{
                 if ($stmt->rowCount() == 1)
@@ -42,7 +38,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
         $email_err = "Email must be a valid email.";
 	else
-        $email = trim($_POST["email"]);
+    {
+        $sql = "SELECT UserID FROM user WHERE email=:email";
+        if ($stmt = $bdd->prepare($sql))
+        {
+            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+            $param_email = trim($_POST["email"]);
+
+            if ($stmt->execute())
+            {
+                if ($stmt->rowCount() >= 1)
+                    $email_err = "This email is alrady taken.";
+                else
+                    $email = trim($_POST["email"]);
+            }
+            else
+                echo "Oops! Something went wrong. Please try again later.";
+        }
+        unset($stmt);
+    }
 
     // Validate password
     if (empty(trim($_POST["password"])))
@@ -89,7 +103,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
             // Préparation du mail contenant le lien d'activation
             $sujet = "Activation de votre compte sur Camagru" ;
-            // $entete = "From: inscription@camagru.com" ;
             $message = 'Bienvenue sur Camagru,
 
             Pour activer votre compte, veuillez cliquer sur le lien ci dessous
@@ -105,10 +118,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                     'X-Mailer: PHP/' . phpversion();
             mail($email, $sujet, $message, $headers) ;
         }
-        // Close statement
         unset($stmt);
     }
-    // Close connection
     unset($bdd);
 }
 ?>

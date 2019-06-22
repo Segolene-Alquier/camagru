@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
     if (empty($username_err) && empty($password_err))
 	{
-        $sql = "SELECT UserID, Username, Passwd FROM user WHERE Username = :username";
+        $sql = "SELECT UserID, Username, Passwd, Confirmed FROM user WHERE Username = :username";
 
 		if ($stmt = $bdd->prepare($sql))
 		{
@@ -46,11 +46,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         $id = $row["UserID"];
                         $username = $row["Username"];
                         $hashed_password = $row["Passwd"];
-                        echo $password;
-                        echo $hashed_password;
-						if (password_verify($password, $hashed_password))
+						if (password_verify($password, $hashed_password) && $row["Confirmed"] == 1)
 						{
-                            echo "yepa";
                             session_start();
 
                             $_SESSION["loggedin"] = true;
@@ -59,8 +56,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
                             header("location: ./../index.php");
 						}
-						else
-                            $password_err = "The password you entered was not valid.";
+                        else
+                        {
+                            if ($row["Confirmed"] == 0)
+                                echo "Oops! You haven't activated your account yet, please check your emails.";
+                            else
+                                $password_err = "The password you entered was not valid.";
+                        }
                     }
 				}
 				else

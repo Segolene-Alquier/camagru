@@ -9,7 +9,7 @@ Class User {
 	public $username_err;
 	public $email_err;
 	public $password_err;
-
+	public $confirm_password_err;
 
 
 	function __construct(){
@@ -28,7 +28,7 @@ Class User {
 
 	public function __get($property)
 	{
-		return $this->property;
+		return $property;
 	}
 
 	public function __set($property, $value)
@@ -75,7 +75,7 @@ Class User {
 				if ($stmt->execute())
 				{
 					if ($stmt->rowCount() >= 1)
-						$this->email_err = "This email is alrady taken.";
+						 $this->email_err = "This email is alrady taken.";
 					else
 						$this->email = trim($email);
 				}
@@ -86,12 +86,12 @@ Class User {
 		}
 
 		if (!preg_match ("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $password))
-			$password_err = "Password must have at least 8 characters, one uppercase letter, one lowercase letter and one number.";
+			$this->password_err = "Password must have at least 8 characters, one uppercase letter, one lowercase letter and one number.";
 		else
 			$this->password = trim($password);
 
 		$this->confirm_password = trim($confirm_password);
-		if (empty($password_err) && ($this->password != $this->confirm_password))
+		if (empty($this->password_err) && ($this->password != $this->confirm_password))
 			$this->confirm_password_err = "Password did not match.";
 
 		// Check input errors before inserting in database

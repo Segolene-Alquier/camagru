@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
     $user = new User();
     $user->create_user($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confirm_password']);
-    var_dump($user);
+    // var_dump($user);
 }
 ?>
 
@@ -32,21 +32,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 <span class="help-block"><?php echo $user->username_err; ?></span>
                 <?php }; ?>
             </div>
-			<div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
+			<div class="form-group <?php echo (!empty($user->email_err)) ? 'has-error' : ''; ?>">
                 <label>Email</label>
                 <input required type="text" name="email" class="form-control" value="">
                 <?php if (isset($user)) {?>
                 <span class="help-block"><?php echo $user->email_err; ?></span>
                 <?php }; ?>
             </div>
-            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($user->password_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
                 <input required type="password" name="password" class="form-control" value="">
                 <?php if (isset($user)) {?>
                 <span class="help-block"><?php echo $user->password_err; ?></span>
                 <?php }; ?>
             </div>
-            <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($user->confirm_password_err)) ? 'has-error' : ''; ?>">
                 <label>Confirm Password</label>
                 <input required type="password" name="confirm_password" class="form-control" value="">
                 <?php if (isset($user)) {?>

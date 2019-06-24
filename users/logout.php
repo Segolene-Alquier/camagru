@@ -1,16 +1,6 @@
 <?php
-	// Initialize the session
-	session_start();
+	require "user_class.php";
 
-	// Unset all of the session variables
-	unset($_SESSION["username"]);
-
-	// $_SESSION["username"] = "";
-
-	// Destroy the session.
-	session_destroy();
-
-	// Redirect to login page
-	header("location: ./../index.php");
-	exit;
+	$user = new User();
+    $user->logout($_SESSION["username"]);
 ?>

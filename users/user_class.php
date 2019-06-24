@@ -26,29 +26,25 @@ Class User {
 		}
 	}
 
-	public function __get($property)
-	{
+	public function __get($property) {
 		return $property;
 	}
 
-	public function __set($property, $value)
-	{
+	public function __set($property, $value) {
 		$this->property = $value;
 	}
 
-	function __destruct(){
+	function __destruct() {
 		unset($this->bdd);
 	}
 
-	function	create_user($username, $email, $password, $confirm_password){
+	function	create_user($username, $email, $password, $confirm_password) {
 
 		$sql = "SELECT UserID FROM user WHERE username= :username";
-
 		if ($stmt = $this->bdd->prepare($sql))
 		{
 			$stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
 			$param_username = trim($username);
-
 			if ($stmt->execute())
 			{
 				if ($stmt->rowCount() == 1)
@@ -61,7 +57,6 @@ Class User {
 		}
 		unset($stmt);
 
-
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL))
 			$this->email_err = "Email must be a valid email.";
 		else
@@ -71,7 +66,6 @@ Class User {
 			{
 				$stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
 				$param_email = trim($email);
-
 				if ($stmt->execute())
 				{
 					if ($stmt->rowCount() >= 1)
@@ -94,11 +88,9 @@ Class User {
 		if (empty($this->password_err) && ($this->password != $this->confirm_password))
 			$this->confirm_password_err = "Password did not match.";
 
-		// Check input errors before inserting in database
 		if (empty($this->username_err) && empty($this->email_err) && empty($this->password_err) && empty($this->confirm_password_err))
 		{
 			$sql = "INSERT INTO user (Username, Passwd, Email, Cle) VALUES (:username, :password, :email, :cle)";
-
 			if ($stmt = $this->bdd->prepare($sql))
 			{
 				// Bind variables to the prepared statement as parameters
@@ -106,7 +98,6 @@ Class User {
 				$stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
 				$stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
 				$stmt->bindParam(":cle", $cle, PDO::PARAM_STR);
-
 				// Set parameters
 				$param_username = $username;
 				$param_email = $email;
@@ -138,5 +129,193 @@ Class User {
 			unset($stmt);
 		}
 	}
+
+	function	validation($login, $cle) {
+		$stmt = $this->bdd->prepare("SELECT cle, confirmed FROM user WHERE Username like :login ");
+		if ($stmt->execute(array(':login' => $login)) && $row = $stmt->fetch())
+		{
+			$clebdd = $row['cle'];
+			$actif = $row['confirmed'];
+		}
+		if ($actif == '1')
+			echo "Your account is already active!";
+		else
+		{
+			if ($cle == $clebdd)
+			{
+				echo "Your account has been successfully activated!";
+				$stmt = $this->bdd->prepare("UPDATE user SET confirmed = 1 WHERE username like :login ");
+				$stmt->bindParam(':login', $login);
+				$stmt->execute();
+			}
+			else
+				echo "Error ! Your account cannot be activated...";
+		}
+		unset($stmt);
+	}
+
+	function	login($username, $password) {
+    	$this->username = trim($username);
+        $this->password = trim($password);
+
+		if (empty($this->username_err) && empty($this->password_err))
+		{
+			$sql = "SELECT UserID, Username, Passwd, Confirmed FROM user WHERE Username = :username";
+			if ($stmt = $this->bdd->prepare($sql))
+			{
+				$stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+				$param_username = trim($this->username);
+				if ($stmt->execute())
+				{
+					if ($stmt->rowCount() == 1)
+					{
+						if ($row = $stmt->fetch())
+						{
+							$id = $row["UserID"];
+							$this->username = $row["Username"];
+							$hashed_password = $row["Passwd"];
+							if (password_verify($this->password, $hashed_password) && $row["Confirmed"] == 1)
+							{
+								session_start();
+								$_SESSION["loggedin"] = true;
+								$_SESSION["id"] = $id;
+								$_SESSION["username"] = $username;
+								header("location: ./../index.php");
+							}
+							else
+							{
+								if ($row["Confirmed"] == 0)
+									echo "Oops! You haven't activated your account yet, please check your emails.";
+								else
+									$this->password_err = "The password you entered was not valid.";
+							}
+						}
+					}
+					else
+						$this->username_err = "No account found with that username.";
+				}
+				else
+					echo "Oops! Something went wrong. Please try again later.";
+			}
+			unset($stmt);
+		}
+	}
+
+	function	logout($username) {
+		unset($username);
+		session_destroy();
+		header("location: ./../index.php");
+		exit;
+	}
+
+	function	reset_pwd_pending($email) {
+		$sql = "SELECT Email FROM user WHERE Email = :email";
+		if ($stmt = $this->bdd->prepare($sql))
+		{
+			$stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+			$param_email = trim($email);
+
+			if ($stmt->execute())
+			{
+				if ($stmt->rowCount() >= 1)
+					$this->email = trim($email);
+				else
+					$this->email_err = "The email address dosen't have an account yet.";
+			}
+			else
+				echo "Oops! Something went wrong. Please try again later.";
+		unset($stmt);
+		}
+		$sql = "UPDATE user SET `Reset`= :reset WHERE Email = :email";
+		if (!$this->email_err && $stmt = $this->bdd->prepare($sql))
+		{
+			$this->email_sent = "Please check your email box, we sent you the link to reset your password";
+			$stmt->bindParam(":reset", $reset, PDO::PARAM_STR);
+			$stmt->bindParam(":email", $email, PDO::PARAM_STR);
+			$reset = md5(microtime(TRUE)*100000);
+			if ($stmt->execute())
+			{
+				$sujet = "Reset your password on Camagru" ;
+				$message = 'Hello,
+
+				Looks like you forgot your password... It happens, no worries!
+				You can click on the following link in order to choose a new password:
+
+				http://localhost:8080/camagru/users/reset_pwd.php?email='.urlencode($email).'&reset='.urlencode($reset).'
+
+				---------------
+				Ceci est un mail automatique, Merci de ne pas y répondre.';
+				$message = wordwrap($message, 70, "\n");
+				$headers = 'From: camagru@42.fr' . "\r\n" .
+						'Reply-To: camagru@42.fr' . "\r\n" .
+						'X-Mailer: PHP/' . phpversion();
+				mail($email, $sujet, $message, $headers) ;
+			}
+			else
+				echo "Something went wrong. Please try again later.";
+		}
+		unset($stmt);
+	}
+
+	function	reset_pwd() {
+
+		if ($_SESSION['reset'] === $resetbdd)
+		{
+			// Processing form data when form is submitted
+			if ($_SERVER["REQUEST_METHOD"] == "POST")
+			{
+				// Validate new password
+				if (empty(trim($_POST["new_password"])))
+					$password_err = "Please enter a password.";
+				elseif (!preg_match ("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $_POST["new_password"]))
+					$password_err = "Password must have at least 8 characters, one uppercase letter, one lowercase letter and one number.";
+				else
+					$password = trim($_POST["new_password"]);
+
+				// Validate confirm password
+				if (empty(trim($_POST["confirm_password"])))
+					$confirm_password_err = "Please confirm password.";
+				else
+				{
+					$confirm_password = trim($_POST["confirm_password"]);
+					if (empty($password_err) && ($password != $confirm_password))
+						$confirm_password_err = "Password did not match.";
+				}
+				// Check input errors before updating the database
+				if(empty($new_password_err) && empty($confirm_password_err))
+				{
+					// Prepare an update statement
+					$sql = "UPDATE user SET passwd = :password WHERE Email = :email";
+
+					if($stmt = $bdd->prepare($sql))
+					{
+						// Bind variables to the prepared statement as parameters
+						$stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+						$stmt->bindParam(":email", $email, PDO::PARAM_INT);
+
+						// Set parameters
+						$param_password = password_hash($password, PASSWORD_DEFAULT);
+						$email = $_SESSION['email'];
+
+						if($stmt->execute())
+						{
+							header("location: login.php");
+							exit();
+						}
+						else
+							echo "Oops! Something went wrong. Please try again later.";
+					}
+					unset($stmt);
+				}
+			}
+			unset($bdd);
+		}
+		else
+			echo "Oops! Something went wrong. Please try again later.";
+
+
+	}
+
+
 }
 ?>

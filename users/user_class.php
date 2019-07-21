@@ -5,17 +5,19 @@ Class User {
 	private $username;
 	private $email;
 	private $password;
+	private $new_password;
 	private $confirm_password;
 	public $username_err;
 	public $email_err;
 	public $password_err;
+	public $new_password_err;
 	public $confirm_password_err;
 
 
 	function __construct(){
 		// if (!include 'config/database.php')
-            include '../config/database.php';
-		session_start();
+        	include '../config/database.php';
+		// session_start();
 		try {
 			$this->bdd = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 			$this->bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -257,63 +259,50 @@ Class User {
 		unset($stmt);
 	}
 
-	function	reset_pwd() {
+	function	reset_pwd($email, $new_password, $confirm_password) {
+		$this->email = $email;
+		$resetbdd = "";
 
-		if ($_SESSION['reset'] === $resetbdd)
-		{
-			// Processing form data when form is submitted
-			if ($_SERVER["REQUEST_METHOD"] == "POST")
-			{
-				// Validate new password
-				if (empty(trim($_POST["new_password"])))
-					$password_err = "Please enter a password.";
-				elseif (!preg_match ("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $_POST["new_password"]))
-					$password_err = "Password must have at least 8 characters, one uppercase letter, one lowercase letter and one number.";
-				else
-					$password = trim($_POST["new_password"]);
+		// checking if email and reset match
+		$stmt = $this->bdd->prepare("SELECT `reset`, email FROM user WHERE email = :email");
+		if ($stmt->execute(array(':email' => $this->email)) && $row = $stmt->fetch())
+			$resetbdd = $row['reset'];
 
-				// Validate confirm password
-				if (empty(trim($_POST["confirm_password"])))
-					$confirm_password_err = "Please confirm password.";
-				else
-				{
-					$confirm_password = trim($_POST["confirm_password"]);
-					if (empty($password_err) && ($password != $confirm_password))
-						$confirm_password_err = "Password did not match.";
-				}
-				// Check input errors before updating the database
-				if(empty($new_password_err) && empty($confirm_password_err))
-				{
-					// Prepare an update statement
-					$sql = "UPDATE user SET passwd = :password WHERE Email = :email";
-
-					if($stmt = $bdd->prepare($sql))
-					{
-						// Bind variables to the prepared statement as parameters
-						$stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
-						$stmt->bindParam(":email", $email, PDO::PARAM_INT);
-
-						// Set parameters
-						$param_password = password_hash($password, PASSWORD_DEFAULT);
-						$email = $_SESSION['email'];
-
-						if($stmt->execute())
-						{
-							header("location: login.php");
-							exit();
-						}
-						else
-							echo "Oops! Something went wrong. Please try again later.";
-					}
-					unset($stmt);
-				}
-			}
-			unset($bdd);
-		}
+		// Validate new password
+		if (!preg_match ("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $new_password))
+			$this->new_password_err = "Password must have at least 8 characters, one uppercase letter, one lowercase letter and one number.";
 		else
-			echo "Oops! Something went wrong. Please try again later.";
+			$this->new_password = trim($new_password);
+		// Validate confirm password
+		$this->confirm_password = trim($confirm_password);
 
+		if (empty($this->new_password_err) && ($this->new_password != $this->confirm_password))
+			$this->confirm_password_err = "Password did not match.";
 
+		// Check input errors before updating the database
+		if(empty($this->new_password_err) && empty($this->confirm_password_err) && $resetbdd)
+		{
+			// Prepare an update statement
+			$sql = "UPDATE user SET passwd = :password WHERE Email = :email";
+			if($stmt = $this->bdd->prepare($sql))
+			{
+				// Bind variables to the prepared statement as parameters
+				$stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+				$stmt->bindParam(":email", $email, PDO::PARAM_INT);
+				// Set parameters
+				$param_password = password_hash($this->new_password, PASSWORD_DEFAULT);
+				$email = $this->email;
+
+				if($stmt->execute())
+				{
+					header("location: login.php");
+					exit();
+				}
+				else
+					echo "Oops! Something went wrong. Please try again later.";
+			}
+			unset($stmt);
+		}
 	}
 
 

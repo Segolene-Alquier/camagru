@@ -1,5 +1,5 @@
 <?php
-	// session_start();
+	session_start();
 	require "user_class.php";
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST")

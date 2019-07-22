@@ -16,51 +16,73 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <link rel="stylesheet" href="../camagru.css">
+    <script src="https://kit.fontawesome.com/82e513fc69.js"></script>
+
 </head>
 <body>
-    <div class="wrapper">
+    <div class="container">
         <h2>Sign Up</h2>
         <p>Please fill this form to create an account.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($user->username_err)) ? 'has-error' : ''; ?>">
-                <label>Username</label>
-                <input required type="text" name="username" class="form-control" value="">
-                <?php if (isset($user)) {?>
-                <span class="help-block"><?php echo $user->username_err; ?></span>
-                <?php }; ?>
-            </div>
-			<div class="form-group <?php echo (!empty($user->email_err)) ? 'has-error' : ''; ?>">
-                <label>Email</label>
-                <input required type="text" name="email" class="form-control" value="">
-                <?php if (isset($user)) {?>
-                <span class="help-block"><?php echo $user->email_err; ?></span>
-                <?php }; ?>
-            </div>
-            <div class="form-group <?php echo (!empty($user->password_err)) ? 'has-error' : ''; ?>">
-                <label>Password</label>
-                <input required type="password" name="password" class="form-control" value="">
-                <?php if (isset($user)) {?>
-                <span class="help-block"><?php echo $user->password_err; ?></span>
-                <?php }; ?>
-            </div>
-            <div class="form-group <?php echo (!empty($user->confirm_password_err)) ? 'has-error' : ''; ?>">
-                <label>Confirm Password</label>
-                <input required type="password" name="confirm_password" class="form-control" value="">
-                <?php if (isset($user)) {?>
-                <span class="help-block"><?php echo $user->confirm_password_err; ?></span>
-                <?php }; ?>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-default" value="Reset">
-            </div>
-            <p>Already have an account? <a href="login.php">Login here</a>.</p>
-        </form>
+        <div class="box container">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" >
+                <div class="field <?php echo (!empty($user->username_err)) ? 'has-error' : ''; ?>">
+                    <label class="label">Username</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input required type="text" name="username" class="input" value="">
+                        <!-- <input class="input is-success" type="text" placeholder="Text input" value="bulma"> -->
+                        <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                        </span>
+                    </div>
+                    <?php if (isset($user)) {?>
+                    <span class="help-block"><?php echo $user->username_err; ?></span>
+                    <?php }; ?>
+                </div>
+                <div class="field <?php echo (!empty($user->email_err)) ? 'has-error' : ''; ?>">
+                    <label class="label">Email</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input required type="text" name="email" class="input" value="">
+                        <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                        </span>
+                    </div>
+                    <?php if (isset($user)) {?>
+                    <span class="help-block"><?php echo $user->email_err; ?></span>
+                    <?php }; ?>
+                </div>
+                <div class="field <?php echo (!empty($user->password_err)) ? 'has-error' : ''; ?>">
+                    <label class="label">Password</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input required type="password" name="password" class="input" value="">
+                        <span class="icon is-small is-left">
+                        <i class="fas fa-key"></i>
+                        </span>
+                    </div>
+                    <?php if (isset($user)) {?>
+                    <span class="help-block"><?php echo $user->password_err; ?></span>
+                    <?php }; ?>
+                </div>
+                <div class="field <?php echo (!empty($user->confirm_password_err)) ? 'has-error' : ''; ?>">
+                    <label class="label">Confirm Password</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input required type="password" name="password" class="input" value="">
+                        <span class="icon is-small is-left">
+                        <i class="fas fa-key"></i>
+                        </span>
+                    </div>
+                    <?php if (isset($user)) {?>
+                    <span class="help-block"><?php echo $user->confirm_password_err; ?></span>
+                    <?php }; ?>
+                </div>
+                <div class="field">
+                    <input type="submit" class="button is-link" value="Submit">
+                    <input type="reset" class="button is-text" value="Reset">
+                </div>
+                <p>Already have an account? <a href="login.php">Login here</a>.</p>
+            </form>
+        </div>
     </div>
 </body>
 </html>

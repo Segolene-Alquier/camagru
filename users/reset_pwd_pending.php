@@ -15,11 +15,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
 </head>
 <body>
     <div class="wrapper">
@@ -34,7 +30,7 @@
 				<?php }; ?>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
+                <input type="submit" class="button" value="Submit">
                 <!-- <input type="reset" class="btn btn-default" value="Reset"> -->
             </div>
             <p>Changed your mind? <a href="login.php">Login here</a>.</p>

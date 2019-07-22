@@ -4,14 +4,11 @@
 body{
 	background-color: #f2f2f2;
 	width: 100%;
+	height: 100vh;;
 	margin: 0;
 	padding: 0;
 }
-#main {
-	min-height:100%;
-	margin:0 auto;
-	position:relative;
-}
+
 /* HEADER */
 
 .nav-wrap {
@@ -57,19 +54,9 @@ body{
 .log-section a:hover {
 	color: #fbc02d;
 }
-.wrapper{
+/* .wrapper{
 	display: flex;
 	flex-direction: row;
 	width:100%;
 	height: 100vh;
-}
-.categories-wrapper {
-	background-color: #25a59a;
-	width: 10%;
-	min-width: 200px;
-	height: 100%;
-}
-.display{
-	width: 90%;
-	height: 100%;
-}
+} */

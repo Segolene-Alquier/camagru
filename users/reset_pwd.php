@@ -19,12 +19,12 @@ else
 if (!isset($_SESSION['reset']))
     $_SESSION['reset'] = $_GET['reset'];
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST")
-    {
-        $user = new User();
-        var_dump($_POST['new_password']);
-        $user->reset_pwd($email, $_POST['new_password'], $_POST['confirm_password']);
-    }
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $user = new User();
+    var_dump($_POST['new_password']);
+    $user->reset_pwd($email, $_POST['new_password'], $_POST['confirm_password']);
+}
 
 ?>
 
@@ -32,6 +32,7 @@ if (!isset($_SESSION['reset']))
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Reset Password</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">

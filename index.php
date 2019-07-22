@@ -14,12 +14,9 @@ session_start();
 	<title>Camagru</title>
 </head>
 <body>
-<div id="main">
 	<?php include_once 'navigation.php'; ?>
 	<div class="wrapper">
 		coucou
 	</div>
-</div>
-
 </body>
 </html>

@@ -1,16 +1,18 @@
 <nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
 	<div class="navbar-brand">
 		<a href="/index.php" class="navbar-item"><i class="fas fa-home"></i></a>
+		<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');">
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+		</a>
 	</div>
-	<div class="navbar-menu is-active">
+	<div class="navbar-menu ">
 		<div class="navbar-start">
 			<!-- navbar items -->
 		</div>
-
 		<div class="navbar-end">
-			<!-- navbar items -->
-		</div>
-		<?php
+			<?php
 			// echo $_SESSION['username'];
 			if(isset($_SESSION['username']) === true){
 				// Say "Welcome"
@@ -33,5 +35,7 @@
 			// 	echo '<div class="log-elem"><a href="/camagru/users/logout.php">Log out</a></div>';
 			// }
 		?>
+		</div>
+
 	</div>
 </nav>

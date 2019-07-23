@@ -57,7 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                                 <div class="control has-icons-left has-icons-right">
                                     <input required type="password" name="password" class="input">
                                     <span class="icon is-small is-left">
-                                    <i class="fas fa-envelope"></i>
+                                    <i class="fas fa-key"></i>
                                     </span>
                                 </div>
                                 <?php if (isset($user)) {?>

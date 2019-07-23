@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                             <div class="field <?php echo (!empty($user->confirm_password_err)) ? 'has-error' : ''; ?>">
                                 <label class="label">Confirm Password</label>
                                 <div class="control has-icons-left has-icons-right">
-                                    <input required type="password" name="password" class="input" value="">
+                                    <input required type="password" name="confirm_password" class="input" value="">
                                     <span class="icon is-small is-left">
                                     <i class="fas fa-key"></i>
                                     </span>

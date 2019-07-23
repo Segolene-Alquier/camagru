@@ -15,8 +15,95 @@ session_start();
 </head>
 <body>
 	<?php include_once 'navigation.php'; ?>
-	<div class="wrapper">
-		coucou
+	<div class="block">
+		<div class="container gallery-container">
+			<div class="columns is-multiline ">
+				<div class="column is-narrow">
+					<div class="card" style="max-width: 300px; max-height: 300px;">
+						<div class="img-gallery img-container">
+							<figure class="image is-square ">
+								<img src="img/water.jpg">
+								<div class="overlay">
+									<div class="gallery-icon-wrapper">
+										<span class="gallery-icon">
+											<i class="fa fa-heart"></i>
+											<span>42</span>
+										</span>
+										<span class="gallery-icon">
+											<i class="fa fa-comment"></i>
+											<span>3</span>
+										</span>
+									</div>
+								</div>
+							</figure>
+						</div>
+					</div>
+				</div>
+				<div class="column is-narrow">
+					<div class="card" style="max-width: 300px; max-height: 300px;">
+						<div class="img-gallery img-container">
+							<figure class="image is-square ">
+								<img src="img/water.jpg">
+								<div class="overlay">
+									<div class="gallery-icon-wrapper">
+										<span class="gallery-icon">
+											<i class="fa fa-heart"></i>
+											<span>42</span>
+										</span>
+										<span class="gallery-icon">
+											<i class="fa fa-comment"></i>
+											<span>3</span>
+										</span>
+									</div>
+								</div>
+							</figure>
+						</div>
+					</div>
+				</div>
+				<div class="column is-narrow">
+					<div class="card" style="max-width: 300px; max-height: 300px;">
+						<div class="img-gallery img-container">
+							<figure class="image is-square ">
+								<img src="img/water.jpg">
+								<div class="overlay">
+									<div class="gallery-icon-wrapper">
+										<span class="gallery-icon">
+											<i class="fa fa-heart"></i>
+											<span>42</span>
+										</span>
+										<span class="gallery-icon">
+											<i class="fa fa-comment"></i>
+											<span>3</span>
+										</span>
+									</div>
+								</div>
+							</figure>
+						</div>
+					</div>
+				</div>
+				<div class="column is-narrow">
+					<div class="card" style="max-width: 300px; max-height: 300px;">
+						<div class="img-gallery img-container">
+							<figure class="image is-square ">
+								<img src="img/water.jpg">
+								<div class="overlay">
+									<div class="gallery-icon-wrapper">
+										<span class="gallery-icon">
+											<i class="fa fa-heart"></i>
+											<span>42</span>
+										</span>
+										<span class="gallery-icon">
+											<i class="fa fa-comment"></i>
+											<span>3</span>
+										</span>
+									</div>
+								</div>
+							</figure>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

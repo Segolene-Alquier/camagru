@@ -26,7 +26,6 @@ body{
 	padding: 2rem;
 	margin-top: 100px;
 	font-weight: bold;
-	background-color: gold;
 }
 
 .form-title {
@@ -35,4 +34,69 @@ body{
 
 .form-wrapper {
 	margin: auto;
+}
+
+/* GALLERY */
+
+.card {
+	height: 15vw;
+	width: 15vw;
+	min-width: 200px;
+	min-height: 200px;
+}
+.img-gallery {
+	padding: 0;
+}
+.gallery-container {
+	padding: 2vw;
+	padding-top: 100px;
+	/* align-content: center; */
+}
+
+/* Container needed to position the overlay. Adjust the width as needed */
+.img-container {
+	position: relative;
+	width: 100%;
+	max-width: 400px;
+  }
+
+  /* Make the image to responsive */
+  .image {
+	width: 100%;
+	height: auto;
+  }
+
+  /* The overlay effect (full height and width) - lays on top of the container and over the image */
+  .overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .3s ease;
+	z-index:10;
+	display: flex;
+	flex-direction: row;
+  }
+
+  /* When you mouse over the container, fade in the overlay icon*/
+  .img-container:hover .overlay {
+	background-color: rgb(211,211,211);
+	opacity: 0.6;
+  }
+  /* When you move the mouse over the icon, change color */
+  .fa-heart:hover {
+	color: #eee;
+  }
+  .fa-comment:hover {
+	color: #eee;
+  }
+  .gallery-icon-wrapper {
+	  margin: auto;
+  }
+  .gallery-icon {
+	padding: 4px;
 }

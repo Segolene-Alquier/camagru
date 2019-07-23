@@ -26,6 +26,7 @@ body{
 	padding: 2rem;
 	margin-top: 100px;
 	font-weight: bold;
+	background-color: gold;
 }
 
 .form-title {
@@ -33,5 +34,5 @@ body{
 }
 
 .form-wrapper {
-	max-width: 300px;
+	margin: auto;
 }

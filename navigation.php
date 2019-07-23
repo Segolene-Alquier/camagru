@@ -1,6 +1,6 @@
 <nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
 	<div class="navbar-brand">
-		<a href="../index.php" class="navbar-item"><i class="fas fa-home"></i></a>
+		<a href="#" class="navbar-item"><i class="fas fa-home"></i></a>
 		<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');">
 			<span aria-hidden="true"></span>
 			<span aria-hidden="true"></span>

@@ -70,6 +70,7 @@
 			<div class="columns">
 				<div class="column is-four-fifths edit-left box">
 					<div class="edit-left-top">
+					<h2 class="subtitle">📥 Upload a picture OR 📸 take a new one! </h2>
 						<div class="columns ">
 							<div class="column is-four-fifths edit-left-image" >
 							</div>
@@ -86,7 +87,7 @@
 						</div>
 						<div class="columns ">
 							<div class="column is-four-fifths" >
-								<h2 class="subtitle">✨ Pimp it with filters ✨</h2>
+								<h2 class="subtitle">✨ Pimp it with filters</h2>
 								<div class="level filters-wrapper">
 									<div class="image-box">
 										<img src="../img/filter-cat.png" alt="">
@@ -110,6 +111,7 @@
 				</div>
 				<div class="column edit-right">
 					<div class="box edit-right-wrapper">
+					<h2 class="subtitle">🌈 Your creations</h2>
 						<img src="../img/cliff.jpg" alt="">
 						<img src="../img/cliff.jpg" alt="">
 						<img src="../img/cliff.jpg" alt="">

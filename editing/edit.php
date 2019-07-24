@@ -77,10 +77,10 @@
 							<div class="column">
 								<div class="edit-left-buttons">
 									<div class="edit-left-button">
-										<button class="button button-edit" style="background-color: rgb(58, 44, 200); color: white;">Upload</button>
+										<button class="button button-edit" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
 									</div>
 									<div class="edit-left-button ">
-										<button class="button button-edit" style="background-color: rgb(58, 44, 200); color: white;">New</button>
+										<button class="button button-edit" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-camera" style="margin-right: 5px;"></i>New</button>
 									</div>
 								</div>
 							</div>

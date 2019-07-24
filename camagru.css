@@ -110,8 +110,61 @@ body{
 
 .edit-left {
 	background-color: gold;
+	/* padding: 20px; */
+}
+.edit-left-top {
+	margin: 20px;
+	padding: 20px;
 
+}
+.edit-left-wrapper {
+	background-color: white;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: row;
+	/* justify-content: space-around; */
+	/* padding: 200px; */
+	box-shadow: 0 2px 2px rgba(68, 68, 68, 0.6);
+}
 
+.edit-left-image {
+	background-color: rgb(141, 142, 223, 0.3);
+	margin: 20px;
+	width: 600px;
+	height: 400px;
+}
+.edit-left-buttons {
+	/* background-color: red; */
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+	/* align-items: baseline; */
+}
+.edit-left-button {
+	margin: 1vw;
+}
+.button-edit {
+	background-color: rgb(58, 44, 200);
+}
+.edit-left-filters {
+	background-color: white;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	padding: 20px;
+	box-shadow: 0 2px 2px rgba(68, 68, 68, 0.6);
+	margin: 20px;
+
+}
+.image-box {
+	/* background-color: red; */
+	width: 100px;
+	height: 100px;
+
+	padding: 10px;
+	background-color: rgb(141, 142, 223, 0.3);
+	border-radius: 25%;
 }
 
 .edit-right {

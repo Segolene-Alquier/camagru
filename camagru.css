@@ -100,3 +100,31 @@ body{
   .gallery-icon {
 	padding: 4px;
 }
+
+.edit-wrapper {
+	margin-left: 2vw;
+	margin-right: 2vw;
+	margin-top: 4vh;
+	margin-bottom: 4vh;
+}
+
+.edit-left {
+	background-color: gold;
+
+
+}
+
+.edit-right {
+	background-color: mediumturquoise;
+	display: flex;
+	flex-direction: column;
+
+
+}
+
+.edit-right-wrapper {
+	margin: 20px;
+
+	padding: 20px;
+	background-color: #f2f2f2;
+}

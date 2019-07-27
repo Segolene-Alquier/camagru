@@ -1,7 +1,14 @@
 <?php
-
+session_start();
 // creer restriction login
-
+require "image_class.php";
+var_dump($_SESSION["username"]);
+// $image = new Image;
+// if (isset($_POST['submit']) && $_POST['submit'] === 'Upload Image')
+// 	$image->upload($image->findUserFromId($_SESSION["username"]), $_FILES["fileToUpload"]);
+// $allImagesFromCurrentUser = $image->showByUserId($userdata['id']);
+// if (isset($_GET['action']) && $_GET['action'] === "delete" && isset($_GET['image_id']))
+// 	$image->delete($userdata['id'], $_GET['image_id']);
 ?>
 
 <!DOCTYPE html>
@@ -32,14 +39,29 @@
 									<div class="modal-background"></div>
 										<div class="modal-card">
 										<header class="modal-card-head">
-											<p class="modal-card-title">Modal title</p>
+											<p class="modal-card-title">Upload the image of your choice</p>
 											<button id="modal-close" class="delete" aria-label="close"></button>
 										</header>
 										<section class="modal-card-body">
-											<form action="upload.php" method="post" enctype="multipart/form-data" class="button button-edit">
+											<!-- <form action="uploader.php" method="post" enctype="multipart/form-data" class="button button-edit">
 												Upload
-												<input type="file" name="fileToUpload" id="fileToUpload">
+												<input class="file-input" type="file" name="fileToUpload" id="fileToUpload">
 												<input type="submit" value="Upload Image" name="submit">
+											</form> -->
+											<?php
+												if (isset($_SESSION['message']) && $_SESSION['message'])
+												{
+												printf('<b>%s</b>', $_SESSION['message']);
+												unset($_SESSION['message']);
+												}
+											?>
+											<form method="POST" action="uploader.php" enctype="multipart/form-data">
+												<div>
+												<span>Upload a File:</span>
+												<input type="file" name="uploadedFile" />
+												</div>
+
+												<input type="submit" name="uploadBtn" value="Upload" />
 											</form>
 										</section>
 										<footer class="modal-card-foot">
@@ -51,8 +73,6 @@
 									<div class="edit-left-button">
 										<button id="showModal" class="button button-edit" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
 									</div>
-
-
 									<div class="edit-left-button ">
 										<button class="button button-edit" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-camera" style="margin-right: 5px;"></i>New</button>
 									</div>

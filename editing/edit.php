@@ -54,17 +54,12 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 											<button id="modal-close" class="delete" aria-label="close"></button>
 										</header>
 										<section class="modal-card-body">
-											<!-- <form action="uploader.php" method="post" enctype="multipart/form-data" class="button button-edit">
-												Upload
-												<input class="file-input" type="file" name="fileToUpload" id="fileToUpload">
-												<input type="submit" value="Upload Image" name="submit">
-											</form> -->
 											<?php
-												if (isset($_SESSION['message']) && $_SESSION['message'])
-												{
-												printf('<b>%s</b>', $_SESSION['message']);
-												unset($_SESSION['message']);
-												}
+												// if (isset($_SESSION['message']) && $_SESSION['message'])
+												// {
+												// printf('<b>%s</b>', $_SESSION['message']);
+												// unset($_SESSION['message']);
+												// }
 											?>
 											<form method="POST" action="" enctype="multipart/form-data">
 												<div>

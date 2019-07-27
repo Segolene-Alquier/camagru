@@ -13,58 +13,10 @@
     <link rel="stylesheet" type="text/css" href="../camagru.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <script src="https://kit.fontawesome.com/82e513fc69.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 </head>
 <body>
     <?php include_once '../navigation.php'; ?>
-	<!-- <div class="section">
-		<div class="edit-wrapper">
-			<div class="columns">
-				<div class="column is-four-fifths edit-left">
-					<div class="edit-left-top">
-						<div class="columns edit-left-wrapper">
-							<div class="column is-four-fifths edit-left-image" >
-							</div>
-							<div class="column">
-								<div class="edit-left-buttons">
-									<div class="edit-left-button">
-										<button class="button button-edit" style="background-color: rgb(58, 44, 200); color: white;">Upload</button>
-									</div>
-									<div class="edit-left-button ">
-										<button class="button button-edit" style="background-color: rgb(58, 44, 200); color: white;">New</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="edit-left-filters">
-						<div class="image-box">
-							<img src="../img/filter-cat.png" alt="">
-						</div>
-						<div class="image-box">
-							<img src="../img/filter-crown.png" alt="" width="100px">
-						</div>
-						<div class="image-box">
-							<img src="../img/filter-dog.png" alt="" width="100px">
-						</div>
-						<div class="image-box">
-							<img src="../img/filter-hearts.png" alt="" width="100px">
-						</div>
-						<div class="image-box">
-							<img src="../img/filter-rainbow.png" alt="" width="100px">
-						</div>
-					</div>
-				</div>
-				<div class="column edit-right">
-					<div class="box edit-right-wrapper">
-						<img src="../img/cliff.jpg" alt="">
-						<img src="../img/cliff.jpg" alt="">
-						<img src="../img/cliff.jpg" alt="">
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
 	<div class="section">
 		<div class="edit-wrapper">
 			<div class="columns">
@@ -76,12 +28,35 @@
 							</div>
 							<div class="column">
 								<div class="edit-left-buttons">
-									<div class="edit-left-button">
-										<button class="button button-edit" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
+								<div class="modal">
+									<div class="modal-background"></div>
+										<div class="modal-card">
+										<header class="modal-card-head">
+											<p class="modal-card-title">Modal title</p>
+											<button id="modal-close" class="delete" aria-label="close"></button>
+										</header>
+										<section class="modal-card-body">
+											<form action="upload.php" method="post" enctype="multipart/form-data" class="button button-edit">
+												Upload
+												<input type="file" name="fileToUpload" id="fileToUpload">
+												<input type="submit" value="Upload Image" name="submit">
+											</form>
+										</section>
+										<footer class="modal-card-foot">
+											<button class="button is-success">Save changes</button>
+											<button class="button">Cancel</button>
+										</footer>
 									</div>
+								</div>
+									<div class="edit-left-button">
+										<button id="showModal" class="button button-edit" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
+									</div>
+
+
 									<div class="edit-left-button ">
 										<button class="button button-edit" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-camera" style="margin-right: 5px;"></i>New</button>
 									</div>
+
 								</div>
 							</div>
 						</div>
@@ -115,11 +90,19 @@
 						<img src="../img/cliff.jpg" alt="">
 						<img src="../img/cliff.jpg" alt="">
 						<img src="../img/cliff.jpg" alt="">
-
 					</div>
 				</div>
 			</div>
 		</div>
     </div>
+	<script>
+		$("#showModal").click(function() {
+		$(".modal").addClass("is-active");
+		});
+
+		$("#modal-close").click(function() {
+		$(".modal").removeClass("is-active");
+		});
+	</script>
 </body>
 </html>

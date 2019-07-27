@@ -85,6 +85,27 @@ Class Image {
 		// $_SESSION['message'] = $message;
 	}
 
+
+	function takePicture($img) {
+		$user_id = $_SESSION['user_id'];
+		// $img = $_POST['image'];
+		$folderPath = "../uploads/".$user_id."/";
+		$image_parts = explode(";base64,", $img);
+		var_dump($image_parts);
+		var_dump($img);
+
+		$image_type_aux = explode("image/", $image_parts[0]);
+		$image_type = $image_type_aux[1];
+		var_dump($image_parts[0]);
+		$image_base64 = base64_decode($image_parts[1]);
+		$fileName = uniqid() . '.png'; // faire pour toutes extensions
+
+		$file = $folderPath . $fileName;
+		file_put_contents($file, $image_base64);
+
+		print_r($fileName);
+	}
 }
+
 
 ?>

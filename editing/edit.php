@@ -12,6 +12,11 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 		$image->upload();
 	}
 }
+if (isset($_POST['newPicture']) && $_POST['newPicture'] == 'Take Picture')
+{
+		$image->takePicture($_POST['image']);
+
+}
 // $allImagesFromCurrentUser = $image->showByUserId($userdata['id']);
 // if (isset($_GET['action']) && $_GET['action'] === "delete" && isset($_GET['image_id']))
 // 	$image->delete($userdata['id'], $_GET['image_id']);
@@ -32,6 +37,8 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <script src="https://kit.fontawesome.com/82e513fc69.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+
 </head>
 <body>
     <?php include_once '../navigation.php'; ?>
@@ -42,46 +49,66 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 					<div class="edit-left-top">
 					<h2 class="subtitle">📥 Upload a picture OR 📸 take a new one! </h2>
 						<div class="columns ">
-							<div class="column is-four-fifths edit-left-image" >
+							<div class="column is-four-fifths edit-left-image" style="height: 800px;">
+								<form method="POST" action="">
+									<div class="row">
+										<div class="col-md-6">
+											<div id="my_camera"></div>
+											<br/>
+											<input type=button value="Take Snapshot" onClick="take_snapshot()">
+											<input type="hidden" name="image" class="image-tag">
+										</div>
+										<div class="col-md-6">
+											<div id="results">Your captured image will appear here...</div>
+										</div>
+										<div class="col-md-12 text-center">
+											<br/>
+											<button class="btn btn-success">Submit</button>
+										</div>
+									</div>
+								</form>
 							</div>
 							<div class="column">
 								<div class="edit-left-buttons">
-								<div class="modal">
-									<div class="modal-background"></div>
-										<div class="modal-card">
-										<header class="modal-card-head">
-											<p class="modal-card-title">Upload the image of your choice</p>
-											<button id="modal-close" class="delete" aria-label="close"></button>
-										</header>
-										<section class="modal-card-body">
-											<?php
-												// if (isset($_SESSION['message']) && $_SESSION['message'])
-												// {
-												// printf('<b>%s</b>', $_SESSION['message']);
-												// unset($_SESSION['message']);
-												// }
-											?>
-											<form method="POST" action="" enctype="multipart/form-data">
-												<div>
-												<span>Upload a File:</span>
-												<input type="file" name="uploadedFile" />
-												</div>
+									<div class="modal">
+										<div class="modal-background"></div>
+											<div class="modal-card">
+											<header class="modal-card-head">
+												<p class="modal-card-title">Upload the image of your choice</p>
+												<button id="modal-close" class="delete" aria-label="close"></button>
+											</header>
+											<section class="modal-card-body">
+												<?php
+													// if (isset($_SESSION['message']) && $_SESSION['message'])
+													// {
+													// printf('<b>%s</b>', $_SESSION['message']);
+													// unset($_SESSION['message']);
+													// }
+												?>
+												<form method="POST" action="" enctype="multipart/form-data">
+													<div>
+													<span>Upload a File:</span>
+													<input type="file" name="uploadedFile" />
+													</div>
+													<input type="submit" name="uploadBtn" value="Upload" />
+												</form>
+											</section>
+											<footer class="modal-card-foot">
+												<button class="button is-success">Save changes</button>
+												<button class="button">Cancel</button>
+											</footer>
+										</div>
 
-												<input type="submit" name="uploadBtn" value="Upload" />
-											</form>
-										</section>
-										<footer class="modal-card-foot">
-											<button class="button is-success">Save changes</button>
-											<button class="button">Cancel</button>
-										</footer>
 									</div>
-								</div>
 									<div class="edit-left-button">
 										<button id="showModal" class="button button-edit" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
 									</div>
-									<div class="edit-left-button ">
-										<button class="button button-edit" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-camera" style="margin-right: 5px;"></i>New</button>
+									<form action="" method="post">
+										<div class="edit-left-button ">
+										<button class="button button-edit" name="newPicture" value="Take Picture" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-camera" style="margin-right: 5px;"></i>New</button>
 									</div>
+									</form>
+
 
 								</div>
 							</div>
@@ -129,6 +156,23 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 		$("#modal-close").click(function() {
 		$(".modal").removeClass("is-active");
 		});
+
+
+		Webcam.set({
+        width: 490,
+        height: 390,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+		});
+
+		Webcam.attach( '#my_camera' );
+
+		function take_snapshot() {
+			Webcam.snap( function(data_uri) {
+				$(".image-tag").val(data_uri);
+				document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
+			} );
+		}
 	</script>
 </body>
 </html>

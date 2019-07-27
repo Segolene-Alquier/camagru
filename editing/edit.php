@@ -2,13 +2,24 @@
 session_start();
 // creer restriction login
 require "image_class.php";
-var_dump($_SESSION["username"]);
-// $image = new Image;
-// if (isset($_POST['submit']) && $_POST['submit'] === 'Upload Image')
-// 	$image->upload($image->findUserFromId($_SESSION["username"]), $_FILES["fileToUpload"]);
+// var_dump($_SESSION["username"]);
+$image = new Image;
+if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
+{
+	if (isset($_FILES['uploadedFile']) && $_FILES['uploadedFile']['error'] === UPLOAD_ERR_OK)
+	{
+		$image->findUserFromId($_SESSION["username"]);
+		$image->upload();
+	}
+}
 // $allImagesFromCurrentUser = $image->showByUserId($userdata['id']);
 // if (isset($_GET['action']) && $_GET['action'] === "delete" && isset($_GET['image_id']))
 // 	$image->delete($userdata['id'], $_GET['image_id']);
+// else
+// 		{
+// 			$message = 'There is some error in the file upload. Please check the following error.<br>';
+// 			$message .= 'Error:' . $_FILES['uploadedFile']['error'];
+// 		}
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +66,7 @@ var_dump($_SESSION["username"]);
 												unset($_SESSION['message']);
 												}
 											?>
-											<form method="POST" action="uploader.php" enctype="multipart/form-data">
+											<form method="POST" action="" enctype="multipart/form-data">
 												<div>
 												<span>Upload a File:</span>
 												<input type="file" name="uploadedFile" />

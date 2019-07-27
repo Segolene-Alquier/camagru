@@ -44,7 +44,7 @@ Class Image {
 					// session_start();
 					$id = $row["UserID"];
 					$_SESSION['user_id']= $id;
-					var_dump($_SESSION['user_id']);
+					// var_dump($_SESSION['user_id']);
 					}
 				}
 			}
@@ -54,7 +54,7 @@ Class Image {
 		}
 	}
 
-	// function upload($user_id, $file_info) {
+	function upload() {
 	// 	$target_dir = "../uploads/".$user_id."/";
 	// 	if (!file_exists($target_dir))
 	// 		mkdir($target_dir, 0777, true);
@@ -99,7 +99,47 @@ Class Image {
 	// 			echo "Sorry, there was an error uploading your file.";
 	// 		}
 	// 	}
-	// }
+			$message = '';
+			$user_id = $_SESSION['user_id'];
+			// get details of the uploaded file
+			$fileTmpPath = $_FILES['uploadedFile']['tmp_name'];
+			// var_dump($fileTmpPath);
+			$fileName = $_FILES['uploadedFile']['name'];
+			$fileSize = $_FILES['uploadedFile']['size'];
+			$fileType = $_FILES['uploadedFile']['type'];
+			$fileNameCmps = explode(".", $fileName);
+			$fileExtension = strtolower(end($fileNameCmps));
+			// sanitize file-name
+			$newFileName = md5(time() . $fileName) . '.' . $fileExtension;
+			// check if file has one of the following extensions
+			$allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
+			if (in_array($fileExtension, $allowedfileExtensions))
+			{
+			// directory in which the uploaded file will be moved
+			$uploadFileDir = "../uploads/".$user_id."/";
+			$dest_path = $uploadFileDir . $newFileName;
+			if (!file_exists($dest_path))
+				mkdir($uploadFileDir, 0777, true);
+				// var_dump($fileTmpPath);
+
+			// var_dump($dest_path);
+
+				if(move_uploaded_file($fileTmpPath, $dest_path))
+				{
+					$message ='File is successfully uploaded.';
+				}
+				else
+				{
+					$message = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
+				}
+			}
+			else
+			{
+			$message = 'Upload failed. Allowed file types: ' . implode(',', $allowedfileExtensions);
+			}
+
+		// $_SESSION['message'] = $message;
+	}
 
 }
 

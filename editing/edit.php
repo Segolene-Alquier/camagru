@@ -37,7 +37,6 @@ if (isset($_POST['newPicture']) && $_POST['newPicture'] == 'Take Picture')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <script src="https://kit.fontawesome.com/82e513fc69.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
 
 </head>
 <body>
@@ -50,23 +49,25 @@ if (isset($_POST['newPicture']) && $_POST['newPicture'] == 'Take Picture')
 					<h2 class="subtitle">📥 Upload a picture OR 📸 take a new one! </h2>
 						<div class="columns ">
 							<div class="column is-four-fifths edit-left-image" style="height: 800px;">
-								<form method="POST" action="">
-									<div class="row">
-										<div class="col-md-6">
-											<div id="my_camera"></div>
-											<br/>
-											<input type=button value="Take Snapshot" onClick="take_snapshot()">
-											<input type="hidden" name="image" class="image-tag">
-										</div>
-										<div class="col-md-6">
-											<div id="results">Your captured image will appear here...</div>
-										</div>
-										<div class="col-md-12 text-center">
-											<br/>
-											<button class="btn btn-success">Submit</button>
-										</div>
-									</div>
-								</form>
+							<!-- <video id="video" autoplay="true" style="background-color:gold;"></video>
+							<button id="startbutton">Prendre une photo</button>
+							<canvas id="canvas" style="background-color:golpinkd;"></canvas> -->
+
+
+							<video id="video" width="640" height="480" autoplay></video>
+							<!-- <button id="snap">Snap Photo</button> -->
+							<canvas id="canvas" width="500" height="500"></canvas>
+							<!-- <img src="http://placekitten.com/g/320/261" id="photo" alt="photo"> -->
+<!--
+							<div id="video" hidden>
+								<video id="webcam" autoplay width="600" height="400"></video>
+								<img src="../img/montage/1.png" class="live-mask" id="1" hidden>
+								<div class="buttons">
+									<button id="snap-btn" disabled><span class="fas fa-3x fa-camera"></span></button>
+								</div>
+							</div> -->
+
+
 							</div>
 							<div class="column">
 								<div class="edit-left-buttons">
@@ -103,13 +104,9 @@ if (isset($_POST['newPicture']) && $_POST['newPicture'] == 'Take Picture')
 									<div class="edit-left-button">
 										<button id="showModal" class="button button-edit" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
 									</div>
-									<form action="" method="post">
 										<div class="edit-left-button ">
-										<button class="button button-edit" name="newPicture" value="Take Picture" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-camera" style="margin-right: 5px;"></i>New</button>
+										<button id="snap"  class="button button-edit" name="newPicture" value="Take Picture" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-camera" style="margin-right: 5px;"></i>New</button>
 									</div>
-									</form>
-
-
 								</div>
 							</div>
 						</div>
@@ -148,31 +145,7 @@ if (isset($_POST['newPicture']) && $_POST['newPicture'] == 'Take Picture')
 			</div>
 		</div>
     </div>
-	<script>
-		$("#showModal").click(function() {
-		$(".modal").addClass("is-active");
-		});
 
-		$("#modal-close").click(function() {
-		$(".modal").removeClass("is-active");
-		});
-
-
-		Webcam.set({
-        width: 490,
-        height: 390,
-        image_format: 'jpeg',
-        jpeg_quality: 90
-		});
-
-		Webcam.attach( '#my_camera' );
-
-		function take_snapshot() {
-			Webcam.snap( function(data_uri) {
-				$(".image-tag").val(data_uri);
-				document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
-			} );
-		}
-	</script>
+	<script type="text/javascript" src="edit.js"></script>
 </body>
 </html>

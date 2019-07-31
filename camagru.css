@@ -118,8 +118,18 @@ body{
 .edit-left-image {
 	background-color: rgb(141, 142, 223, 0.3);
 	width: 600px;
-	height: 400px;
+	height: 550px;
 	margin-bottom: 20px;
+	display: flex;
+	flex-direction: row;
+	margin: auto;
+
+}
+.webcam {
+	display: flex;
+	flex-direction: row;
+	margin: auto;
+	/* background-color: gold; */
 }
 .edit-left-buttons {
 

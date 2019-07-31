@@ -12,11 +12,11 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 		$image->upload();
 	}
 }
-if (isset($_POST['newPicture']) && $_POST['newPicture'] == 'Take Picture')
-{
-		$image->takePicture($_POST['image']);
+// if (isset($_POST['newPicture']) && $_POST['newPicture'] == 'Take Picture')
+// {
+// 		$image->takePicture(#canvas);
 
-}
+// }
 // $allImagesFromCurrentUser = $image->showByUserId($userdata['id']);
 // if (isset($_GET['action']) && $_GET['action'] === "delete" && isset($_GET['image_id']))
 // 	$image->delete($userdata['id'], $_GET['image_id']);
@@ -48,25 +48,11 @@ if (isset($_POST['newPicture']) && $_POST['newPicture'] == 'Take Picture')
 					<div class="edit-left-top">
 					<h2 class="subtitle">📥 Upload a picture OR 📸 take a new one! </h2>
 						<div class="columns ">
-							<div class="column is-four-fifths edit-left-image" style="height: 800px;">
-							<!-- <video id="video" autoplay="true" style="background-color:gold;"></video>
-							<button id="startbutton">Prendre une photo</button>
-							<canvas id="canvas" style="background-color:golpinkd;"></canvas> -->
-
-
-							<video id="video" width="640" height="480" autoplay></video>
-							<!-- <button id="snap">Snap Photo</button> -->
-							<canvas id="canvas" width="500" height="500"></canvas>
-							<!-- <img src="http://placekitten.com/g/320/261" id="photo" alt="photo"> -->
-<!--
-							<div id="video" hidden>
-								<video id="webcam" autoplay width="600" height="400"></video>
-								<img src="../img/montage/1.png" class="live-mask" id="1" hidden>
-								<div class="buttons">
-									<button id="snap-btn" disabled><span class="fas fa-3x fa-camera"></span></button>
-								</div>
-							</div> -->
-
+							<div class="column is-four-fifths edit-left-image" >
+							<div class="webcam">
+								<video id="video" width="500" height="500" autoplay></video>
+								<canvas id="canvas" width="500" height="500"></canvas>
+							</div>
 
 							</div>
 							<div class="column">
@@ -78,6 +64,7 @@ if (isset($_POST['newPicture']) && $_POST['newPicture'] == 'Take Picture')
 												<p class="modal-card-title">Upload the image of your choice</p>
 												<button id="modal-close" class="delete" aria-label="close"></button>
 											</header>
+											<?php var_dump($_FILES['webcam']['tmp_name']); ?>
 											<section class="modal-card-body">
 												<?php
 													// if (isset($_SESSION['message']) && $_SESSION['message'])
@@ -96,7 +83,7 @@ if (isset($_POST['newPicture']) && $_POST['newPicture'] == 'Take Picture')
 											</section>
 											<footer class="modal-card-foot">
 												<button class="button is-success">Save changes</button>
-												<button class="button">Cancel</button>
+												<button id="cancel-close" class="button">Cancel</button>
 											</footer>
 										</div>
 
@@ -104,8 +91,11 @@ if (isset($_POST['newPicture']) && $_POST['newPicture'] == 'Take Picture')
 									<div class="edit-left-button">
 										<button id="showModal" class="button button-edit" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
 									</div>
-										<div class="edit-left-button ">
+									<div class="edit-left-button ">
 										<button id="snap"  class="button button-edit" name="newPicture" value="Take Picture" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-camera" style="margin-right: 5px;"></i>New</button>
+									</div>
+									<div class="edit-left-button ">
+										<button id="save"  class="button button-edit" name="savePicture" value="Save Picture" style="background-color: #A91E8E; color: white;"><i class="fas fa-save" style="margin-right: 5px;"></i>Save</button>
 									</div>
 								</div>
 							</div>

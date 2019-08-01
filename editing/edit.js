@@ -25,8 +25,6 @@ document.getElementById("snap").addEventListener("click", function() {
 document.getElementById("save").addEventListener("click", function() {
   const data = canvas.toDataURL('image/png');
   console.log(data);
-  // photo.setAttribute('src', data);
-  // document.upload_image.picture.value = data;
   $.ajax({
     url:'save_webcam.php',
     type:'POST',
@@ -35,7 +33,6 @@ document.getElementById("save").addEventListener("click", function() {
     }
   });
 });
-
 
 // UPLOAD MODAL APPEARS & DISAPPEARS
 $("#showModal").click(function() {
@@ -46,4 +43,36 @@ $("#modal-close").click(function() {
 });
 $("#cancel-close").click(function() {
 	$(".modal").removeClass("is-active");
+});
+
+// FILTERS //
+
+var filter = document.getElementById("filter-1");
+document.getElementById("filter-1").addEventListener("click", function() {
+  document.getElementById("chosen-filter").value = "1";
+  console.log(document.getElementById("chosen-filter").value);
+});
+
+var filter = document.getElementById("filter-2");
+document.getElementById("filter-2").addEventListener("click", function() {
+  document.getElementById("chosen-filter").value = "2";
+  console.log(document.getElementById("chosen-filter").value);
+});
+
+var filter = document.getElementById("filter-3");
+document.getElementById("filter-3").addEventListener("click", function() {
+  document.getElementById("chosen-filter").value = "3";
+  console.log(document.getElementById("chosen-filter").value);
+});
+
+var filter = document.getElementById("filter-4");
+document.getElementById("filter-4").addEventListener("click", function() {
+  document.getElementById("chosen-filter").value = "4";
+  console.log(document.getElementById("chosen-filter").value);
+});
+
+var filter = document.getElementById("filter-5");
+document.getElementById("filter-5").addEventListener("click", function() {
+  document.getElementById("chosen-filter").value = "5";
+  console.log(document.getElementById("chosen-filter").value);
 });

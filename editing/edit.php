@@ -37,7 +37,6 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <script src="https://kit.fontawesome.com/82e513fc69.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-
 </head>
 <body>
     <?php include_once '../navigation.php'; ?>
@@ -88,13 +87,13 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 
 									</div>
 									<div class="edit-left-button">
-										<button id="showModal" class="button button-edit" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
+										<button id="showModal" class="button button-edit" disabled style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
 									</div>
 									<div class="edit-left-button ">
-										<button id="snap"  class="button button-edit" name="newPicture" value="Take Picture" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-camera" style="margin-right: 5px;"></i>New</button>
+										<button id="snap"  class="button button-edit" disabled name="newPicture" value="Take Picture" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-camera" style="margin-right: 5px;"></i>New</button>
 									</div>
 									<div class="edit-left-button ">
-										<button id="save"  class="button button-edit" name="savePicture" value="Save Picture" style="background-color: #A91E8E; color: white;"><i class="fas fa-save" style="margin-right: 5px;"></i>Save</button>
+										<button id="save"  class="button button-edit" disabled name="savePicture" value="Save Picture" style="background-color: #A91E8E; color: white;"><i class="fas fa-save" style="margin-right: 5px;"></i>Save</button>
 									</div>
 								</div>
 							</div>
@@ -103,21 +102,22 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 							<div class="column is-four-fifths" >
 								<h2 class="subtitle">✨ Pimp it with filters</h2>
 								<div class="level filters-wrapper">
-									<button class="image-box">
+									<button class="image-box" id="filter-1">
 										<img src="../img/filter-cat.png" alt="">
 									</button>
-									<button class="image-box">
+									<button class="image-box" id="filter-2">
 										<img src="../img/filter-crown.png" alt="" width="100px">
 									</button>
-									<button class="image-box">
+									<button class="image-box" id="filter-3">
 										<img src="../img/filter-dog.png" alt="" width="100px">
 									</button>
-									<button class="image-box">
+									<button class="image-box" id="filter-4">
 										<img src="../img/filter-hearts.png" alt="" width="100px">
 									</button>
-									<button class="image-box">
+									<button class="image-box" id="filter-5">
 										<img src="../img/filter-rainbow.png" alt="" width="100px">
 									</button>
+									<input id="chosen-filter" type="hidden" value="">
 								</div>
 								</div>
 						</div>
@@ -134,7 +134,6 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 			</div>
 		</div>
     </div>
-
 	<script type="text/javascript" src="edit.js"></script>
 </body>
 </html>

@@ -103,21 +103,21 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 							<div class="column is-four-fifths" >
 								<h2 class="subtitle">✨ Pimp it with filters</h2>
 								<div class="level filters-wrapper">
-									<div class="image-box">
+									<button class="image-box">
 										<img src="../img/filter-cat.png" alt="">
-									</div>
-									<div class="image-box">
+									</button>
+									<button class="image-box">
 										<img src="../img/filter-crown.png" alt="" width="100px">
-									</div>
-									<div class="image-box">
+									</button>
+									<button class="image-box">
 										<img src="../img/filter-dog.png" alt="" width="100px">
-									</div>
-									<div class="image-box">
+									</button>
+									<button class="image-box">
 										<img src="../img/filter-hearts.png" alt="" width="100px">
-									</div>
-									<div class="image-box">
+									</button>
+									<button class="image-box">
 										<img src="../img/filter-rainbow.png" alt="" width="100px">
-									</div>
+									</button>
 								</div>
 								</div>
 						</div>

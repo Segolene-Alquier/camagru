@@ -86,8 +86,6 @@ Class Image {
 		// $_SESSION['message'] = $message;
 	}
 
-
-
 	function savePicture($img) {
 		$user_id = $_SESSION['user_id'];
 		$image_parts = explode(";base64,", $img);
@@ -102,7 +100,35 @@ Class Image {
 		$retour['$file']= $file;
 		file_put_contents($file, $image_en_base64);
 	}
+
+	function superimpose($src,$dest, $filter) {
+		$image_1 = imagecreatefromjpeg($src);
+		$stamp = imagecreatefrompng($filter);
+		list($width, $height) = getimagesize($src);
+		list($width_small, $height_small) = getimagesize($filter);
+		$marge_right = ($width/2)-($width_small/2);
+		$marge_bottom = ($height/2)-($height_small/2);
+		$sx = imagesx($stamp);
+		$sy = imagesy($stamp);
+		imagealphablending($image_1, true);
+		imagesavealpha($image_1, true);
+		imagecopy($image_1, $stamp,  imagesx($image_1) - $sx - $marge_right, imagesy($image_1) - $sy - $marge_bottom, 0, 0, $width_small, $height_small);
+		// Source Image, Overlay Image,x,y For placing the overlay image on center,0,0 and width and height for play button image
+		//imagepng($image_1, "image_3.png");
+		imagejpeg($image_1, $dest);
+	}
 }
 
 
 ?>
+
+<!--
+	par defaut : la webcam ET l'upload st desactives
+	je dois selectionner un filtre (cadre qui indique lequel est select)
+	j'enregistre l'information sur le filtre
+	alors les deux options sont activees
+	- si j prends une photo : le filtre apparait sur la webcam
+	- si j'upload une photo : je display l'image en question avec le filtre
+	quand je save : j'enregistre le montage sur le serveur et dans la bdd
+
+ -->

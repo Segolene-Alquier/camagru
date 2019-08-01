@@ -64,7 +64,6 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 												<p class="modal-card-title">Upload the image of your choice</p>
 												<button id="modal-close" class="delete" aria-label="close"></button>
 											</header>
-											<?php var_dump($_FILES['webcam']['tmp_name']); ?>
 											<section class="modal-card-body">
 												<?php
 													// if (isset($_SESSION['message']) && $_SESSION['message'])

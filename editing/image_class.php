@@ -65,12 +65,13 @@ Class Image {
 		$fileNameCmps = explode(".", $fileName);
 		$fileExtension = strtolower(end($fileNameCmps));
 		// sanitize file-name
-		$newFileName = md5(time() . $fileName) . '.' . $fileExtension;
+		$newFileName = uniqid().".".$fileExtension;
+		// $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
 		$allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
 		if (in_array($fileExtension, $allowedfileExtensions))
 		{
 		// directory in which the uploaded file will be moved
-		$uploadFileDir = "../uploads/".$user_id."/";
+		$uploadFileDir = "../uploads/".$user_id."/tmp/";
 		$dest_path = $uploadFileDir . $newFileName;
 		if (!file_exists($uploadFileDir))
 			mkdir($uploadFileDir, 0777, true);
@@ -86,30 +87,21 @@ Class Image {
 	}
 
 
-	// function savePicture($img) {
-	// 	$imageFolder="your folder"; //	This is your folder where you would like to save the file
-	// 	showImage() // - This function will get the image and return the name including the path
 
-
-	// changeImagetoBase64() //- This function will change the image to base64
-	// saveImageToDatabase() //-  It will help you to save the image to database
-
-
-	// 	$user_id = $_SESSION['user_id'];
-
-	// 	$folderPath = "../uploads/".$user_id."/";
-	// 	$image_parts = explode(";base64,", $img);
-
-	// 	$image_type_aux = explode("image/", $image_parts[0]);
-	// 	$image_type = $image_type_aux[1];
-	// 	$image_base64 = base64_decode($image_parts[1]);
-	// 	$fileName = uniqid() . '.png'; // faire pour toutes extensions
-
-	// 	$file = $folderPath . $fileName;
-	// 	file_put_contents($file, $image_base64);
-
-	// 	print_r($fileName);
-	// }
+	function savePicture($img) {
+		$user_id = $_SESSION['user_id'];
+		$image_parts = explode(";base64,", $img);
+		$image_type_aux = explode("image/", $image_parts[0]);
+		$image_type = $image_type_aux[1];
+		$image_en_base64 = base64_decode($image_parts[1]);
+		$file_name = uniqid().".".$image_type;
+		$filepath = "../uploads/".$user_id."/tmp/";
+		if (!file_exists($filepath))
+			mkdir($filepath, 0777, true);
+		$file = $filepath . $file_name;
+		$retour['$file']= $file;
+		file_put_contents($file, $image_en_base64);
+	}
 }
 
 

@@ -24,10 +24,16 @@ document.getElementById("snap").addEventListener("click", function() {
 
 document.getElementById("save").addEventListener("click", function() {
   const data = canvas.toDataURL('image/png');
-  save.href = data;
   console.log(data);
   // photo.setAttribute('src', data);
   // document.upload_image.picture.value = data;
+  $.ajax({
+    url:'save_webcam.php',
+    type:'POST',
+    data:{
+        data:data
+    }
+  });
 });
 
 

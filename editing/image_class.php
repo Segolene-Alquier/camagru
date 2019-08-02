@@ -123,8 +123,8 @@ Class Image {
 ?>
 
 <!--
-	par defaut : la webcam ET l'upload st desactives
-	je dois selectionner un filtre (cadre qui indique lequel est select)
+	par defaut : la webcam ET l'upload st desactives						DONE
+	je dois selectionner un filtre (cadre qui indique lequel est select)	DONE
 	j'enregistre l'information sur le filtre
 	alors les deux options sont activees
 	- si j prends une photo : le filtre apparait sur la webcam

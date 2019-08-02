@@ -46,9 +46,26 @@ $("#cancel-close").click(function() {
 
 // FILTERS //
 
-var filter = document.getElementById("filter-1");
+// filtre 1
 document.getElementById("filter-1").addEventListener("click", function() {
-  document.getElementById("chosen-filter").value = "1";
+  const filter = document.getElementById("chosen-filter").value = "1";
+  // $.ajax({
+  //   // define content type
+  //   type:'GET',
+  //   url:'overlay.php',
+  //   data: 'name'+filter,
+  //   // data:{
+  //   //   name:filter //JSON
+  //   // },
+  //   datatype: 'html',
+  //   // contentType: "application/x-www-form-urlencoded",
+  //   success: function() {
+  //     alert("Yepas");
+  //   },
+  //   error: function() {
+  //     alert("Nooope");
+  //   }
+  // });
   document.getElementById('showModal').disabled = false;
   document.getElementById('snap').disabled = false;
   var elements = document.getElementsByClassName('is-selected');
@@ -59,6 +76,7 @@ document.getElementById("filter-1").addEventListener("click", function() {
   console.log(document.getElementById("chosen-filter").value);
 });
 
+// filtre 2
 var filter = document.getElementById("filter-2");
 document.getElementById("filter-2").addEventListener("click", function() {
   document.getElementById("chosen-filter").value = "2";
@@ -72,6 +90,7 @@ document.getElementById("filter-2").addEventListener("click", function() {
   console.log(document.getElementById("chosen-filter").value);
 });
 
+// filtre 3
 var filter = document.getElementById("filter-3");
 document.getElementById("filter-3").addEventListener("click", function() {
   document.getElementById("chosen-filter").value = "3";
@@ -85,6 +104,7 @@ document.getElementById("filter-3").addEventListener("click", function() {
   console.log(document.getElementById("chosen-filter").value);
 });
 
+// filtre 4
 var filter = document.getElementById("filter-4");
 document.getElementById("filter-4").addEventListener("click", function() {
   document.getElementById("chosen-filter").value = "4";
@@ -98,6 +118,7 @@ document.getElementById("filter-4").addEventListener("click", function() {
   console.log(document.getElementById("chosen-filter").value);
 });
 
+// filtre 5
 var filter = document.getElementById("filter-5");
 document.getElementById("filter-5").addEventListener("click", function() {
   document.getElementById("chosen-filter").value = "5";

@@ -49,8 +49,10 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 						<div class="columns ">
 							<div class="column is-four-fifths edit-left-image" >
 							<div class="webcam">
+
 								<video id="video" width="500" height="500" autoplay></video>
 								<canvas id="canvas" width="500" height="500"></canvas>
+
 								<!-- <img src="montage.jpg" alt=""> -->
 							</div>
 							</div>
@@ -117,7 +119,22 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 									<button class="image-box" id="filter-5">
 										<img src="../img/filter-rainbow.png" alt="" width="100px">
 									</button>
-									<input id="chosen-filter" type="hidden" value="">
+									<form action="" method="POST">
+										<input id="chosen-filter" name="chosen" type="hidden" value="">
+										<input type="submit" class="button is-link" value="Submit">
+									</form>
+									<p>
+										<?php
+
+										if ($_SERVER["REQUEST_METHOD"] == "POST" )
+										{
+											$filter = $_POST['chosen'];
+											echo $filter;
+										}
+										else
+											echo "nothing";
+											 ?>
+									</p>
 								</div>
 								</div>
 						</div>
@@ -134,6 +151,9 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 			</div>
 		</div>
     </div>
+	<?php if (isset($namejs)) {?>
+	<div class="debug"> <?php var_dump($namejs); ?> </div>
+	<?php }; ?>
 	<script type="text/javascript" src="edit.js"></script>
 </body>
 </html>

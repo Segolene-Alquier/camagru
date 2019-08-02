@@ -51,8 +51,8 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 							<div class="webcam">
 								<video id="video" width="500" height="500" autoplay></video>
 								<canvas id="canvas" width="500" height="500"></canvas>
+								<!-- <img src="montage.jpg" alt=""> -->
 							</div>
-
 							</div>
 							<div class="column">
 								<div class="edit-left-buttons">

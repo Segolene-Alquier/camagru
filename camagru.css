@@ -163,3 +163,6 @@ body{
 	margin-right: 2vw;
 
 }
+.is-selected {
+	background-color: #A91E8E;
+}

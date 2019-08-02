@@ -101,7 +101,7 @@ Class Image {
 		file_put_contents($file, $image_en_base64);
 	}
 
-	function superimpose($src,$dest, $filter) {
+	function overlay($src,$dest, $filter) {
 		$image_1 = imagecreatefromjpeg($src);
 		$stamp = imagecreatefrompng($filter);
 		list($width, $height) = getimagesize($src);

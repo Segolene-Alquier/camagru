@@ -1,16 +1,23 @@
 <?php
 session_start();
 require "image_class.php";
-// $namejs = $_GET["name"];
-// var_dump($namejs);
-
-if (isset($_POST['chosen']))
+if (isset($_POST['filter']))
 {
-	$filter = $_POST['chosen'];
-	echo $filter;
+	$namejs = json_decode($_POST['filter']);
+	var_dump($namejs);
+	echo "Data is :".$namejs->data;
 }
 else
-	echo "nothing";
+	echo "nope";
+
+
+// if (isset($_POST['chosen']))
+// {
+// 	$filter = $_POST['chosen'];
+// 	echo $filter;
+// }
+// else
+// 	echo "nothing";
 // $src = $_POST['data']; // upload ou webcam
 // $dest = "montage.jpg";
 // $filter = $_POST['filter'];

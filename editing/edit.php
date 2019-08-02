@@ -12,6 +12,8 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 		$image->upload();
 	}
 }
+if (isset($_POST['Post']) && $_POST['Post'] === 'Post_Picture')
+    $image->upload($userdata['id'], $_POST['mask'], $_POST['picture']);
 // if (isset($_POST['newPicture']) && $_POST['newPicture'] == 'Take Picture')
 // {
 // 		$image->takePicture(#canvas);
@@ -52,7 +54,13 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 
 								<video id="video" width="500" height="500" autoplay></video>
 								<canvas id="canvas" width="500" height="500"></canvas>
-
+								<form action="" name="upload_image" method="post" enctype="multipart/form-data">
+									<input hidden type="hidden" name="picture" id="image_to_post" />
+									<input hidden type="text" name="mask" id="maskChoice" value="1" />
+									<div class="buttons">
+										<button type="submit" id="postButton" hidden name="Post" value="Post_Picture">Post</button>
+									</div>
+								</form>
 								<!-- <img src="montage.jpg" alt=""> -->
 							</div>
 							</div>
@@ -86,7 +94,6 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 												<button id="cancel-close" class="button">Cancel</button>
 											</footer>
 										</div>
-
 									</div>
 									<div class="edit-left-button">
 										<button id="showModal" class="button button-edit" disabled style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
@@ -119,14 +126,14 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 									<button class="image-box" id="filter-5">
 										<img src="../img/filter-rainbow.png" alt="" width="100px">
 									</button>
-									<form action="" method="POST">
-										<input id="chosen-filter" name="chosen" type="hidden" value="">
-										<input type="submit" class="button is-link" value="Submit">
-									</form>
-									<p>
-										<?php
+									<!-- <form action="" method="POST"> -->
+										<!-- <input id="chosen-filter" name="chosen" type="hidden" value=""> -->
+										<!-- <input type="submit" class="button is-link" value="Submit"> -->
+									<!-- </form> -->
+									<!-- <p> -->
 
-										if ($_SERVER["REQUEST_METHOD"] == "POST" )
+
+										<!-- if ($_SERVER["REQUEST_METHOD"] == "POST" )
 										{
 											$filter = $_POST['chosen'];
 											echo $filter;
@@ -134,7 +141,7 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 										else
 											echo "nothing";
 											 ?>
-									</p>
+									</p> -->
 								</div>
 								</div>
 						</div>

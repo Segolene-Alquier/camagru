@@ -101,7 +101,7 @@ Class Image {
 		file_put_contents($file, $image_en_base64);
 	}
 
-	function overlay($src,$dest, $filter) {
+	function overlay($src, $dest, $filter) {
 		$image_1 = imagecreatefromjpeg($src);
 		$stamp = imagecreatefrompng($filter);
 		list($width, $height) = getimagesize($src);
@@ -126,6 +126,8 @@ Class Image {
 	par defaut : la webcam ET l'upload st desactives						DONE
 	je dois selectionner un filtre (cadre qui indique lequel est select)	DONE
 	j'enregistre l'information sur le filtre
+		- je rajoute une class au filtre selectionne
+		- je recupere grace a la classe en PHP le bon filtre pour afficher le masque la camera live
 	alors les deux options sont activees
 	- si j prends une photo : le filtre apparait sur la webcam
 	- si j'upload une photo : je display l'image en question avec le filtre

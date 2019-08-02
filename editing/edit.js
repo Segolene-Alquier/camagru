@@ -48,19 +48,18 @@ $("#cancel-close").click(function() {
 
 // filtre 1
 document.getElementById("filter-1").addEventListener("click", function() {
-  const filter = document.getElementById("chosen-filter").value = "1";
+  var filter = {};
+  filter.data = document.getElementById("chosen-filter").value = "1";
+  console.log(typeof(filter));
   // $.ajax({
   //   // define content type
-  //   type:'GET',
+  //   type:'post',
   //   url:'overlay.php',
-  //   data: 'name'+filter,
-  //   // data:{
-  //   //   name:filter //JSON
-  //   // },
-  //   datatype: 'html',
-  //   // contentType: "application/x-www-form-urlencoded",
+  //   // dataType: "json",
+  //   // contentType: "application/json; charset=utf-8",
+  //   data: {"filter": JSON.stringify(filter)},
   //   success: function() {
-  //     alert("Yepas");
+  //     // alert("Yepas");
   //   },
   //   error: function() {
   //     alert("Nooope");

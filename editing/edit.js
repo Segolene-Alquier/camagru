@@ -54,6 +54,7 @@ document.getElementById("filter-1").addEventListener("click", function() {
   var elements = document.getElementsByClassName('is-selected');
   while(elements.length > 0)
     elements[0].classList.remove('is-selected');
+  var filtersOn = document.getElementsByClassName('live-filter');
   for (var i = 0; i < filtersOn.length; i++)
     filtersOn[i].hidden = true;
   document.getElementById('live-filter-1').hidden = false;
@@ -70,6 +71,7 @@ document.getElementById("filter-2").addEventListener("click", function() {
   var elements = document.getElementsByClassName('is-selected');
   while(elements.length > 0)
     elements[0].classList.remove('is-selected');
+  var filtersOn = document.getElementsByClassName('live-filter');
   for (var i = 0; i < filtersOn.length; i++)
     filtersOn[i].hidden = true;
   document.getElementById('live-filter-2').hidden = false;
@@ -86,6 +88,7 @@ document.getElementById("filter-3").addEventListener("click", function() {
   var elements = document.getElementsByClassName('is-selected');
   while(elements.length > 0)
     elements[0].classList.remove('is-selected');
+  var filtersOn = document.getElementsByClassName('live-filter');
   for (var i = 0; i < filtersOn.length; i++)
     filtersOn[i].hidden = true;
   document.getElementById('live-filter-3').hidden = false;

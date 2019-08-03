@@ -51,7 +51,11 @@ if (isset($_POST['Post']) && $_POST['Post'] === 'Post_Picture')
 						<div class="columns ">
 							<div class="column is-four-fifths edit-left-image" >
 							<div class="webcam">
-
+								<img id="live-filter-1" class="live-filter" hidden src="../img/filter-cat.png" alt="" style="width: 50%; height:50%;">
+								<img id="live-filter-2" class="live-filter" hidden src="../img/filter-crown.png" alt="" style="width: 50%; height:50%;">
+								<img id="live-filter-3" class="live-filter" hidden src="../img/filter-dog.png" alt="" style="width: 50%; height:50%;">
+								<img id="live-filter-4" class="live-filter" hidden src="../img/filter-hearts.png" alt="" style="width: 50%; height:50%;">
+								<img id="live-filter-5" class="live-filter" hidden src="../img/filter-rainbow.png" alt="" style="width: 50%; height:50%;">
 								<video id="video" width="500" height="500" autoplay></video>
 								<canvas id="canvas" width="500" height="500"></canvas>
 								<form action="" name="upload_image" method="post" enctype="multipart/form-data">
@@ -127,7 +131,7 @@ if (isset($_POST['Post']) && $_POST['Post'] === 'Post_Picture')
 										<img src="../img/filter-rainbow.png" alt="" width="100px">
 									</button>
 									<!-- <form action="" method="POST"> -->
-										<!-- <input id="chosen-filter" name="chosen" type="hidden" value=""> -->
+										<input id="chosen-filter" name="chosen" type="hidden" value="">
 										<!-- <input type="submit" class="button is-link" value="Submit"> -->
 									<!-- </form> -->
 									<!-- <p> -->
@@ -160,7 +164,10 @@ if (isset($_POST['Post']) && $_POST['Post'] === 'Post_Picture')
     </div>
 	<?php if (isset($namejs)) {?>
 	<div class="debug"> <?php var_dump($namejs); ?> </div>
+
+
 	<?php }; ?>
 	<script type="text/javascript" src="edit.js"></script>
 </body>
 </html>
+<!-- // when chosen-filter != vide, recuperer la valeur -->

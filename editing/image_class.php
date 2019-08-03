@@ -66,11 +66,9 @@ Class Image {
 		$fileExtension = strtolower(end($fileNameCmps));
 		// sanitize file-name
 		$newFileName = uniqid().".".$fileExtension;
-		// $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
 		$allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
 		if (in_array($fileExtension, $allowedfileExtensions))
 		{
-		// directory in which the uploaded file will be moved
 		$uploadFileDir = "../uploads/".$user_id."/tmp/";
 		$dest_path = $uploadFileDir . $newFileName;
 		if (!file_exists($uploadFileDir))
@@ -131,6 +129,8 @@ Class Image {
 	alors les deux options sont activees
 	- si j prends une photo : le filtre apparait sur la webcam
 	- si j'upload une photo : je display l'image en question avec le filtre
-	quand je save : j'enregistre le montage sur le serveur et dans la bdd
+	quand je save :
+	- 'envoie a la fonction de superposition l'image prise et l'image du filtre
+	- j'enregistre le montage sur le serveur et dans la bdd
 
  -->

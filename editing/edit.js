@@ -48,29 +48,15 @@ $("#cancel-close").click(function() {
 
 // filtre 1
 document.getElementById("filter-1").addEventListener("click", function() {
-  var filter = {};
-  filter.data = document.getElementById("chosen-filter").value = "1";
-  console.log(typeof(filter));
-  // $.ajax({
-  //   // define content type
-  //   type:'post',
-  //   url:'overlay.php',
-  //   // dataType: "json",
-  //   // contentType: "application/json; charset=utf-8",
-  //   data: {"filter": JSON.stringify(filter)},
-  //   success: function() {
-  //     // alert("Yepas");
-  //   },
-  //   error: function() {
-  //     alert("Nooope");
-  //   }
-  // });
+  var filter = document.getElementById("chosen-filter").value = "1";
   document.getElementById('showModal').disabled = false;
   document.getElementById('snap').disabled = false;
   var elements = document.getElementsByClassName('is-selected');
-  while(elements.length > 0){
+  while(elements.length > 0)
     elements[0].classList.remove('is-selected');
-  }
+  for (var i = 0; i < filtersOn.length; i++)
+    filtersOn[i].hidden = true;
+  document.getElementById('live-filter-1').hidden = false;
   document.getElementById('filter-1').classList.add("is-selected");
   console.log(document.getElementById("chosen-filter").value);
 });
@@ -82,9 +68,11 @@ document.getElementById("filter-2").addEventListener("click", function() {
   document.getElementById('showModal').disabled = false;
   document.getElementById('snap').disabled = false;
   var elements = document.getElementsByClassName('is-selected');
-  while(elements.length > 0){
+  while(elements.length > 0)
     elements[0].classList.remove('is-selected');
-  }
+  for (var i = 0; i < filtersOn.length; i++)
+    filtersOn[i].hidden = true;
+  document.getElementById('live-filter-2').hidden = false;
   document.getElementById('filter-2').classList.add("is-selected");
   console.log(document.getElementById("chosen-filter").value);
 });
@@ -96,9 +84,11 @@ document.getElementById("filter-3").addEventListener("click", function() {
   document.getElementById('showModal').disabled = false;
   document.getElementById('snap').disabled = false;
   var elements = document.getElementsByClassName('is-selected');
-  while(elements.length > 0){
+  while(elements.length > 0)
     elements[0].classList.remove('is-selected');
-  }
+  for (var i = 0; i < filtersOn.length; i++)
+    filtersOn[i].hidden = true;
+  document.getElementById('live-filter-3').hidden = false;
   document.getElementById('filter-3').classList.add("is-selected");
   console.log(document.getElementById("chosen-filter").value);
 });
@@ -110,9 +100,12 @@ document.getElementById("filter-4").addEventListener("click", function() {
   document.getElementById('showModal').disabled = false;
   document.getElementById('snap').disabled = false;
   var elements = document.getElementsByClassName('is-selected');
-  while(elements.length > 0){
+  while(elements.length > 0)
     elements[0].classList.remove('is-selected');
-  }
+  var filtersOn = document.getElementsByClassName('live-filter');
+  for (var i = 0; i < filtersOn.length; i++)
+    filtersOn[i].hidden = true;
+  document.getElementById('live-filter-4').hidden = false;
   document.getElementById('filter-4').classList.add("is-selected");
   console.log(document.getElementById("chosen-filter").value);
 });
@@ -127,6 +120,10 @@ document.getElementById("filter-5").addEventListener("click", function() {
   while(elements.length > 0){
     elements[0].classList.remove('is-selected');
   }
+  var filtersOn = document.getElementsByClassName('live-filter');
+  for (var i = 0; i < filtersOn.length; i++)
+    filtersOn[i].hidden = true;
+  document.getElementById('live-filter-5').hidden = false;
   document.getElementById('filter-5').classList.add("is-selected");
   console.log(document.getElementById("chosen-filter").value);
 });

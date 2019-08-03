@@ -126,14 +126,26 @@ body{
 
 }
 .webcam {
+	position: absolute;
 	display: flex;
 	flex-direction: row;
-	margin: auto;
-	/* background-color: gold; */
+	max-width: 600px;
+	z-index: 1;
 }
-.edit-left-buttons {
+.live-filter {
+	position: absolute;
+	top: 10%;
+	left: 25%;
+    /* left: 0;
+	top: 0; */
+	z-index: 2;
 
+    /* right: 0;
+    bottom: 0; */
+    /* display: block;*/
+    /* margin: auto; */
 }
+
 .edit-left-button {
 	margin: 1vw;
 }

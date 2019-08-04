@@ -18,19 +18,26 @@ var video = document.getElementById('video');
 
 // Trigger photo take
 document.getElementById("snap").addEventListener("click", function() {
-	context.drawImage(video, 0, 0, 500, 500);
-	video.style.display = "none";
+  video.style.display = "none";
+  document.getElementById('canvas').hidden = false;
+  context.drawImage(video, 0, 0, 500, 500);
+  const data = canvas.toDataURL('image/png');
+  // photo.setAttribute('src', data);
+  document.upload_image.picture.value = data;
+  document.getElementById('save').disabled = false;
+ 
 });
 
-document.getElementById("save").addEventListener("click", function() {
-  const data = canvas.toDataURL('image/png');
-  $.ajax({
-    url:'save_webcam.php',
-    type:'POST',
-    data:{
-        data:data
-    }
-  });
+document.getElementById("save").addEventListener("click", function() { // replaced by superimpose function
+  video.style.display = "none";
+//   const data = canvas.toDataURL('image/png');
+//   $.ajax({
+//     url:'save_webcam.php',
+//     type:'POST',
+//     data:{
+//         data:data
+//     }
+//   });
 });
 
 // UPLOAD MODAL APPEARS & DISAPPEARS
@@ -59,7 +66,6 @@ document.getElementById("filter-1").addEventListener("click", function() {
     filtersOn[i].hidden = true;
   document.getElementById('live-filter-1').hidden = false;
   document.getElementById('filter-1').classList.add("is-selected");
-  console.log(document.getElementById("chosen-filter").value);
 });
 
 // filtre 2
@@ -76,7 +82,6 @@ document.getElementById("filter-2").addEventListener("click", function() {
     filtersOn[i].hidden = true;
   document.getElementById('live-filter-2').hidden = false;
   document.getElementById('filter-2').classList.add("is-selected");
-  console.log(document.getElementById("chosen-filter").value);
 });
 
 // filtre 3
@@ -93,7 +98,6 @@ document.getElementById("filter-3").addEventListener("click", function() {
     filtersOn[i].hidden = true;
   document.getElementById('live-filter-3').hidden = false;
   document.getElementById('filter-3').classList.add("is-selected");
-  console.log(document.getElementById("chosen-filter").value);
 });
 
 // filtre 4
@@ -110,7 +114,6 @@ document.getElementById("filter-4").addEventListener("click", function() {
     filtersOn[i].hidden = true;
   document.getElementById('live-filter-4').hidden = false;
   document.getElementById('filter-4').classList.add("is-selected");
-  console.log(document.getElementById("chosen-filter").value);
 });
 
 // filtre 5
@@ -128,5 +131,4 @@ document.getElementById("filter-5").addEventListener("click", function() {
     filtersOn[i].hidden = true;
   document.getElementById('live-filter-5').hidden = false;
   document.getElementById('filter-5').classList.add("is-selected");
-  console.log(document.getElementById("chosen-filter").value);
 });

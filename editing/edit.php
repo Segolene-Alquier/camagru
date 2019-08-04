@@ -2,23 +2,22 @@
 session_start();
 // creer restriction login
 require "image_class.php";
-// var_dump($_SESSION["username"]);
+var_dump($_SESSION["username"]);
 $image = new Image;
 if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 {
 	if (isset($_FILES['uploadedFile']) && $_FILES['uploadedFile']['error'] === UPLOAD_ERR_OK)
 	{
-		$image->findUserFromId($_SESSION["username"]);
+		$userId = $image->findUserFromId($_SESSION["username"]);
 		$image->upload();
 	}
 }
-if (isset($_POST['Post']) && $_POST['Post'] === 'Post_Picture')
-    $image->upload($userdata['id'], $_POST['mask'], $_POST['picture']);
-// if (isset($_POST['newPicture']) && $_POST['newPicture'] == 'Take Picture')
-// {
-// 		$image->takePicture(#canvas);
+if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
+	// $userId = $image->findUserFromId($_SESSION["username"]);
+    $image->overlay($_POST['picture'], $_POST['chosen-filter'], $_SESSION["user_id"]);
+}
 
-// }
+
 // $allImagesFromCurrentUser = $image->showByUserId($userdata['id']);
 // if (isset($_GET['action']) && $_GET['action'] === "delete" && isset($_GET['image_id']))
 // 	$image->delete($userdata['id'], $_GET['image_id']);
@@ -57,15 +56,10 @@ if (isset($_POST['Post']) && $_POST['Post'] === 'Post_Picture')
 								<img id="live-filter-4" class="live-filter" hidden src="../img/filter-hearts.png" alt="" style="width: 50%; height:50%;">
 								<img id="live-filter-5" class="live-filter" hidden src="../img/filter-rainbow.png" alt="" style="width: 50%; height:50%;">
 								<video id="video" width="500" height="500" autoplay></video>
-								<canvas id="canvas" width="500" height="500"></canvas>
-								<form action="" name="upload_image" method="post" enctype="multipart/form-data">
-									<input hidden type="hidden" name="picture" id="image_to_post" />
-									<input hidden type="text" name="mask" id="maskChoice" value="1" />
-									<div class="buttons">
-										<button type="submit" id="postButton" hidden name="Post" value="Post_Picture">Post</button>
-									</div>
-								</form>
-								<!-- <img src="montage.jpg" alt=""> -->
+								<canvas id="canvas" hidden width="500" height="500"></canvas>
+								<?php if (file_exists("montage.jpg")) { ?>
+								<img src="montage.jpg" alt="">
+								<?php }; ?>
 							</div>
 							</div>
 							<div class="column">
@@ -106,7 +100,11 @@ if (isset($_POST['Post']) && $_POST['Post'] === 'Post_Picture')
 										<button id="snap"  class="button button-edit" disabled name="newPicture" value="Take Picture" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-camera" style="margin-right: 5px;"></i>New</button>
 									</div>
 									<div class="edit-left-button ">
-										<button id="save"  class="button button-edit" disabled name="savePicture" value="Save Picture" style="background-color: #A91E8E; color: white;"><i class="fas fa-save" style="margin-right: 5px;"></i>Save</button>
+										<form action="" name="upload_image" method="POST" enctype="multipart/form-data">
+											<input hidden type="hidden" name="picture" id="image_to_post" /> <!-- envoyer l'image  -->
+											<input id="chosen-filter" name="chosen-filter" type="hidden" value="">
+											<button id="save"  class="button button-edit" disabled name="savePicture" value="Save Picture" style="background-color: #A91E8E; color: white;"><i class="fas fa-save" style="margin-right: 5px;"></i>Save</button>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -116,36 +114,20 @@ if (isset($_POST['Post']) && $_POST['Post'] === 'Post_Picture')
 								<h2 class="subtitle">✨ Pimp it with filters</h2>
 								<div class="level filters-wrapper">
 									<button class="image-box" id="filter-1">
-										<img src="../img/filter-cat.png" alt="">
+										<img src="../img/filters/1.png" alt="">
 									</button>
 									<button class="image-box" id="filter-2">
-										<img src="../img/filter-crown.png" alt="" width="100px">
+										<img src="../img/filters/2.png" alt="" width="100px">
 									</button>
 									<button class="image-box" id="filter-3">
-										<img src="../img/filter-dog.png" alt="" width="100px">
+										<img src="../img/filters/3.png" alt="" width="100px">
 									</button>
 									<button class="image-box" id="filter-4">
-										<img src="../img/filter-hearts.png" alt="" width="100px">
+										<img src="../img/filters/4.png" alt="" width="100px">
 									</button>
 									<button class="image-box" id="filter-5">
-										<img src="../img/filter-rainbow.png" alt="" width="100px">
+										<img src="../img/filters/5.png" alt="" width="100px">
 									</button>
-									<!-- <form action="" method="POST"> -->
-										<input id="chosen-filter" name="chosen" type="hidden" value="">
-										<!-- <input type="submit" class="button is-link" value="Submit"> -->
-									<!-- </form> -->
-									<!-- <p> -->
-
-
-										<!-- if ($_SERVER["REQUEST_METHOD"] == "POST" )
-										{
-											$filter = $_POST['chosen'];
-											echo $filter;
-										}
-										else
-											echo "nothing";
-											 ?>
-									</p> -->
 								</div>
 								</div>
 						</div>
@@ -162,12 +144,15 @@ if (isset($_POST['Post']) && $_POST['Post'] === 'Post_Picture')
 			</div>
 		</div>
     </div>
-	<?php if (isset($namejs)) {?>
-	<div class="debug"> <?php var_dump($namejs); ?> </div>
-
-
-	<?php }; ?>
+	<div>
+	<?php
+		// var_dump($image->image);
+		var_dump($image->userId);
+		var_dump($_SESSION["user_id"]);
+		// $userId = $image->findUserFromId($_SESSION["username"]);
+		// var_dump($userId);
+	 ?>
+	</div>
 	<script type="text/javascript" src="edit.js"></script>
 </body>
 </html>
-<!-- // when chosen-filter != vide, recuperer la valeur -->

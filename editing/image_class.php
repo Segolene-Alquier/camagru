@@ -3,6 +3,9 @@
 Class Image {
 
 	private $bdd;
+	public $image;
+	public $filter;
+	public $userId;
 
 	function __construct(){
 		// if (!include 'config/database.php')
@@ -43,7 +46,8 @@ Class Image {
 					{
 					// session_start();
 					$id = $row["UserID"];
-					$_SESSION['user_id']= $id;
+					$_SESSION['user_id'] = $id;
+					return($id);
 					// var_dump($_SESSION['user_id']);
 					}
 				}
@@ -99,21 +103,33 @@ Class Image {
 		file_put_contents($file, $image_en_base64);
 	}
 
-	function overlay($src, $dest, $filter) {
-		$image_1 = imagecreatefromjpeg($src);
-		$stamp = imagecreatefrompng($filter);
+	function overlay($src, $filterId, $userID) {
+		$this->image = $src;
+		$this->filter = $filterId;
+		$this->userId = $userID;
+		file_put_contents("/Users/salquier/coucou", var_dump($userID));
+		if (exif_imagetype($src) == IMAGETYPE_PNG)
+			$image_1 = imagecreatefrompng($src);
+		else if (exif_imagetype($src) == IMAGETYPE_JPEG)
+			$image_1 = imagecreatefromjpeg($src);
+		else
+			return (NULL);
+		$dest = "../uploads/".$userID."montage.jpg";
+		// $image_1 = imagecreatefromjpeg($src);
+		$filterFile = "../img/filters/".$filterId.".png";
+		$filter = imagecreatefrompng($filterFile);
+		$this->image = $image_1;
 		list($width, $height) = getimagesize($src);
-		list($width_small, $height_small) = getimagesize($filter);
+		list($width_small, $height_small) = getimagesize($filterFile);
 		$marge_right = ($width/2)-($width_small/2);
 		$marge_bottom = ($height/2)-($height_small/2);
-		$sx = imagesx($stamp);
-		$sy = imagesy($stamp);
+		$sx = imagesx($filter);
+		$sy = imagesy($filter);
 		imagealphablending($image_1, true);
 		imagesavealpha($image_1, true);
-		imagecopy($image_1, $stamp,  imagesx($image_1) - $sx - $marge_right, imagesy($image_1) - $sy - $marge_bottom, 0, 0, $width_small, $height_small);
-		// Source Image, Overlay Image,x,y For placing the overlay image on center,0,0 and width and height for play button image
-		//imagepng($image_1, "image_3.png");
+		imagecopy($image_1, $filter,  imagesx($image_1) - $sx - $marge_right, imagesy($image_1) - $sy - $marge_bottom, 0, 0, $width_small, $height_small);
 		imagejpeg($image_1, $dest);
+		// $this->image = $src;
 	}
 }
 
@@ -123,11 +139,11 @@ Class Image {
 <!--
 	par defaut : la webcam ET l'upload st desactives						DONE
 	je dois selectionner un filtre (cadre qui indique lequel est select)	DONE
-	j'enregistre l'information sur le filtre
+	j'enregistre l'information sur le filtre								DONE
 		- je rajoute une class au filtre selectionne
 		- je recupere grace a la classe en PHP le bon filtre pour afficher le masque la camera live
-	alors les deux options sont activees
-	- si j prends une photo : le filtre apparait sur la webcam
+	alors les deux options sont activees									DONE
+	- si j prends une photo : le filtre apparait sur la webcam				DONE
 	- si j'upload une photo : je display l'image en question avec le filtre
 	quand je save :
 	- 'envoie a la fonction de superposition l'image prise et l'image du filtre

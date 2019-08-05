@@ -177,17 +177,19 @@ Class Image {
 		if ($stmt = $this->bdd->prepare($sql)) {
 			if ($stmt->execute()) {
 				$allpictures = [];
-				while ($data = $stmt->fetch()) {
-					// var_dump($data);
+				while ($data = $stmt->fetch())
 					array_push($allpictures, $data);
-
-				}
 				return ($allpictures);
 			}
 		}
 		return (NULL);
 	}
 
+	function deletePicture() {
+
+
+
+	}
 
 }
 ?>

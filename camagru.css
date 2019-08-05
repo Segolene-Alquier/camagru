@@ -183,6 +183,16 @@ body{
 .empty-gallery {
 	margin: 20px;
 }
+.gallery-item {
+	position: relative;
+}
+.delete-picture {
+	/* position: absolute;
+	top: 0px;
+	right: 0px; */
+	float: right;
+	/* text-align: right; */
+}
 .filters-wrapper {
 	margin-left: 2vw;
 	margin-right: 2vw;
@@ -191,3 +201,4 @@ body{
 .is-selected {
 	background-color: #A91E8E;
 }
+

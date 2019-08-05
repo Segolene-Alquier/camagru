@@ -149,10 +149,12 @@ if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
 						else {
 							foreach ($allImagesFromCurrentUser as $image)
 							{
-								echo "<div >";
+								echo "<div class='gallery-item'>";
+								echo '<a class="delete delete-picture"></a>';
 								echo "<img src='$image[file]' class='' >";
 									// echo "<a href='/montage?action=delete&image_id=$image[image_id]' class='button is-danger deleteButton'>Delete</a>";
 								echo "</div>";
+								echo "<hr>";
 							}
 						}
 

@@ -190,6 +190,6 @@ Class Image {
 	quand je save :
 	- 'envoie a la fonction de superposition l'image prise et l'image du filtre		DONE
 	- j'enregistre le montage sur le serveur										DONE
-	- dans la bdd
+	- dans la bdd																	DONE
 
  -->

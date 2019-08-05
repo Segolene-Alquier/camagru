@@ -140,13 +140,22 @@ if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
 					<div class="box edit-right-wrapper">
 					<h2 class="subtitle">🌈 Your creations</h2>
 					<?php
-						foreach ($allImagesFromCurrentUser as $image)
-						{
+						if (empty($allImagesFromCurrentUser)) {
 							echo "<div >";
-							echo "<img src='$image[file]' class='' >";
-								// echo "<a href='/montage?action=delete&image_id=$image[image_id]' class='button is-danger deleteButton'>Delete</a>";
+							echo "<p class='empty-gallery'>This gallery is a bit empty... Start taking pictures ! </p>";
+							echo '<iframe src="https://giphy.com/embed/xCi8WUWPdAPi8" max-width="480" max-height="295" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>';
 							echo "</div>";
 						}
+						else {
+							foreach ($allImagesFromCurrentUser as $image)
+							{
+								echo "<div >";
+								echo "<img src='$image[file]' class='' >";
+									// echo "<a href='/montage?action=delete&image_id=$image[image_id]' class='button is-danger deleteButton'>Delete</a>";
+								echo "</div>";
+							}
+						}
+
 					?>
 
 

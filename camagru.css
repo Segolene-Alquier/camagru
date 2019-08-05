@@ -167,11 +167,21 @@ body{
 	flex-direction: column;
 }
 
+/* @media screen and (min-width: 20px) and (max-width: 800px) {
+	.edit-right {
+		display: flex;
+		flex-direction: row;
+		background-color: gold;
+	}
+} */
 .edit-right-wrapper {
 	padding: 20px;
 	max-height: 80vh;
 	overflow-y: scroll;
 
+}
+.empty-gallery {
+	margin: 20px;
 }
 .filters-wrapper {
 	margin-left: 2vw;

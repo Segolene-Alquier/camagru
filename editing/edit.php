@@ -15,7 +15,6 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 }
 $userId = $image->findUserFromId($_SESSION["username"]);
 $allImagesFromCurrentUser = $image->allPicturesOfUser($userId);
-// var_dump($allImagesFromCurrentUser);
 if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
 	$userId = $image->findUserFromId($_SESSION["username"]);
     $image->overlay($_POST['picture'], $_POST['chosen-filter'], $userId);

@@ -169,6 +169,9 @@ body{
 
 .edit-right-wrapper {
 	padding: 20px;
+	max-height: 80vh;
+	overflow-y: scroll;
+
 }
 .filters-wrapper {
 	margin-left: 2vw;

@@ -133,6 +133,7 @@ Class Image {
 			echo "Echec du transfert";
 			return (false);
 		}
+		header('Location: ./edit.php');
 		// $this->image = $src;
 	}
 

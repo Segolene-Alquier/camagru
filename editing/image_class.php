@@ -104,7 +104,7 @@ Class Image {
 	}
 
 	function overlay($src, $filterId, $userID) {
-		$this->image = $src;
+		// $this->image = $src;
 		$this->filter = $filterId;
 		$this->userId = $userID;
 		if (exif_imagetype($src) == IMAGETYPE_PNG)
@@ -115,7 +115,6 @@ Class Image {
 			return (NULL);
 		$newFileName = time()."-".uniqid().".jpg";
 		$dest = "../uploads/".$userID."/".$newFileName;
-		// $image_1 = imagecreatefromjpeg($src);
 		$filterFile = "../img/filters/".$filterId.".png";
 		$filter = imagecreatefrompng($filterFile);
 		list($width, $height) = getimagesize($src);
@@ -127,7 +126,6 @@ Class Image {
 		imagealphablending($image_1, true);
 		imagesavealpha($image_1, true);
 		imagecopy($image_1, $filter,  imagesx($image_1) - $sx - $marge_right, imagesy($image_1) - $sy - $marge_bottom, 0, 0, $width_small, $height_small);
-		// imagejpeg($image_1, $dest);
 		if (imagejpeg($image_1, $dest))
             $this->storeImageToDB($dest, $userID);
 		else
@@ -139,22 +137,44 @@ Class Image {
 	}
 
 	function storeImageToDB($path, $user_id) {
-		$sql = "INSERT INTO image (user, file) VALUES (:user_id, :path)";
+		$sql = "INSERT INTO image (user, file, date) VALUES (:user_id, :path, :date)";
+		$creationDate = date("Y-m-d H:i:s");
 		if ($stmt = $this->bdd->prepare($sql))
 		{
 			$stmt->bindParam(":user_id", $user_id, PDO::PARAM_STR);
 			$stmt->bindParam(":path", $path, PDO::PARAM_STR);
-			if ($stmt->execute())
-			{
-				echo "success";
-			}
-			else
+			$stmt->bindParam(":date", $creationDate, PDO::PARAM_STR);
+			if (!$stmt->execute())
 				echo "oooops";
 		}
 	}
+
+	function allPicturesOfUser($userID)
+	{
+		$this->image = "2";
+
+		$sql = "SELECT image.file AS file, image.id AS id FROM `image` WHERE user = :user ORDER BY image.date DESC";
+
+		if ($stmt = $this->bdd->prepare($sql)) {
+			$stmt->bindParam(":user", $userID, PDO::PARAM_STR);
+			$this->image = "1";
+		}
+		if ($stmt->execute()) {
+			$this->image = "3";
+
+			$allpictures = [];
+			while ($data = $stmt->fetch())
+				array_push($allpictures, $data);
+			// $this->image = $allpictures;
+
+			return ($allpictures);
+		}
+		return (NULL);
+	}
+
+
+
 }
-
-
 ?>
 
 <!--

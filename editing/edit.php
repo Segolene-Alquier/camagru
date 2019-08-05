@@ -4,7 +4,6 @@ session_start();
 require "image_class.php";
 if (!isset($_SESSION['username']))
 	header('Location: ../users/login.php');
-var_dump($_SESSION["username"]);
 $image = new Image;
 if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 {
@@ -14,6 +13,9 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 		$image->upload();
 	}
 }
+$userId = $image->findUserFromId($_SESSION["username"]);
+$allImagesFromCurrentUser = $image->allPicturesOfUser($userId);
+// var_dump($allImagesFromCurrentUser);
 if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
 	$userId = $image->findUserFromId($_SESSION["username"]);
     $image->overlay($_POST['picture'], $_POST['chosen-filter'], $userId);
@@ -138,18 +140,20 @@ if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
 				<div class="column edit-right">
 					<div class="box edit-right-wrapper">
 					<h2 class="subtitle">🌈 Your creations</h2>
-
-						<!-- foreach ($allImagesFromCurrentUser as $image)
+					<?php
+						foreach ($allImagesFromCurrentUser as $image)
 						{
-							echo "<div class='singleImage'>";
-								echo "<img src='$image[path]' class='shotImages' >";
-								echo "<a href='/montage?action=delete&image_id=$image[image_id]' class='button is-danger deleteButton'>Delete</a>";
+							echo "<div >";
+							echo "<img src='$image[file]' class='' >";
+								// echo "<a href='/montage?action=delete&image_id=$image[image_id]' class='button is-danger deleteButton'>Delete</a>";
 							echo "</div>";
-						} -->
+						}
+					?>
 
+
+						<!-- <img src="../img/cliff.jpg" alt="">
 						<img src="../img/cliff.jpg" alt="">
-						<img src="../img/cliff.jpg" alt="">
-						<img src="../img/cliff.jpg" alt="">
+						<img src="../img/cliff.jpg" alt=""> -->
 					</div>
 				</div>
 			</div>

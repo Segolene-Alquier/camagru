@@ -8,7 +8,9 @@ Class Image {
 	public $userId;
 
 	function __construct(){
-		// if (!include 'config/database.php')
+		if (file_exists('config/database.php'))
+			include 'config/database.php';
+		else
         	include '../config/database.php';
 		// session_start();
 		try {
@@ -106,7 +108,7 @@ Class Image {
 	function overlay($src, $filterId, $userID) {
 		// $this->image = $src;
 		$this->filter = $filterId;
-		$this->userId = $userID;
+		// $this->userId = $userID;
 		if (exif_imagetype($src) == IMAGETYPE_PNG)
 			$image_1 = imagecreatefrompng($src);
 		else if (exif_imagetype($src) == IMAGETYPE_JPEG)
@@ -126,8 +128,11 @@ Class Image {
 		imagealphablending($image_1, true);
 		imagesavealpha($image_1, true);
 		imagecopy($image_1, $filter,  imagesx($image_1) - $sx - $marge_right, imagesy($image_1) - $sy - $marge_bottom, 0, 0, $width_small, $height_small);
-		if (imagejpeg($image_1, $dest))
-            $this->storeImageToDB($dest, $userID);
+		if (imagejpeg($image_1, $dest)) {
+			$this->storeImageToDB($dest, $userID);
+
+		}
+
 		else
 		{
 			echo "Echec du transfert";
@@ -138,6 +143,7 @@ Class Image {
 	}
 
 	function storeImageToDB($path, $user_id) {
+		$this->userId = $user_id;
 		$sql = "INSERT INTO image (user, file, date) VALUES (:user_id, :path, :date)";
 		$creationDate = date("Y-m-d H:i:s");
 		if ($stmt = $this->bdd->prepare($sql))
@@ -152,27 +158,35 @@ Class Image {
 
 	function allPicturesOfUser($userID)
 	{
-		$this->image = "2";
-
 		$sql = "SELECT image.file AS file, image.id AS id FROM `image` WHERE user = :user ORDER BY image.date DESC";
 
 		if ($stmt = $this->bdd->prepare($sql)) {
 			$stmt->bindParam(":user", $userID, PDO::PARAM_STR);
-			$this->image = "1";
 		}
 		if ($stmt->execute()) {
-			$this->image = "3";
-
 			$allpictures = [];
 			while ($data = $stmt->fetch())
 				array_push($allpictures, $data);
-			// $this->image = $allpictures;
-
 			return ($allpictures);
 		}
 		return (NULL);
 	}
 
+	function allPictures() {
+		$sql = "SELECT file FROM image ORDER BY date DESC";
+		if ($stmt = $this->bdd->prepare($sql)) {
+			if ($stmt->execute()) {
+				$allpictures = [];
+				while ($data = $stmt->fetch()) {
+					// var_dump($data);
+					array_push($allpictures, $data);
+
+				}
+				return ($allpictures);
+			}
+		}
+		return (NULL);
+	}
 
 
 }

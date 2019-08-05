@@ -39,6 +39,18 @@ $allImages = $image->allPictures();
 								$path = substr($image[0], 1);
 								echo "<img src='$path' class='' >";
 							?>
+								<div class="overlay">
+									<div class="gallery-icon-wrapper">
+										<span class="gallery-icon">
+											<i class="fa fa-heart"></i>
+											<span>42</span>
+										</span>
+										<span class="gallery-icon">
+											<i class="fa fa-comment"></i>
+											<span>3</span>
+										</span>
+									</div>
+								</div>
 							</figure>
 						</div>
 					</div>

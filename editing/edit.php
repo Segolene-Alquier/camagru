@@ -2,6 +2,8 @@
 session_start();
 // creer restriction login
 require "image_class.php";
+if (!isset($_SESSION['username']))
+	header('Location: ../users/login.php');
 var_dump($_SESSION["username"]);
 $image = new Image;
 if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
@@ -13,8 +15,8 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 	}
 }
 if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
-	// $userId = $image->findUserFromId($_SESSION["username"]);
-    $image->overlay($_POST['picture'], $_POST['chosen-filter'], $_SESSION["user_id"]);
+	$userId = $image->findUserFromId($_SESSION["username"]);
+    $image->overlay($_POST['picture'], $_POST['chosen-filter'], $userId);
 }
 
 
@@ -50,11 +52,11 @@ if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
 						<div class="columns ">
 							<div class="column is-four-fifths edit-left-image" >
 							<div class="webcam">
-								<img id="live-filter-1" class="live-filter" hidden src="../img/filter-cat.png" alt="" style="width: 50%; height:50%;">
-								<img id="live-filter-2" class="live-filter" hidden src="../img/filter-crown.png" alt="" style="width: 50%; height:50%;">
-								<img id="live-filter-3" class="live-filter" hidden src="../img/filter-dog.png" alt="" style="width: 50%; height:50%;">
-								<img id="live-filter-4" class="live-filter" hidden src="../img/filter-hearts.png" alt="" style="width: 50%; height:50%;">
-								<img id="live-filter-5" class="live-filter" hidden src="../img/filter-rainbow.png" alt="" style="width: 50%; height:50%;">
+								<img id="live-filter-1" class="live-filter" hidden src="../img/filters/1.png" alt="" style="width: 50%; height:50%;">
+								<img id="live-filter-2" class="live-filter" hidden src="../img/filters/2.png" alt="" style="width: 50%; height:50%;">
+								<img id="live-filter-3" class="live-filter" hidden src="../img/filters/3.png" alt="" style="width: 50%; height:50%;">
+								<img id="live-filter-4" class="live-filter" hidden src="../img/filters/4.png" alt="" style="width: 50%; height:50%;">
+								<img id="live-filter-5" class="live-filter" hidden src="../img/filters/5.png" alt="" style="width: 50%; height:50%;">
 								<video id="video" width="500" height="500" autoplay></video>
 								<canvas id="canvas" hidden width="500" height="500"></canvas>
 								<?php if (file_exists("montage.jpg")) { ?>
@@ -147,8 +149,8 @@ if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
 	<div>
 	<?php
 		// var_dump($image->image);
-		var_dump($image->userId);
-		var_dump($_SESSION["user_id"]);
+		// var_dump($image->userId);
+		// var_dump($_SESSION["user_id"]);
 		// $userId = $image->findUserFromId($_SESSION["username"]);
 		// var_dump($userId);
 	 ?>

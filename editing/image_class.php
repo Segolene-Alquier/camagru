@@ -107,18 +107,17 @@ Class Image {
 		$this->image = $src;
 		$this->filter = $filterId;
 		$this->userId = $userID;
-		file_put_contents("/Users/salquier/coucou", var_dump($userID));
 		if (exif_imagetype($src) == IMAGETYPE_PNG)
 			$image_1 = imagecreatefrompng($src);
 		else if (exif_imagetype($src) == IMAGETYPE_JPEG)
 			$image_1 = imagecreatefromjpeg($src);
 		else
 			return (NULL);
-		$dest = "../uploads/".$userID."montage.jpg";
+		$newFileName = uniqid().".jpg";
+		$dest = "../uploads/".$userID."/".$newFileName;
 		// $image_1 = imagecreatefromjpeg($src);
 		$filterFile = "../img/filters/".$filterId.".png";
 		$filter = imagecreatefrompng($filterFile);
-		$this->image = $image_1;
 		list($width, $height) = getimagesize($src);
 		list($width_small, $height_small) = getimagesize($filterFile);
 		$marge_right = ($width/2)-($width_small/2);

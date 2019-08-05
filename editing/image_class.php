@@ -113,7 +113,7 @@ Class Image {
 			$image_1 = imagecreatefromjpeg($src);
 		else
 			return (NULL);
-		$newFileName = uniqid().".jpg";
+		$newFileName = time()."-".uniqid().".jpg";
 		$dest = "../uploads/".$userID."/".$newFileName;
 		// $image_1 = imagecreatefromjpeg($src);
 		$filterFile = "../img/filters/".$filterId.".png";

@@ -138,6 +138,15 @@ if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
 				<div class="column edit-right">
 					<div class="box edit-right-wrapper">
 					<h2 class="subtitle">🌈 Your creations</h2>
+
+						<!-- foreach ($allImagesFromCurrentUser as $image)
+						{
+							echo "<div class='singleImage'>";
+								echo "<img src='$image[path]' class='shotImages' >";
+								echo "<a href='/montage?action=delete&image_id=$image[image_id]' class='button is-danger deleteButton'>Delete</a>";
+							echo "</div>";
+						} -->
+
 						<img src="../img/cliff.jpg" alt="">
 						<img src="../img/cliff.jpg" alt="">
 						<img src="../img/cliff.jpg" alt="">

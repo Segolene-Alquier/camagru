@@ -127,8 +127,30 @@ Class Image {
 		imagealphablending($image_1, true);
 		imagesavealpha($image_1, true);
 		imagecopy($image_1, $filter,  imagesx($image_1) - $sx - $marge_right, imagesy($image_1) - $sy - $marge_bottom, 0, 0, $width_small, $height_small);
-		imagejpeg($image_1, $dest);
+		// imagejpeg($image_1, $dest);
+		if (imagejpeg($image_1, $dest))
+            $this->storeImageToDB($dest, $userID);
+		else
+		{
+			echo "Echec du transfert";
+			return (false);
+		}
 		// $this->image = $src;
+	}
+
+	function storeImageToDB($path, $user_id) {
+		$sql = "INSERT INTO image (user, file) VALUES (:user_id, :path)";
+		if ($stmt = $this->bdd->prepare($sql))
+		{
+			$stmt->bindParam(":user_id", $user_id, PDO::PARAM_STR);
+			$stmt->bindParam(":path", $path, PDO::PARAM_STR);
+			if ($stmt->execute())
+			{
+				echo "success";
+			}
+			else
+				echo "oooops";
+		}
 	}
 }
 
@@ -145,7 +167,8 @@ Class Image {
 	- si j prends une photo : le filtre apparait sur la webcam				DONE
 	- si j'upload une photo : je display l'image en question avec le filtre
 	quand je save :
-	- 'envoie a la fonction de superposition l'image prise et l'image du filtre
-	- j'enregistre le montage sur le serveur et dans la bdd
+	- 'envoie a la fonction de superposition l'image prise et l'image du filtre		DONE
+	- j'enregistre le montage sur le serveur										DONE
+	- dans la bdd
 
  -->

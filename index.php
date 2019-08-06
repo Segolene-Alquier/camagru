@@ -13,11 +13,27 @@ $allImages = $image->allPictures();
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="camagru.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
-    <script src="https://kit.fontawesome.com/82e513fc69.js"></script>
+	<script src="https://kit.fontawesome.com/82e513fc69.js"></script>
 	<title>Camagru</title>
 </head>
 <body>
 	<?php include_once 'navigation.php'; ?>
+		<div class="modal">
+			<div class="modal-background"></div>
+			<div class="modal-card">
+				<header class="modal-card-head">
+				<p class="modal-card-title">Modal title</p>
+				<button id="modal-close" class="delete" aria-label="close"></button>
+				</header>
+				<section class="modal-card-body">
+					<p>coucou</p>
+				</section>
+				<footer class="modal-card-foot">
+				<button class="button is-success">Save changes</button>
+				<button class="button">Cancel</button>
+				</footer>
+			</div>
+		</div>
 	<div class="block">
 		<div class="container gallery-container">
 			<div class="columns is-multiline ">
@@ -32,9 +48,9 @@ $allImages = $image->allPictures();
 					foreach ($allImages as $image) {
 				?>
 				<div class="column is-narrow">
-					<div class="card" style="max-width: 300px; max-height: 300px;">
-						<div class="img-gallery img-container">
-							<figure class="image is-square ">
+					<div id="detailImage" class="card" style="max-width: 300px; max-height: 300px;">
+						<div  class="img-gallery img-container">
+							<figure  class="image is-square ">
 							<?php
 								$path = substr($image[0], 1);
 								echo "<img src='$path' class='' >";
@@ -63,5 +79,7 @@ $allImages = $image->allPictures();
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="gallery.js"></script>
+
 </body>
 </html>

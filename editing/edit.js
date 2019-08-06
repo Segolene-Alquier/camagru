@@ -28,8 +28,8 @@ document.getElementById("snap").addEventListener("click", function() {
  
 });
 
-document.getElementById("save").addEventListener("click", function() { // replaced by superimpose function
-  video.style.display = "none";
+// document.getElementById("save").addEventListener("click", function() { // replaced by superimpose function
+//   video.style.display = "none";
 //   const data = canvas.toDataURL('image/png');
 //   $.ajax({
 //     url:'save_webcam.php',
@@ -38,7 +38,7 @@ document.getElementById("save").addEventListener("click", function() { // replac
 //         data:data
 //     }
 //   });
-});
+// });
 
 // UPLOAD MODAL APPEARS & DISAPPEARS
 $("#showModal").click(function() {

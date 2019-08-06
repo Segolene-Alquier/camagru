@@ -185,18 +185,31 @@ Class Image {
 		return (NULL);
 	}
 
-	function deletePictureFromDB($user_id, $image_id) {
-		// var_dump($image_id);
+
+
+	function deletePictureFromDB($user_id, $image_id, $image_name) {
 		$sql = "DELETE FROM `image` WHERE id = :image_id";
+		// $filename = "../uploads/".$user_id."/".$image_name;
+		// var_dump($filename);
 		if ($stmt = $this->bdd->prepare($sql)) {
 			$stmt->bindParam(":image_id", $image_id, PDO::PARAM_STR);
 			if ($stmt->execute()) {
-				// echo $image_id;
-				echo "supprimé !";
-
+				if (file_exists($image_name))
+					if (unlink($image_name))
+						echo "supprime";
+				else
+					echo "pas trouve";
+				header('Location: ./edit.php');
 			}
 		}
 	}
+
+	function deletePictureFromFileSystem($image_id) {
+
+
+
+	}
+
 
 }
 ?>

@@ -20,13 +20,11 @@ if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
     $image->overlay($_POST['picture'], $_POST['chosen-filter'], $userId);
 }
 $userId = $image->findUserFromId($_SESSION["username"]);
-if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET['image_id'])) {
+if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET['image_id']) && isset($_GET['image_name'])) {
 
 	var_dump($_GET['image_id']);
-	$image->deletePictureFromDB($userId, $_GET['image_id']);
-
+	$image->deletePictureFromDB($userId, $_GET['image_id'], $_GET['image_name']);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -150,16 +148,14 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 								echo "<div class='gallery-item'>";
 								echo '<form action="" method="get">';
 								echo "<input hidden name='image_id' value='$image[id]'>";
+								echo "<input hidden name='image_name' value='$image[file]'>";
 								echo '<button type="submit" name="delete" value="deletePicture" class="delete delete-picture"></button>';
 								echo '</form>';
-								// var_dump($image['id']);
 								echo "<img src='$image[file]' class='' >";
-									// echo "<a href='/montage?action=delete&image_id=$image[image_id]' class='button is-danger deleteButton'>Delete</a>";
 								echo "</div>";
 								echo "<hr>";
 							}
 						}
-
 					?>
 					</div>
 				</div>

@@ -28,7 +28,12 @@ $allImages = $image->allPictures();
 			<section class="modal-card-body">
 				<div class="modal-wrapper columns">
 					<div class="modal-image is-two-thirds column">
-						<img src="/camagru/uploads/17/1565012939-5d4833cb13cff.jpg" alt="">
+
+							<!-- // echo "<img src='$path' class='' >"; -->
+
+												<img src="/camagru/uploads/17/1565012939-5d4833cb13cff.jpg" alt="">
+
+
 					</div>
 					<div class="modal-comment column">
 						<p>Coucou</p>
@@ -57,9 +62,7 @@ $allImages = $image->allPictures();
 										<input class="input is-rounded is-medium" type="text" placeholder="Your comment">
 									</div>
 									<div class="control">
-										<a class="button is-primary is-rounded is-medium">
-										Send
-										</a>
+										<a class="button is-primary is-rounded is-medium">Send</a>
 									</div>
 								</div>
 								</form>

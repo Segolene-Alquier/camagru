@@ -207,7 +207,6 @@ body{
 .modal-wrapper {
 	display: flex;
 	flex-direction: row;
-	background-color: #A91E8E;
 }
 
 .modal-comment {

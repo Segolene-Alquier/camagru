@@ -185,12 +185,8 @@ Class Image {
 		return (NULL);
 	}
 
-
-
 	function deletePictureFromDB($user_id, $image_id, $image_name) {
 		$sql = "DELETE FROM `image` WHERE id = :image_id";
-		// $filename = "../uploads/".$user_id."/".$image_name;
-		// var_dump($filename);
 		if ($stmt = $this->bdd->prepare($sql)) {
 			$stmt->bindParam(":image_id", $image_id, PDO::PARAM_STR);
 			if ($stmt->execute()) {
@@ -202,12 +198,6 @@ Class Image {
 				header('Location: ./edit.php');
 			}
 		}
-	}
-
-	function deletePictureFromFileSystem($image_id) {
-
-
-
 	}
 
 
@@ -227,6 +217,10 @@ Class Image {
 	- 'envoie a la fonction de superposition l'image prise et l'image du filtre		DONE
 	- j'enregistre le montage sur le serveur										DONE
 	- dans la bdd																	DONE
-	Suppression image :
-	-
+	Suppression image :																DONE
+	Display modal :
+	- identifier l'image cliquée et recuperer l'info en js
+	- afficher l'image correspondante
+	- creer les commentaires dans le dom en js
+	- boucler pour les afficher
  -->

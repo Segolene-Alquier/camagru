@@ -18,22 +18,22 @@ $allImages = $image->allPictures();
 </head>
 <body>
 	<?php include_once 'navigation.php'; ?>
-		<div class="modal">
-			<div class="modal-background"></div>
-			<div class="modal-card">
-				<header class="modal-card-head">
-				<p class="modal-card-title">Modal title</p>
-				<button id="modal-close" class="delete" aria-label="close"></button>
-				</header>
-				<section class="modal-card-body">
-					<p>coucou</p>
-				</section>
-				<footer class="modal-card-foot">
-				<button class="button is-success">Save changes</button>
-				<button class="button">Cancel</button>
-				</footer>
-			</div>
+	<div class="modal" id="myModal">
+		<div class="modal-background"></div>
+		<div class="modal-card">
+			<header class="modal-card-head">
+			<p class="modal-card-title">Modal title</p>
+			<button id="detailClose" class="delete" aria-label="close"></button>
+			</header>
+			<section class="modal-card-body">
+				<p>coucou</p>
+			</section>
+			<footer class="modal-card-foot">
+			<button class="button is-success">Save changes</button>
+			<button class="button">Cancel</button>
+			</footer>
 		</div>
+	</div>
 	<div class="block">
 		<div class="container gallery-container">
 			<div class="columns is-multiline ">
@@ -48,7 +48,7 @@ $allImages = $image->allPictures();
 					foreach ($allImages as $image) {
 				?>
 				<div class="column is-narrow">
-					<div id="detailImage" class="card" style="max-width: 300px; max-height: 300px;">
+					<div id="detailImage" data-target="#myModal" class="card modal-button" style="max-width: 300px; max-height: 300px;">
 						<div  class="img-gallery img-container">
 							<figure  class="image is-square ">
 							<?php

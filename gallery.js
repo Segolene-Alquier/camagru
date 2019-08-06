@@ -1,8 +1,12 @@
 
+document.querySelectorAll('.modal-button').forEach(function(el) {
+	el.addEventListener('click', function() {
+	  var target = document.querySelector(el.getAttribute('data-target'));
 
-var el = document.getElementById('detailImage');
-if (el) {
-  addEventListener('click', function () {
-    alert("coucou");
+	  target.classList.add('is-active');
+
+	  target.querySelector('#detailClose').addEventListener('click',   function() {
+		  target.classList.remove('is-active');
+	   });
+	});
   });
-};

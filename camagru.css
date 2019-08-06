@@ -228,7 +228,7 @@ body{
 .modal-comment-input {
 	display: flex;
 	flex-direction: row;
-	align-items: baseline;
+	/* align-items: baseline; */
 	margin-left: 1em;
 }
 .modal-foot-wrapper-left {

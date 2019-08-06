@@ -51,7 +51,18 @@ $allImages = $image->allPictures();
 						</div>
 						<div class="column modal-comment-input">
 							<div class="">
-								<input class="input is-rounded is-medium" style="" type="text" placeholder="Your comment">
+								<form action="">
+								<div class="field has-addons">
+									<div class="control">
+										<input class="input is-rounded is-medium" type="text" placeholder="Your comment">
+									</div>
+									<div class="control">
+										<a class="button is-primary is-rounded is-medium">
+										Send
+										</a>
+									</div>
+								</div>
+								</form>
 							</div>
 						</div>
 					</div>

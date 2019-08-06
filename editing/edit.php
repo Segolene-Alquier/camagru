@@ -19,16 +19,14 @@ if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
 	$userId = $image->findUserFromId($_SESSION["username"]);
     $image->overlay($_POST['picture'], $_POST['chosen-filter'], $userId);
 }
+$userId = $image->findUserFromId($_SESSION["username"]);
+if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET['image_id'])) {
 
+	var_dump($_GET['image_id']);
+	$image->deletePictureFromDB($userId, $_GET['image_id']);
 
-// $allImagesFromCurrentUser = $image->showByUserId($userdata['id']);
-// if (isset($_GET['action']) && $_GET['action'] === "delete" && isset($_GET['image_id']))
-// 	$image->delete($userdata['id'], $_GET['image_id']);
-// else
-// 		{
-// 			$message = 'There is some error in the file upload. Please check the following error.<br>';
-// 			$message .= 'Error:' . $_FILES['uploadedFile']['error'];
-// 		}
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -150,7 +148,11 @@ if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
 							foreach ($allImagesFromCurrentUser as $image)
 							{
 								echo "<div class='gallery-item'>";
-								echo '<a class="delete delete-picture"></a>';
+								echo '<form action="" method="get">';
+								echo "<input hidden name='image_id' value='$image[id]'>";
+								echo '<button type="submit" name="delete" value="deletePicture" class="delete delete-picture"></button>';
+								echo '</form>';
+								// var_dump($image['id']);
 								echo "<img src='$image[file]' class='' >";
 									// echo "<a href='/montage?action=delete&image_id=$image[image_id]' class='button is-danger deleteButton'>Delete</a>";
 								echo "</div>";
@@ -159,11 +161,6 @@ if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
 						}
 
 					?>
-
-
-						<!-- <img src="../img/cliff.jpg" alt="">
-						<img src="../img/cliff.jpg" alt="">
-						<img src="../img/cliff.jpg" alt=""> -->
 					</div>
 				</div>
 			</div>

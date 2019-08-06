@@ -185,10 +185,17 @@ Class Image {
 		return (NULL);
 	}
 
-	function deletePicture() {
+	function deletePictureFromDB($user_id, $image_id) {
+		// var_dump($image_id);
+		$sql = "DELETE FROM `image` WHERE id = :image_id";
+		if ($stmt = $this->bdd->prepare($sql)) {
+			$stmt->bindParam(":image_id", $image_id, PDO::PARAM_STR);
+			if ($stmt->execute()) {
+				// echo $image_id;
+				echo "supprimé !";
 
-
-
+			}
+		}
 	}
 
 }
@@ -207,5 +214,6 @@ Class Image {
 	- 'envoie a la fonction de superposition l'image prise et l'image du filtre		DONE
 	- j'enregistre le montage sur le serveur										DONE
 	- dans la bdd																	DONE
-
+	Suppression image :
+	-
  -->

@@ -26,11 +26,37 @@ $allImages = $image->allPictures();
 			<button id="detailClose" class="delete" aria-label="close"></button>
 			</header>
 			<section class="modal-card-body">
-				<p>coucou</p>
+				<div class="modal-wrapper columns">
+					<div class="modal-image is-two-thirds column">
+						<img src="/camagru/uploads/17/1565012939-5d4833cb13cff.jpg" alt="">
+					</div>
+					<div class="modal-comment column">
+						<p>Coucou</p>
+						<hr class="comm-delimiter" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+						<p>Coucou</p>
+
+					</div>
+				</div>
 			</section>
 			<footer class="modal-card-foot">
-			<button class="button is-success">Save changes</button>
-			<button class="button">Cancel</button>
+				<div class=" columns">
+					<div class="modal-foot-wrapper">
+						<div class="column is-one-fifth ">
+							<div class="modal-foot-wrapper-left">
+								<div class="modal-foot-wrapper-left-elem">
+									<i class="far fa-heart " ></i>
+								</div>
+								<p class="modal-foot-wrapper-left-elem font-likes">52</p>
+							</div>
+						</div>
+						<div class="column modal-comment-input">
+							<div class="">
+								<input class="input is-rounded is-medium" style="" type="text" placeholder="Your comment">
+							</div>
+						</div>
+					</div>
+
+				</div>
 			</footer>
 		</div>
 	</div>

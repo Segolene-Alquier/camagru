@@ -202,3 +202,44 @@ body{
 	background-color: #A91E8E;
 }
 
+/* GALLERY */
+
+.modal-wrapper {
+	display: flex;
+	flex-direction: row;
+	background-color: #A91E8E;
+}
+
+.modal-comment {
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+}
+
+.modal-icon {
+	padding: 1em;
+}
+.modal-foot-wrapper {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	/* justify-content: center; */
+}
+.modal-comment-input {
+	display: flex;
+	flex-direction: row;
+	align-items: baseline;
+	margin-left: 1em;
+}
+.modal-foot-wrapper-left {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.modal-foot-wrapper-left-elem {
+	padding: 0.2em;
+	font-size: 2em;
+}
+.font-likes {
+	font-size: 1.5em;
+}

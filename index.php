@@ -28,12 +28,7 @@ $allImages = $image->allPictures();
 			<section class="modal-card-body">
 				<div class="modal-wrapper columns">
 					<div class="modal-image is-two-thirds column">
-
-							<!-- // echo "<img src='$path' class='' >"; -->
-
-												<img src="/camagru/uploads/17/1565012939-5d4833cb13cff.jpg" alt="">
-
-
+						<img id="image-modal" src="" alt="">
 					</div>
 					<div class="modal-comment column">
 						<p>Coucou</p>
@@ -85,15 +80,19 @@ $allImages = $image->allPictures();
 					echo "</div>";
 				}
 				else {
+					$i = 0;
 					foreach ($allImages as $image) {
 				?>
 				<div class="column is-narrow">
 					<div id="detailImage" data-target="#myModal" class="card modal-button" style="max-width: 300px; max-height: 300px;">
-						<div  class="img-gallery img-container">
+						<div id="dom-index" class="img-gallery img-container">
 							<figure  class="image is-square ">
 							<?php
+
 								$path = substr($image[0], 1);
-								echo "<img src='$path' class='' >";
+								echo htmlspecialchars($i);
+								echo "<img id='dom-target'  src='$path' class='$i' >";
+								$i++;
 							?>
 								<div class="overlay">
 									<div class="gallery-icon-wrapper">

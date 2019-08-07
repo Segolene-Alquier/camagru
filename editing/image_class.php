@@ -50,7 +50,6 @@ Class Image {
 					$id = $row["UserID"];
 					$_SESSION['user_id'] = $id;
 					return($id);
-					// var_dump($_SESSION['user_id']);
 					}
 				}
 			}
@@ -130,16 +129,13 @@ Class Image {
 		imagecopy($image_1, $filter,  imagesx($image_1) - $sx - $marge_right, imagesy($image_1) - $sy - $marge_bottom, 0, 0, $width_small, $height_small);
 		if (imagejpeg($image_1, $dest)) {
 			$this->storeImageToDB($dest, $userID);
-
 		}
-
 		else
 		{
 			echo "Echec du transfert";
 			return (false);
 		}
 		header('Location: ./edit.php');
-		// $this->image = $src;
 	}
 
 	function storeImageToDB($path, $user_id) {
@@ -200,7 +196,32 @@ Class Image {
 		}
 	}
 
+	function likeImage($userId, $imageId) {
+		$sql = "INSERT INTO `liked_photos` (user_id, image_id) VALUES (:user_id, :image_id)";
+		if ($stmt = $this->bdd->prepare($sql))
+		{
+			$stmt->bindParam(":user_id", $userId, PDO::PARAM_STR);
+			$stmt->bindParam(":image_id", $imageId, PDO::PARAM_STR);
+			// $stmt->bindParam(":date", $creationDate, PDO::PARAM_STR);
+			if (!$stmt->execute())
+				echo "oooops";
+		}
+	}
 
+	function getImageId($filename) {
+		$sql = "SELECT `id` FROM `image` WHERE file = :filename";
+		if ($stmt = $this->bdd->prepare($sql)) {
+			$stmt->bindParam(":filename", $filename, PDO::PARAM_STR);
+			if ($stmt->execute()) {
+				if ($row = $stmt->fetch())
+					{
+					$id = $row["id"];
+					return($id);
+					}
+			}
+			echo "oooops";
+		}
+	}
 }
 ?>
 
@@ -219,8 +240,8 @@ Class Image {
 	- dans la bdd																	DONE
 	Suppression image :																DONE
 	Display modal :
-	- identifier l'image cliquée et recuperer l'info en js
-	- afficher l'image correspondante
+	- identifier l'image cliquée et recuperer l'info en js							DONE
+	- afficher l'image correspondante												DONE
 	- creer les commentaires dans le dom en js
 	- boucler pour les afficher
  -->

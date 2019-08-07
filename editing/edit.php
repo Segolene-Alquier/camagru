@@ -21,8 +21,6 @@ if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
 }
 $userId = $image->findUserFromId($_SESSION["username"]);
 if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET['image_id']) && isset($_GET['image_name'])) {
-
-	var_dump($_GET['image_id']);
 	$image->deletePictureFromDB($userId, $_GET['image_id'], $_GET['image_name']);
 }
 ?>

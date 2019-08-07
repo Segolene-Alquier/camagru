@@ -3,6 +3,13 @@ session_start();
 require "./editing/image_class.php";
 $image = new Image;
 $allImages = $image->allPictures();
+$userId = $image->findUserFromId($_SESSION["username"]);
+// $imageId = $image->getImageId();
+if (isset($_POST['like-button']) && $_POST['like-button'] === 'submit') {
+	// var_dump("coucou");
+
+	// $image->likeImage($userId, 22);
+}
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +51,11 @@ $allImages = $image->allPictures();
 						<div class="column is-one-fifth ">
 							<div class="modal-foot-wrapper-left">
 								<div class="modal-foot-wrapper-left-elem">
-									<i class="far fa-heart " ></i>
+								<form action="" method="post">
+									<i class="far fa-heart" ><input type="submit" class="like-button" type="" name="like-button" value="submit"></i>
+								</form>
+
+
 								</div>
 								<p class="modal-foot-wrapper-left-elem font-likes">52</p>
 							</div>
@@ -80,7 +91,6 @@ $allImages = $image->allPictures();
 					echo "</div>";
 				}
 				else {
-					$i = 0;
 					foreach ($allImages as $image) {
 				?>
 				<div class="column is-narrow">
@@ -88,11 +98,8 @@ $allImages = $image->allPictures();
 						<div id="dom-index" class="img-gallery img-container">
 							<figure  class="image is-square ">
 							<?php
-
 								$path = substr($image[0], 1);
-								echo htmlspecialchars($i);
-								echo "<img id='dom-target'  src='$path' class='$i' >";
-								$i++;
+								echo "<img src='$path'>";
 							?>
 								<div class="overlay">
 									<div class="gallery-icon-wrapper">

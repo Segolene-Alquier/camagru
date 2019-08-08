@@ -214,10 +214,10 @@ Class Image {
 			$stmt->bindParam(":filename", $filename, PDO::PARAM_STR);
 			if ($stmt->execute()) {
 				if ($row = $stmt->fetch())
-					{
+				{
 					$id = $row["id"];
 					return($id);
-					}
+				}
 			}
 			echo "oooops";
 		}

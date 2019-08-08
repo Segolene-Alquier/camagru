@@ -3,13 +3,13 @@ session_start();
 require "./editing/image_class.php";
 $image = new Image;
 $allImages = $image->allPictures();
-$userId = $image->findUserFromId($_SESSION["username"]);
+// $userId = $image->findUserFromId($_SESSION["username"]);
 // $imageId = $image->getImageId();
-if (isset($_POST['like-button']) && $_POST['like-button'] === 'submit') {
+// if (isset($_POST['like-button']) && $_POST['like-button'] === 'submit') {
 	// var_dump("coucou");
 
 	// $image->likeImage($userId, 22);
-}
+// }
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +52,7 @@ if (isset($_POST['like-button']) && $_POST['like-button'] === 'submit') {
 							<div class="modal-foot-wrapper-left">
 								<div class="modal-foot-wrapper-left-elem">
 								<form action="" method="post">
-									<i class="far fa-heart" ><input type="submit" class="like-button" type="" name="like-button" value="submit"></i>
+									<i class="far fa-heart" ><input id="like-button" type="submit" class="like-button" type="" name="like-button" value="submit"></i>
 								</form>
 
 

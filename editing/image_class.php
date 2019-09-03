@@ -196,18 +196,6 @@ Class Image {
 		}
 	}
 
-	function likeImage($userId, $imageId) {
-		$sql = "INSERT INTO `liked_photos` (user_id, image_id) VALUES (:user_id, :image_id)";
-		if ($stmt = $this->bdd->prepare($sql))
-		{
-			$stmt->bindParam(":user_id", $userId, PDO::PARAM_STR);
-			$stmt->bindParam(":image_id", $imageId, PDO::PARAM_STR);
-			// $stmt->bindParam(":date", $creationDate, PDO::PARAM_STR);
-			if (!$stmt->execute())
-				echo "oooops";
-		}
-	}
-
 	function getImageId($filename) {
 		$sql = "SELECT `id` FROM `image` WHERE file = :filename";
 		if ($stmt = $this->bdd->prepare($sql)) {
@@ -225,23 +213,3 @@ Class Image {
 }
 ?>
 
-<!--
-	par defaut : la webcam ET l'upload st desactives						DONE
-	je dois selectionner un filtre (cadre qui indique lequel est select)	DONE
-	j'enregistre l'information sur le filtre								DONE
-		- je rajoute une class au filtre selectionne
-		- je recupere grace a la classe en PHP le bon filtre pour afficher le masque la camera live
-	alors les deux options sont activees									DONE
-	- si j prends une photo : le filtre apparait sur la webcam				DONE
-	- si j'upload une photo : je display l'image en question avec le filtre
-	quand je save :
-	- 'envoie a la fonction de superposition l'image prise et l'image du filtre		DONE
-	- j'enregistre le montage sur le serveur										DONE
-	- dans la bdd																	DONE
-	Suppression image :																DONE
-	Display modal :
-	- identifier l'image cliquée et recuperer l'info en js							DONE
-	- afficher l'image correspondante												DONE
-	- creer les commentaires dans le dom en js
-	- boucler pour les afficher
- -->

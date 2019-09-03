@@ -41,7 +41,6 @@ $allImages = $image->allPictures();
 						<p>Coucou</p>
 						<hr class="comm-delimiter" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
 						<p>Coucou</p>
-
 					</div>
 				</div>
 			</section>
@@ -51,11 +50,7 @@ $allImages = $image->allPictures();
 						<div class="column is-one-fifth ">
 							<div class="modal-foot-wrapper-left">
 								<div class="modal-foot-wrapper-left-elem">
-								<form action="" method="post">
-									<i class="far fa-heart" ><input id="like-button" type="submit" class="like-button" type="" name="like-button" value="submit"></i>
-								</form>
-
-
+									<i id="like-button" class="far fa-heart" ></i>
 								</div>
 								<p class="modal-foot-wrapper-left-elem font-likes">52</p>
 							</div>

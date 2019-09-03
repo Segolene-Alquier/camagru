@@ -13,22 +13,26 @@ function getXMLHttpRequest() {
 		}
 	} else {
 		alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
-		return null;
+		return (null);
 	}
 
-	return xhr;
+	return (xhr);
 }
 
 function request(src) {
-	var xhr = getXMLHttpRequest();
-	xhr.onreadystatechange = function() {
+//	var xhr = getXMLHttpRequest();
+var xhr = new XMLHttpRequest();
+
+	xhr.open("POST", "./likes/likes_handler.php", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.onreadystatechange = function(event) {
+
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			alert(src); // C'est bon \o/
+			console.log(this.response)		// alert(src); // C'est bon \o/
 		}
 	};
-	xhr.open("POST", "./likes_handler.php", true);
-	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhr.send("filename=src");
+
+	xhr.send("filename=" + src);
 }
 
 // function readData(sData) {
@@ -42,7 +46,6 @@ function request(src) {
 
 document.querySelectorAll('.modal-button').forEach(function(el) {
 	el.addEventListener('click', function() {
-// debugger;
 		var target = document.querySelector(el.getAttribute('data-target'));
 		target.classList.add('is-active');
 		var src = this.querySelector('img').src;
@@ -53,9 +56,7 @@ document.querySelectorAll('.modal-button').forEach(function(el) {
 		src = ".." + src;
 		var likeButton = document.getElementById("like-button");
 		likeButton.addEventListener('click', function() {
-			// alert(src);
 		  	request(src);
-
 		});
 
 		target.querySelector('#detailClose').addEventListener('click',   function() {

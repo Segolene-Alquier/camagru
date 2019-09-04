@@ -31,17 +31,28 @@ Class Like {
 		unset($this->bdd);
 	}
 
-	function isLiked($user_id, $image_id) {
+	function isLiked($userId, $imageId) {
 		$sql = "SELECT id FROM liked_photos WHERE user_id = :user_id AND image_id = :image_id";
 		if ($stmt = ($this->bdd->prepare($sql))) {
 			$stmt->bindParam(":user_id", $userId, PDO::PARAM_STR);
 			$stmt->bindParam(":image_id", $imageId, PDO::PARAM_STR);
 			if ($stmt->execute()) {
-				if ($stmt->fetch())
+				var_dump($stmt->rowCount());
+				if ($stmt->rowCount() >= 1)
 					return (true);
 				else
 					return (false);
 			}
+		}
+	}
+	function unlikeImage($userId, $imageId) {
+		$sql = "DELETE FROM `liked_photos` WHERE user_id = :user_id AND image_id = :image_id";
+		if ($stmt = $this->bdd->prepare($sql))
+		{
+			$stmt->bindParam(":user_id", $userId, PDO::PARAM_STR);
+			$stmt->bindParam(":image_id", $imageId, PDO::PARAM_STR);
+			if (!$stmt->execute())
+				echo "oooops";
 		}
 	}
 
@@ -51,7 +62,6 @@ Class Like {
 		{
 			$stmt->bindParam(":user_id", $userId, PDO::PARAM_STR);
 			$stmt->bindParam(":image_id", $imageId, PDO::PARAM_STR);
-			// $stmt->bindParam(":date", $creationDate, PDO::PARAM_STR);
 			if (!$stmt->execute())
 				echo "oooops";
 		}

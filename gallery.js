@@ -26,9 +26,8 @@ function request(src) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			if (this.response.match(/error/))
 				window.location.replace("./users/login.php");
-			}
+			console.log(this.response);
 		}
-
 	};
 	xhr.open("POST", "./likes/likes_handler.php", true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

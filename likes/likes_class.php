@@ -37,7 +37,6 @@ Class Like {
 			$stmt->bindParam(":user_id", $userId, PDO::PARAM_STR);
 			$stmt->bindParam(":image_id", $imageId, PDO::PARAM_STR);
 			if ($stmt->execute()) {
-				var_dump($stmt->rowCount());
 				if ($stmt->rowCount() >= 1)
 					return (true);
 				else
@@ -67,5 +66,37 @@ Class Like {
 		}
 	}
 
+	function likesCounter($imageId) {
+		$sql = "SELECT COUNT(image_id) FROM `liked_photos` WHERE image_id = :image_id";
+		if ($stmt = $this->bdd->prepare($sql)) {
+			$stmt->bindParam(":image_id", $imageId, PDO::PARAM_STR);
+			$stmt->execute();
+			$result = $stmt->fetch();
+			return ($result[0]);
+		}
+	}
+
+	function findIdFromPath($path) {
+		$sql = "SELECT id FROM `image` WHERE `file` = :path";
+		$path = "." . $path;
+		if ($stmt = $this->bdd->prepare($sql))
+		{
+			$stmt->bindParam(":path", $path, PDO::PARAM_STR);
+			if ($stmt->execute())
+			{
+				if ($stmt->rowCount() >= 1)
+				{
+
+					if ($row = $stmt->fetch()) {
+						$id = $row["id"];
+						return($id);
+					}
+				}
+			}
+			else
+				echo "Oops! Something went wrong. Please try again later.";
+			// return($path);
+		}
+	}
 }
 ?>

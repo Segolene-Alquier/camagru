@@ -1,8 +1,11 @@
 <?php
 session_start();
 require "./editing/image_class.php";
+require "./likes/likes_class.php";
 $image = new Image;
+$like = new Like;
 $allImages = $image->allPictures();
+// if ()
 // $userId = $image->findUserFromId($_SESSION["username"]);
 // $imageId = $image->getImageId();
 // if (isset($_POST['like-button']) && $_POST['like-button'] === 'submit') {
@@ -50,7 +53,7 @@ $allImages = $image->allPictures();
 						<div class="column is-one-fifth ">
 							<div class="modal-foot-wrapper-left">
 								<div class="modal-foot-wrapper-left-elem">
-									<i id="like-button" class="far fa-heart" ></i>
+									<i id="like-button" class="fas fa-heart has-text-danger" ></i>
 								</div>
 								<p class="modal-foot-wrapper-left-elem font-likes">52</p>
 							</div>
@@ -100,7 +103,7 @@ $allImages = $image->allPictures();
 									<div class="gallery-icon-wrapper">
 										<span class="gallery-icon">
 											<i class="fa fa-heart"></i>
-											<span>42</span>
+											<span><?= $like->likesCounter($like->findIdFromPath($path)) ?></span>
 										</span>
 										<span class="gallery-icon">
 											<i class="fa fa-comment"></i>

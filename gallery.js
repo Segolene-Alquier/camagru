@@ -20,29 +20,19 @@ function getXMLHttpRequest() {
 }
 
 function request(src) {
-//	var xhr = getXMLHttpRequest();
-var xhr = new XMLHttpRequest();
+	var xhr = getXMLHttpRequest();
 
-	xhr.open("POST", "./likes/likes_handler.php", true);
-	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.onreadystatechange = function(event) {
-
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			console.log(this.response)		// alert(src); // C'est bon \o/
 		}
+		else
+			window.location.replace("./users/login.php");
 	};
-
+	xhr.open("POST", "./likes/likes_handler.php", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.send("filename=" + src);
 }
-
-// function readData(sData) {
-// 	// On peut maintenant traiter les données sans encombrer l'objet XHR.
-// 	if (sData == "OK") {
-// 		alert("C'est bon");
-// 	} else {
-// 		alert("Y'a eu un problème");
-// 	}
-// }
 
 document.querySelectorAll('.modal-button').forEach(function(el) {
 	el.addEventListener('click', function() {

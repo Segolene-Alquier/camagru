@@ -103,7 +103,7 @@ $allImages = $image->allPictures();
 									<div class="gallery-icon-wrapper">
 										<span class="gallery-icon">
 											<i class="fa fa-heart"></i>
-											<span><?= $like->likesCounter($like->findIdFromPath($path)) ?></span>
+											<span id="nb_comm"><?= $like->likesCounter($like->findIdFromPath($path)) ?></span>
 										</span>
 										<span class="gallery-icon">
 											<i class="fa fa-comment"></i>

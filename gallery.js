@@ -24,10 +24,11 @@ function request(src) {
 
 	xhr.onreadystatechange = function(event) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			console.log(this.response)		// alert(src); // C'est bon \o/
+			if (this.response.match(/error/))
+				window.location.replace("./users/login.php");
+			}
 		}
-		else
-			window.location.replace("./users/login.php");
+
 	};
 	xhr.open("POST", "./likes/likes_handler.php", true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

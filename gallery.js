@@ -39,9 +39,9 @@ document.querySelectorAll('.modal-button').forEach(function(el) {
 		var target = document.querySelector(el.getAttribute('data-target'));
 		target.classList.add('is-active');
 		var src = this.querySelector('img').src;
-		var comms = this.querySelector("#nb_comm").textContent;
-		// var comms = document.getElementById("nb_comm").value;
-		console.log(comms);
+		var likes = this.querySelector("#nb_likes").textContent;
+		document.getElementById("nb_likes_modal").innerHTML = likes;
+		console.log(likes);
 		var imageModal = document.getElementById("image-modal");
 		imageModal.setAttribute("src", src);
 		src = unescape(encodeURIComponent(src));

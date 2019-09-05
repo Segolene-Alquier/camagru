@@ -55,7 +55,7 @@ $allImages = $image->allPictures();
 								<div class="modal-foot-wrapper-left-elem">
 									<i id="like-button" class="fas fa-heart has-text-danger" ></i>
 								</div>
-								<p class="modal-foot-wrapper-left-elem font-likes">52</p>
+								<p id="nb_likes_modal" class="modal-foot-wrapper-left-elem font-likes">52</p>
 							</div>
 						</div>
 						<div class="column modal-comment-input">
@@ -103,7 +103,7 @@ $allImages = $image->allPictures();
 									<div class="gallery-icon-wrapper">
 										<span class="gallery-icon">
 											<i class="fa fa-heart"></i>
-											<span id="nb_comm"><?= $like->likesCounter($like->findIdFromPath($path)) ?></span>
+											<span id="nb_likes"><?= $like->likesCounter($like->findIdFromPath($path)) ?></span>
 										</span>
 										<span class="gallery-icon">
 											<i class="fa fa-comment"></i>

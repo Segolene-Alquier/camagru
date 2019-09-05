@@ -34,6 +34,29 @@ function request(src) {
 	xhr.send("filename=" + src);
 }
 
+function isLiked(src) {
+	var xhr = getXMLHttpRequest();
+	var heart = document.getElementById("like-button");
+	xhr.onreadystatechange = function(event) {
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			console.log(this.response);
+			if (this.response == 1) {
+				heart.classList.remove("far");
+				heart.classList.add("fas");
+
+			}
+
+			else {
+				heart.classList.remove("fas");
+				heart.classList.add("far");
+			}
+		}
+	};
+	xhr.open("POST", "./likes/likes_handler.php", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send("isLiked=" + src);
+}
+
 document.querySelectorAll('.modal-button').forEach(function(el) {
 	el.addEventListener('click', function() {
 		var target = document.querySelector(el.getAttribute('data-target'));
@@ -41,17 +64,17 @@ document.querySelectorAll('.modal-button').forEach(function(el) {
 		var src = this.querySelector('img').src;
 		var likes = this.querySelector("#nb_likes").textContent;
 		document.getElementById("nb_likes_modal").innerHTML = likes;
-		console.log(likes);
 		var imageModal = document.getElementById("image-modal");
 		imageModal.setAttribute("src", src);
 		src = unescape(encodeURIComponent(src));
 		src = src.substring(src.indexOf("/uploads"));
 		src = ".." + src;
+		isLiked(src);
+
 		var likeButton = document.getElementById("like-button");
 		likeButton.addEventListener('click', function() {
 		  	request(src);
 		});
-
 		target.querySelector('#detailClose').addEventListener('click',   function() {
 			target.classList.remove('is-active');
 	   });

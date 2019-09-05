@@ -6,7 +6,7 @@ $image = new Image;
 $like = new Like;
 $allImages = $image->allPictures();
 // if ()
-// $userId = $image->findUserFromId($_SESSION["username"]);
+$userId = $image->findUserFromId($_SESSION["username"]);
 // $imageId = $image->getImageId();
 // if (isset($_POST['like-button']) && $_POST['like-button'] === 'submit') {
 	// var_dump("coucou");
@@ -53,9 +53,9 @@ $allImages = $image->allPictures();
 						<div class="column is-one-fifth ">
 							<div class="modal-foot-wrapper-left">
 								<div class="modal-foot-wrapper-left-elem">
-									<i id="like-button" class="fas fa-heart has-text-danger" ></i>
+									<i id="like-button" class="far fa-heart has-text-danger" ></i>
 								</div>
-								<p id="nb_likes_modal" class="modal-foot-wrapper-left-elem font-likes">52</p>
+								<p id="nb_likes_modal" class="modal-foot-wrapper-left-elem font-likes"></p>
 							</div>
 						</div>
 						<div class="column modal-comment-input">
@@ -114,7 +114,6 @@ $allImages = $image->allPictures();
 							</figure>
 						</div>
 					</div>
-
 				</div>
 				<?php
 					}
@@ -124,6 +123,5 @@ $allImages = $image->allPictures();
 		</div>
 	</div>
 	<script type="text/javascript" src="gallery.js"></script>
-
 </body>
 </html>

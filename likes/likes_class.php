@@ -38,9 +38,9 @@ Class Like {
 			$stmt->bindParam(":image_id", $imageId, PDO::PARAM_STR);
 			if ($stmt->execute()) {
 				if ($stmt->rowCount() >= 1)
-					return (true);
+					return (1);
 				else
-					return (false);
+					return (0);
 			}
 		}
 	}

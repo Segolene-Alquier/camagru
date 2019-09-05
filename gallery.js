@@ -39,7 +39,7 @@ document.querySelectorAll('.modal-button').forEach(function(el) {
 		var target = document.querySelector(el.getAttribute('data-target'));
 		target.classList.add('is-active');
 		var src = this.querySelector('img').src;
-		var comms = this.querySelector("#nb_comm").innerText;
+		var comms = this.querySelector("#nb_comm").textContent;
 		// var comms = document.getElementById("nb_comm").value;
 		console.log(comms);
 		var imageModal = document.getElementById("image-modal");

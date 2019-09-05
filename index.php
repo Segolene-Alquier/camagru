@@ -6,6 +6,7 @@ $image = new Image;
 $like = new Like;
 $allImages = $image->allPictures();
 // if ()
+if (isset($_SESSION["username"]))
 $userId = $image->findUserFromId($_SESSION["username"]);
 // $imageId = $image->getImageId();
 // if (isset($_POST['like-button']) && $_POST['like-button'] === 'submit') {

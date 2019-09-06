@@ -41,10 +41,11 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 					<div class="modal-image is-two-thirds column">
 						<img id="image-modal" src="" alt="">
 					</div>
-					<div class="modal-comment column">
-						<p>Coucou</p>
+					<div id="comm-list" class="modal-comment column">
+
+						<!-- <p id="comm"></p> -->
+						<!-- <ul id="comm"></ul> -->
 						<hr class="comm-delimiter" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
-						<p>Coucou</p>
 					</div>
 				</div>
 			</section>
@@ -61,7 +62,6 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 						</div>
 						<div class="column modal-comment-input">
 							<div class="">
-								<!-- <form id="comment-form"> -->
 								<div class="field has-addons">
 									<div class="control">
 										<input id="comment-content" class="input is-rounded is-medium" type="text" placeholder="Your comment">
@@ -70,7 +70,6 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 										<button id="comment-button" class="button is-primary is-rounded is-medium" onclick="getComment()">Send</button>
 									</div>
 								</div>
-								<!-- </form> -->
 							</div>
 						</div>
 					</div>

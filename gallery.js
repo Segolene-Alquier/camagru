@@ -57,29 +57,72 @@ function isLiked(src) {
 }
 
 function comment(src, content) {
-	// console.log(src);
-	// console.log(content);
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function(event) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			console.log(this.response)
+
+			// var allComments = this.response;
+			// document.getElementById("comm").innerHTML = JSON.stringify(allComments, null, 4);
+			// console.log(allComments)
 		}
-
-	// };
-
-
 	};
 	xhr.open("POST", "./comments/comments_handler.php", true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.send("src=" + src + "&content=" + content);
-	// xhr.send("src=" + src);
 }
 var content = "";
 var src = "";
 
 function getComment() {
 	content = document.getElementById("comment-content").value;
-	comment(src, content)
+	comment(src, content);
+	// location.reload();
+
+}
+
+function displayComments(src) {
+	var xhr = getXMLHttpRequest();
+	xhr.onreadystatechange = function(event) {
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+
+			var allComments = this.response;
+			var tab = JSON.parse(allComments, null, 4);
+			var list = document.createElement('ul');
+			// var li = document.createElement('li');
+			// var clone;
+			document.getElementById('comm-list').appendChild(list);
+			tab.forEach(function(comment) {
+				var li = document.createElement('li');
+				list.appendChild(li);
+
+    			li.innerHTML = comment.content;
+				// li.textContent = comment;
+				// list.appendChild(li);
+				// clone = li.cloneNode();
+				// div.appendChild(document.createTextNode('top div'));
+				// div.appendChild(element);
+				// clone.innerHTML = comment.content;
+				// var currentDiv = document.getElementById("comm-list");
+				// document.body.insertBefore(list, currentDiv);
+
+    			// tab.appendChild(clone);
+				// var newDiv = document.createElement("div");
+				// var newContent = document.createTextNode(comment.content);
+				// newDiv.appendChild(newContent);
+
+				// var currentDiv = document.getElementById('comm');
+				// console.log(currentDiv);
+				// document.body.insertBefore(newDiv, currentDiv);
+				// document.getElementById("comm").innerHTML = JSON.stringify(comment.content);
+				// console.log(comment.content);
+			});
+			// document.getElementById("comm").innerHTML = JSON.parse(allComments, null, 4);
+			// console.log(JSON.parse(allComments, null, 4))
+		}
+	};
+	xhr.open("POST", "./comments/comments_handler.php", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send("file=" + src);
 }
 
 document.querySelectorAll('.modal-button').forEach(function(el) {
@@ -95,6 +138,7 @@ document.querySelectorAll('.modal-button').forEach(function(el) {
 		src = src.substring(src.indexOf("/uploads"));
 		src = ".." + src;
 		isLiked(src);
+		displayComments(src);
 		var likeButton = document.getElementById("like-button");
 		likeButton.addEventListener('click', function() {
 			request(src);

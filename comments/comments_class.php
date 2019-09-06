@@ -32,21 +32,33 @@ Class Comment {
 	}
 
 	function addCommentToDB($content, $imageId, $userId) {
-		// $sql = "INSERT INTO `comment` (`content`, `image`, `user`) WHERE (:content, :image_id, :user_id);";
-
 		$sql = "INSERT INTO `comment` (content, image, user) VALUES (:content, :image_id, :user_id)";
 		if ($stmt = $this->bdd->prepare($sql)) {
 			$stmt->bindParam(":content", $content, PDO::PARAM_STR);
 			$stmt->bindParam(":user_id", $userId, PDO::PARAM_STR);
 			$stmt->bindParam(":image_id", $imageId, PDO::PARAM_STR);
-			if ($stmt->execute()) {
-				// exit();
-			}
-			else
+			if (!$stmt->execute())
 				echo "Oops! Something went wrong. Please try again later.";
 		}
 		else
 			echo "Oops! Something went wrong. Please try again later.";
+	}
+
+	function displayComments($imageId) {
+		$sql = "SELECT * FROM `comment` WHERE image = :image_id";
+
+		if ($stmt = $this->bdd->prepare($sql)) {
+			$stmt->bindParam(":image_id", $imageId, PDO::PARAM_STR);
+		}
+		if ($stmt->execute()) {
+			$allComments = [];
+			while ($data = $stmt->fetch())
+				array_push($allComments, $data);
+			return ($allComments);
+		}
+		return (NULL);
+
+
 	}
 }
 ?>

@@ -67,7 +67,7 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 										<input class="input is-rounded is-medium" type="text" placeholder="Your comment">
 									</div>
 									<div class="control">
-										<a class="button is-primary is-rounded is-medium">Send</a>
+										<a id="comment-button" class="button is-primary is-rounded is-medium">Send</a>
 									</div>
 								</div>
 								</form>

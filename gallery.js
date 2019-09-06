@@ -86,6 +86,10 @@ document.querySelectorAll('.modal-button').forEach(function(el) {
 				document.getElementById("nb_likes_modal").innerHTML = nbLikes;
 			}
 		});
+		var commentButton = document.getElementById("comment-button");
+		commentButton.addEventListener('click', function() {
+			alert("coucou");
+		});
 		target.querySelector('#detailClose').addEventListener('click',   function() {
 			target.classList.remove('is-active');
 			location.reload();

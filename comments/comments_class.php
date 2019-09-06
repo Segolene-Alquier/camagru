@@ -1,6 +1,6 @@
 <?php
 
-Class Like {
+Class Comment {
 	private $bdd;
 
 	function __construct(){

@@ -56,17 +56,37 @@ function isLiked(src) {
 	xhr.send("isLiked=" + src);
 }
 
-function getComment() {
-	var commentContent = document.getElementById("comment-content").value;
-	console.log(commentContent);
+function comment(src, content) {
+	// console.log(src);
+	// console.log(content);
+	var xhr = getXMLHttpRequest();
+	xhr.onreadystatechange = function(event) {
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			console.log(this.response)
+		}
+
+	// };
 
 
+	};
+	xhr.open("POST", "./comments/comments_handler.php", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send("src=" + src + "&content=" + content);
+	// xhr.send("src=" + src);
 }
+var content = "";
+var src = "";
+
+function getComment() {
+	content = document.getElementById("comment-content").value;
+	comment(src, content)
+}
+
 document.querySelectorAll('.modal-button').forEach(function(el) {
 	el.addEventListener('click', function() {
 		var target = document.querySelector(el.getAttribute('data-target'));
 		target.classList.add('is-active');
-		var src = this.querySelector('img').src;
+		src = this.querySelector('img').src;
 		var likes = parseInt(this.querySelector("#nb_likes").textContent);
 		document.getElementById("nb_likes_modal").innerHTML = likes;
 		var imageModal = document.getElementById("image-modal");
@@ -92,14 +112,6 @@ document.querySelectorAll('.modal-button').forEach(function(el) {
 				document.getElementById("nb_likes_modal").innerHTML = nbLikes;
 			}
 		});
-		// var commentButton = document.getElementById("comment-button");
-		// var form = document.getElementById("comment-content").textContent;
-		// var form = document.getElementById("comment-form");
-
-		// var commentContent = form.elements.comm;
-		// alert(commentContent);
-		// commentButton.addEventListener('click', function() {
-		// });
 		target.querySelector('#detailClose').addEventListener('click',   function() {
 			target.classList.remove('is-active');
 			location.reload();

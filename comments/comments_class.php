@@ -31,6 +31,22 @@ Class Comment {
 		unset($this->bdd);
 	}
 
+	function addCommentToDB($content, $imageId, $userId) {
+		// $sql = "INSERT INTO `comment` (`content`, `image`, `user`) WHERE (:content, :image_id, :user_id);";
 
+		$sql = "INSERT INTO `comment` (content, image, user) VALUES (:content, :image_id, :user_id)";
+		if ($stmt = $this->bdd->prepare($sql)) {
+			$stmt->bindParam(":content", $content, PDO::PARAM_STR);
+			$stmt->bindParam(":user_id", $userId, PDO::PARAM_STR);
+			$stmt->bindParam(":image_id", $imageId, PDO::PARAM_STR);
+			if ($stmt->execute()) {
+				// exit();
+			}
+			else
+				echo "Oops! Something went wrong. Please try again later.";
+		}
+		else
+			echo "Oops! Something went wrong. Please try again later.";
+	}
 }
 ?>

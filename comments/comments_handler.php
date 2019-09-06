@@ -4,6 +4,7 @@ require "../editing/image_class.php";
 require "comments_class.php";
 
 $image = new Image;
+$comment = new Comment;
 
 // echo json_encode("coucou");
 if (isset($_POST['src']) && isset($_POST['content'])) {
@@ -11,8 +12,12 @@ if (isset($_POST['src']) && isset($_POST['content'])) {
 	$imageId = $image->getImageId($filename);
 	$userId = $image->findUserFromId($_SESSION["username"]);
 	$content = $_POST['content'];
-	echo json_encode($filename);
+	$comment->addCommentToDB($content, $imageId, $userId);
+	echo json_encode($imageId);
+	echo json_encode($userId);
+
 	echo json_encode($content);
+	// echo json_encode($comment);
 }
 else
 	echo json_encode("error");

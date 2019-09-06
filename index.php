@@ -61,16 +61,16 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 						</div>
 						<div class="column modal-comment-input">
 							<div class="">
-								<form action="">
-								<div class="field has-addons">
-									<div class="control">
-										<input class="input is-rounded is-medium" type="text" placeholder="Your comment">
+								<!-- <form id="comment-form"> -->
+									<div class="field has-addons">
+										<div class="control">
+											<input id="comment-content" class="input is-rounded is-medium" type="text" placeholder="Your comment">
+										</div>
+										<div class="control">
+											<button id="comment-button" class="button is-primary is-rounded is-medium" onclick="getComment()">Send</button>
+										</div>
 									</div>
-									<div class="control">
-										<a id="comment-button" class="button is-primary is-rounded is-medium">Send</a>
-									</div>
-								</div>
-								</form>
+								<!-- </form> -->
 							</div>
 						</div>
 					</div>

@@ -56,6 +56,12 @@ function isLiked(src) {
 	xhr.send("isLiked=" + src);
 }
 
+function getComment() {
+	var commentContent = document.getElementById("comment-content").value;
+	console.log(commentContent);
+
+
+}
 document.querySelectorAll('.modal-button').forEach(function(el) {
 	el.addEventListener('click', function() {
 		var target = document.querySelector(el.getAttribute('data-target'));
@@ -86,10 +92,14 @@ document.querySelectorAll('.modal-button').forEach(function(el) {
 				document.getElementById("nb_likes_modal").innerHTML = nbLikes;
 			}
 		});
-		var commentButton = document.getElementById("comment-button");
-		commentButton.addEventListener('click', function() {
-			alert("coucou");
-		});
+		// var commentButton = document.getElementById("comment-button");
+		// var form = document.getElementById("comment-content").textContent;
+		// var form = document.getElementById("comment-form");
+
+		// var commentContent = form.elements.comm;
+		// alert(commentContent);
+		// commentButton.addEventListener('click', function() {
+		// });
 		target.querySelector('#detailClose').addEventListener('click',   function() {
 			target.classList.remove('is-active');
 			location.reload();

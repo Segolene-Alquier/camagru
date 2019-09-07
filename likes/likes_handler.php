@@ -6,13 +6,17 @@ require "likes_class.php";
 $image = new Image;
 $like = new Like;
 if (isset($_POST['isLiked'])) {
+	if (!isset($_SESSION["username"])) {
+		echo json_encode("error");
+		exit();
+	}
 	$filename = $_POST['isLiked'];
 	$imageId = $image->getImageId($filename);
 	$userId = $image->findUserFromId($_SESSION["username"]);
 	$isLiked = $like->isLiked($userId, $imageId);
 	echo json_encode($isLiked);
 }
-else{
+else {
 	if (isset($_POST['filename']) && isset($_SESSION["username"])) {
 		$filename = $_POST['filename'];
 		$imageId = $image->getImageId($filename);

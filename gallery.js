@@ -26,6 +26,10 @@ function request(src) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			if (this.response.match(/error/))
 				window.location.replace("./users/login.php");
+			else {
+				document.getElementById('comment-content').disabled = false;
+				document.getElementById('comment-button').disabled = false;
+			}
 			console.log(this.response);
 		}
 	};
@@ -41,13 +45,21 @@ function isLiked(src) {
 	xhr.onreadystatechange = function(event) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			console.log(this.response);
-			if (this.response == 1) {
+			if (this.response.match(/error/)) {
 				heart.classList.remove("far");
 				heart.classList.add("fas");
+				heart.classList.remove("has-text-danger");
+				heart.classList.add("has-text-grey-light");
 			}
 			else {
-				heart.classList.remove("fas");
-				heart.classList.add("far");
+				if (this.response == 1) {
+					heart.classList.remove("far");
+					heart.classList.add("fas");
+				}
+				else {
+					heart.classList.remove("fas");
+					heart.classList.add("far");
+				}
 			}
 		}
 	};
@@ -61,9 +73,6 @@ function comment(src, content) {
 	xhr.onreadystatechange = function(event) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 
-			// var allComments = this.response;
-			// document.getElementById("comm").innerHTML = JSON.stringify(allComments, null, 4);
-			// console.log(allComments)
 		}
 	};
 	xhr.open("POST", "./comments/comments_handler.php", true);
@@ -98,6 +107,22 @@ function displayComments(src) {
 	xhr.open("POST", "./comments/comments_handler.php", true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.send("file=" + src);
+}
+
+function isLogged() {
+	var xhr = getXMLHttpRequest();
+	xhr.onreadystatechange = function(event) {
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			if (this.response.match(/logged/)) {
+				document.getElementById('comment-content').disabled = false;
+				document.getElementById('comment-button').disabled = false;
+			}
+			console.log(this.response);
+		}
+	};
+	xhr.open("POST", "./comments/comments_handler.php", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send("logged=" + 1);
 }
 
 document.querySelectorAll('.modal-button').forEach(function(el) {

@@ -243,6 +243,7 @@ body{
 	overflow-y: scroll;
 }
 .li-comm {
+	color: rgba(74, 74, 74, 0.8);
 	padding-top: 1%;
 	padding-bottom: 1%;
 	border-bottom: 1px solid rgba(189,195,199,0.5);

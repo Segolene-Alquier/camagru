@@ -33,7 +33,7 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 		<div class="modal-background"></div>
 		<div class="modal-card">
 			<header class="modal-card-head">
-			<p class="modal-card-title">Modal title</p>
+			<p class="modal-card-title">Image focus</p>
 			<button id="detailClose" class="delete" aria-label="close"></button>
 			</header>
 			<section class="modal-card-body">
@@ -51,7 +51,7 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 						<div class="column is-one-fifth ">
 							<div class="modal-foot-wrapper-left">
 								<div class="modal-foot-wrapper-left-elem">
-									<i id="like-button" class="far fa-heart has-text-danger" ></i>
+									<i id="like-button"  class="far fa-heart has-text-danger" ></i>
 								</div>
 								<p id="nb_likes_modal" class="modal-foot-wrapper-left-elem font-likes"></p>
 							</div>
@@ -60,10 +60,10 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 							<div class="">
 								<div class="field has-addons">
 									<div class="control">
-										<input id="comment-content" class="input is-rounded is-medium" type="text" placeholder="Your comment">
+										<input id="comment-content" disabled class="input is-rounded is-medium" type="text" placeholder="Your comment">
 									</div>
 									<div class="control">
-										<button id="comment-button" class="button is-primary is-rounded is-medium" onclick="getComment()">Send</button>
+										<button id="comment-button" disabled class="button is-primary is-rounded is-medium" onclick="getComment()">Send</button>
 									</div>
 								</div>
 							</div>

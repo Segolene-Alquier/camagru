@@ -9,7 +9,7 @@ $comment = new Comment;
 if (isset($_POST['file'])) {
 	$filename = $_POST['file'];
 	$imageId = $image->getImageId($filename);
-	$userId = $image->findUserFromId($_SESSION["username"]);
+	// $userId = $image->findUserFromId($_SESSION["username"]);
 	$allComments = $comment->displayComments($imageId);
 	// echo json_encode($filename);
 	echo json_encode($allComments);

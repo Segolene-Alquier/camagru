@@ -38,7 +38,6 @@ function request(src) {
 	xhr.send("filename=" + src);
 }
 
-
 function isLiked(src) {
 	var xhr = getXMLHttpRequest();
 	var heart = document.getElementById("like-button");
@@ -92,6 +91,7 @@ function displayComments(src) {
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function(event) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			console.log(this.response);
 			var allComments = this.response;
 			var tab = JSON.parse(allComments, null, 4);
 			var list = document.createElement('ul');
@@ -100,7 +100,7 @@ function displayComments(src) {
 				var li = document.createElement('li');
 				li.className = "li-comm";
 				list.appendChild(li);
-    			li.innerHTML = comment.content;
+				li.innerHTML = comment.content;
 			});
 		}
 	};
@@ -113,11 +113,11 @@ function isLogged() {
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function(event) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			console.log(this.response);
 			if (this.response.match(/logged/)) {
 				document.getElementById('comment-content').disabled = false;
 				document.getElementById('comment-button').disabled = false;
 			}
-			console.log(this.response);
 		}
 	};
 	xhr.open("POST", "./comments/comments_handler.php", true);
@@ -139,6 +139,7 @@ document.querySelectorAll('.modal-button').forEach(function(el) {
 		src = ".." + src;
 		isLiked(src);
 		displayComments(src);
+		isLogged();
 		var likeButton = document.getElementById("like-button");
 		likeButton.addEventListener('click', function() {
 			request(src);

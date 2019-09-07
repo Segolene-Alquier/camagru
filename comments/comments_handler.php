@@ -8,8 +8,11 @@ $comment = new Comment;
 
 if (isset($_POST['file']) || isset($_POST["logged"])) {
 	if (isset($_POST['file']) ) {
-		if (!isset($_SESSION["username"]))
-			echo json_encode("error");
+		// if (!isset($_SESSION["username"])) {
+		// 	echo json_encode("error");
+		// 	exit();
+		// }
+
 		$filename = $_POST['file'];
 		$imageId = $image->getImageId($filename);
 		$allComments = $comment->displayComments($imageId);

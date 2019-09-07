@@ -38,7 +38,7 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 			</header>
 			<section class="modal-card-body">
 				<div class="modal-wrapper columns">
-					<div class="modal-image is-two-thirds column">
+					<div class="modal-image is-one-half column">
 						<img id="image-modal" src="" alt="">
 					</div>
 					<div id="comm-list" class="modal-comment column">

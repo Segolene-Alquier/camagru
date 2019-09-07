@@ -89,6 +89,7 @@ function displayComments(src) {
 			document.getElementById('comm-list').appendChild(list);
 			tab.forEach(function(comment) {
 				var li = document.createElement('li');
+				li.className = "li-comm";
 				list.appendChild(li);
     			li.innerHTML = comment.content;
 			});

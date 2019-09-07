@@ -167,13 +167,6 @@ body{
 	flex-direction: column;
 }
 
-/* @media screen and (min-width: 20px) and (max-width: 800px) {
-	.edit-right {
-		display: flex;
-		flex-direction: row;
-		background-color: gold;
-	}
-} */
 .edit-right-wrapper {
 	padding: 20px;
 	max-height: 80vh;
@@ -187,11 +180,7 @@ body{
 	position: relative;
 }
 .delete-picture {
-	/* position: absolute;
-	top: 0px;
-	right: 0px; */
 	float: right;
-	/* text-align: right; */
 }
 .filters-wrapper {
 	margin-left: 2vw;
@@ -222,12 +211,10 @@ body{
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	/* justify-content: center; */
 }
 .modal-comment-input {
 	display: flex;
 	flex-direction: row;
-	/* align-items: baseline; */
 	margin-left: 1em;
 }
 .modal-foot-wrapper-left {
@@ -253,7 +240,6 @@ body{
 	height: 100%;
 }
 #comm-list {
-	/* height: 100vh; */
 	overflow-y: scroll;
 }
 .li-comm {

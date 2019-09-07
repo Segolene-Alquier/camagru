@@ -42,7 +42,6 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 						<img id="image-modal" src="" alt="">
 					</div>
 					<div id="comm-list" class="modal-comment column">
-						<!-- <hr class="comm-delimiter" style="margin-top: 0.5rem; margin-bottom: 0.5rem;"> -->
 					</div>
 				</div>
 			</section>

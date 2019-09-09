@@ -90,9 +90,8 @@ function checkComment(comment) {
 		alert("Your comment is too long! Less than 80 characters please 🙏");
 		return (0);
 	}
-	else {
+	else
 		return (1);
-	}
 }
 
 function getComment() {
@@ -115,7 +114,7 @@ function displayComments(src) {
 				var li = document.createElement('li');
 				li.className = "li-comm";
 				list.appendChild(li);
-				li.innerHTML = comment.content;
+				li.innerHTML = "<b>" + comment.username + "</b> : " + comment.content;
 			});
 		}
 	};

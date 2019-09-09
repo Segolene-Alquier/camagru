@@ -8,11 +8,6 @@ $comment = new Comment;
 
 if (isset($_POST['file']) || isset($_POST["logged"])) {
 	if (isset($_POST['file']) ) {
-		// if (!isset($_SESSION["username"])) {
-		// 	echo json_encode("error");
-		// 	exit();
-		// }
-
 		$filename = $_POST['file'];
 		$imageId = $image->getImageId($filename);
 		$allComments = $comment->displayComments($imageId);
@@ -31,7 +26,7 @@ else {
 		$imageId = $image->getImageId($filename);
 		$userId = $image->findUserFromId($_SESSION["username"]);
 		$content = $_POST['content'];
-		$comment->addCommentToDB($content, $imageId, $userId);
+		$comment->addCommentToDB($content, $imageId, $userId, $_SESSION["username"]);
 		// echo json_encode($imageId);
 		// echo json_encode($userId);
 		// echo json_encode($content);

@@ -27,16 +27,10 @@ else {
 		$userId = $image->findUserFromId($_SESSION["username"]);
 		$content = $_POST['content'];
 		$comment->addCommentToDB($content, $imageId, $userId, $_SESSION["username"]);
-		// echo json_encode($imageId);
-		// echo json_encode($userId);
-		// echo json_encode($content);
-		// echo json_encode($comment);
+		$comment->commentNotification($imageId, $_SESSION["username"], $content);
+
 	}
 	else
 		echo json_encode("error");
 }
-
-
-// if (!isset($_SESSION["username"]))
-// 	echo json_encode("error");
 ?>

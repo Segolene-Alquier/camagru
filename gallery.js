@@ -96,8 +96,11 @@ function checkComment(comment) {
 
 function getComment() {
 	content = document.getElementById("comment-content").value;
-	if (checkComment(content))
+	if (checkComment(content)) {
 		comment(src, content);
+		// commentNotification(src, content);
+	}
+
 	// location.reload();
 }
 

@@ -69,5 +69,28 @@ Class Comment {
 			return ($result[0]);
 		}
 	}
+
+	function send_mail($email, $subject, $message) {
+		$message = wordwrap($message, 70, "\n");
+		$headers = 'From: camagru@42.fr' . "\r\n" .
+				'Reply-To: camagru@42.fr' . "\r\n" .
+				'X-Mailer: PHP/' . phpversion();
+		mail($email, $subject, $message, $headers);
+	}
+
+	function commentNotification($image_id, $commentator, $content) {
+		$sql = "SELECT user.email as `email`, user.username as `username`
+		FROM user
+		INNER JOIN image
+		WHERE image.user = user.userid
+		AND image.id = ?";
+		$retour = $this->bdd->prepare($sql);
+		$retour->execute(array($image_id));
+		$user = $retour->fetch();
+		echo "Ok";
+		$message = "Hi $user[username]!\n\nYou are very popular, $commentator just commented your picture #$image_id.\nThe comment says:\n\n'$content'\n";
+		// if ($user['notification'])
+			$this->send_mail($user['email'], "You've got a new comment on Camagru!", $message);
+	}
 }
 ?>

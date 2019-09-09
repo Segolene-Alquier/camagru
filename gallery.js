@@ -81,9 +81,21 @@ function comment(src, content) {
 var content = "";
 var src = "";
 
+function checkComment(comment) {
+	if (comment === "") {
+		alert("Your comment cannot be empty!");
+		return (0);
+	}
+	else {
+
+
+	}
+}
+
 function getComment() {
 	content = document.getElementById("comment-content").value;
-	comment(src, content);
+	if (checkComment(content))
+		comment(src, content);
 	// location.reload();
 }
 

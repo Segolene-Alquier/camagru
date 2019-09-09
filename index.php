@@ -62,7 +62,7 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 							<div class="">
 								<div class="field has-addons">
 									<div class="control">
-										<input id="comment-content" disabled class="input is-rounded is-medium" type="text" placeholder="Your comment">
+										<input required id="comment-content" disabled class="input is-rounded is-medium" type="text" placeholder="Your comment">
 									</div>
 									<div class="control">
 										<button id="comment-button" disabled class="button is-primary is-rounded is-medium" onclick="getComment()">Send</button>

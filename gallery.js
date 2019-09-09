@@ -83,12 +83,15 @@ var src = "";
 
 function checkComment(comment) {
 	if (comment === "") {
-		alert("Your comment cannot be empty!");
+		alert("Your comment cannot be empty! 🤓");
+		return (0);
+	}
+	if (comment.length > 80) {
+		alert("Your comment is too long! Less than 80 characters please 🙏");
 		return (0);
 	}
 	else {
-
-
+		return (1);
 	}
 }
 

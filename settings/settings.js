@@ -18,7 +18,6 @@ function getXMLHttpRequest() {
 		alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
 		return (null);
 	}
-
 	return (xhr);
 }
 
@@ -35,8 +34,6 @@ function notifNo() {
 	xhr.open("POST", "./notif_handler.php", true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.send("clic=" + 0);
-
-
 }
 
 function notifYes() {

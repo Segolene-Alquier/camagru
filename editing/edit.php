@@ -34,7 +34,6 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
     <link rel="stylesheet" type="text/css" href="../camagru.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <script src="https://kit.fontawesome.com/82e513fc69.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 </head>
 <body>
     <?php include_once '../navigation.php'; ?>

@@ -259,14 +259,14 @@ body{
 
 .settings-title {
 	padding-top: 2em;
+	padding-bottom: 1em;
 	text-align: center;
 }
 .settings-field {
-	max-width: 300px;
+	/* max-width: 300px; */
 }
 .settings-div {
-	margin-top: 2.5em;
-	width: 40%;
+	width: 50%;
 	min-width: 350px;
-	/* background-color: pink; */
+	max-width: 550px;
 }

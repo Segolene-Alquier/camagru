@@ -1,3 +1,10 @@
+<?php
+session_start();
+// creer restriction login
+if (!isset($_SESSION['username']))
+	header('Location: ../users/login.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +18,9 @@
 <body>
 	<?php include_once './navigation.php'; ?>
 	<div class="section ">
-		<h1 class="title is-2 settings-title">Welcome to your user page!</h1>
+		<h1 class="title is-2 settings-title">Welcome to your page <?= $_SESSION['username']?>!</h1>
 		<div class="settings-wrapper">
-			<div class="settings-div">
+			<div class="box settings-div">
 				<h2 class="subtitle is-4">👋 Modify your username</h2>
 				<div class="field is-horizontal ">
 					<div class="field-body">
@@ -43,7 +50,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="settings-div">
+			<div class="box settings-div">
 				<h2 class="subtitle is-4">🔑 Modify your password</h2>
 				<div class="field is-horizontal ">
 					<div class="field-body">
@@ -73,7 +80,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="settings-div">
+			<div class="box settings-div">
 				<h2 class="subtitle is-4">💌 Modify your email address</h2>
 				<div class="field is-horizontal ">
 					<div class="field-body">
@@ -103,10 +110,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="settings-div">
+			<div class="box settings-div">
 				<h2 class="subtitle is-4">🔔 Your notification preferences</h2>
 				<h3 class="subtitle is-6">Do you want to get a notification email if someone comments one of your pictures?</h3>
-				<div class="buttons has-addons">
+				<div class="buttons has-addons is-right">
 					<span class="button is-success is-selected">Yes</span>
 					<span class="button is-danger">No</span>
 				</div>

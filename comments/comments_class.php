@@ -57,8 +57,16 @@ Class Comment {
 			return ($allComments);
 		}
 		return (NULL);
+	}
 
-
+	function commentsCounter($imageId) {
+		$sql = "SELECT COUNT(*) FROM `comment` WHERE image = :image_id";
+		if ($stmt = $this->bdd->prepare($sql)) {
+			$stmt->bindParam(":image_id", $imageId, PDO::PARAM_STR);
+			$stmt->execute();
+			$result = $stmt->fetch();
+			return ($result[0]);
+		}
 	}
 }
 ?>

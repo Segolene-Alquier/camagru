@@ -2,8 +2,10 @@
 session_start();
 require "./editing/image_class.php";
 require "./likes/likes_class.php";
+require "./comments/comments_class.php";
 $image = new Image;
 $like = new Like;
+$comment = new Comment;
 $allImages = $image->allPictures();
 // if ()
 if (isset($_SESSION["username"]))
@@ -103,7 +105,7 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 										</span>
 										<span class="gallery-icon">
 											<i class="fa fa-comment"></i>
-											<span>3</span>
+											<span id="nb-comms"><?= $comment->commentsCounter($like->findIdFromPath($path))?></span>
 										</span>
 									</div>
 								</div>

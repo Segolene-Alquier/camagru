@@ -11,12 +11,12 @@ if (!isset($_SESSION['username']))
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>User settings</title>
-    <link rel="stylesheet" type="text/css" href="./camagru.css">
+    <link rel="stylesheet" type="text/css" href="../camagru.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <script src="https://kit.fontawesome.com/82e513fc69.js"></script>
 </head>
 <body>
-	<?php include_once './navigation.php'; ?>
+	<?php include_once '../navigation.php'; ?>
 	<div class="section ">
 		<h1 class="title is-2 settings-title">Welcome to your page <?= $_SESSION['username']?>!</h1>
 		<div class="settings-wrapper">
@@ -114,11 +114,12 @@ if (!isset($_SESSION['username']))
 				<h2 class="subtitle is-4">🔔 Your notification preferences</h2>
 				<h3 class="subtitle is-6">Do you want to get a notification email if someone comments one of your pictures?</h3>
 				<div class="buttons has-addons is-right">
-					<span class="button is-success is-selected">Yes</span>
-					<span class="button is-danger">No</span>
+					<span id="notif-yes" class="button is-success" onclick="notifYes();">Yes</span>
+					<span id="notif-no" class="button is-danger" onclick="notifNo();">No</span>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="settings.js"></script>
 </body>
 </html>

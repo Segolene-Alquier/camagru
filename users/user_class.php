@@ -305,6 +305,28 @@ Class User {
 		}
 	}
 
+	function wantsNotif($username) {
+		$sql = "SELECT `notification` FROM `user` WHERE `username` = :username";
+		if ($stmt = $this->bdd->prepare($sql)) {
+			$stmt->bindParam(":username", $username, PDO::PARAM_STR);
+			$stmt->execute();
+			$result = $stmt->fetch();
+			return ($result[0]);
+		}
 
+	}
+
+	function changeNotif($boolean, $username) {
+		$sql = "UPDATE `user` SET `notification` = :bool WHERE `username` = :username";
+		if ($stmt = $this->bdd->prepare($sql)) {
+			$stmt->bindParam(":bool", $boolean, PDO::PARAM_STR);
+			$stmt->bindParam(":username", $username, PDO::PARAM_STR);
+			if (!$stmt->execute()) {
+				echo "Oops! Something went wrong. Please try again later.";
+
+			}
+		}
+
+	}
 }
 ?>

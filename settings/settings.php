@@ -1,8 +1,22 @@
 <?php
 session_start();
+require "settings_class.php";
 // creer restriction login
 if (!isset($_SESSION['username']))
 	header('Location: ../users/login.php');
+if (isset($_POST["modifyPwd"]))
+{
+	$user = new Setting();
+	$user->modifyPassword($_SESSION['username'], $_POST['old_password'], $_POST['new_password']);
+
+}
+if (isset($_POST["modifyMail"]))
+{
+	$user = new Setting();
+	$user->modifyMail($_SESSION['username'], $_POST['old_mail'], $_POST['new_mail']);
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -22,63 +36,67 @@ if (!isset($_SESSION['username']))
 		<div class="settings-wrapper">
 			<div class="box settings-div">
 				<h2 class="subtitle is-4">👋 Modify your username</h2>
-				<div class="field is-horizontal ">
-					<div class="field-body">
-						<div class="field settings-field">
-							<p class="control is-expanded has-icons-left">
-								<input class="input" type="text" placeholder="Current username">
-								<span class="icon is-small is-left">
-								<i class="fas fa-user"></i>
-								</span>
-							</p>
-						</div>
-						<div class="field settings-field">
-							<p class="control is-expanded has-icons-left has-icons-right">
-								<input class="input " type="email" placeholder="New username" value="">
-								<span class="icon is-small is-left">
-								<i class="fas fa-user"></i>
-								</span>
-							</p>
-						</div>
-						<div class="field">
-							<div class="control">
-								<button class="button is-primary">
-								Save
-								</button>
+				<form method="POST" action="">
+					<div class="field is-horizontal ">
+						<div class="field-body">
+							<div class="field settings-field">
+								<p class="control is-expanded has-icons-left">
+									<input required class="input" type="text" placeholder="Current username">
+									<span class="icon is-small is-left">
+									<i class="fas fa-user"></i>
+									</span>
+								</p>
+
+							</div>
+							<div class="field settings-field">
+								<p class="control is-expanded has-icons-left has-icons-right">
+									<input required class="input " type="email" placeholder="New username" value="">
+									<span class="icon is-small is-left">
+									<i class="fas fa-user"></i>
+									</span>
+								</p>
+							</div>
+							<div class="field">
+								<div class="control">
+									<input type="submit" name="modifyUsername" class="button is-primary" value="Save"/>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 			<div class="box settings-div">
 				<h2 class="subtitle is-4">🔑 Modify your password</h2>
-				<div class="field is-horizontal ">
-					<div class="field-body">
-						<div class="field settings-field">
-							<p class="control is-expanded has-icons-left">
-								<input class="input" type="text" placeholder="Current password">
-								<span class="icon is-small is-left">
-								<i class="fas fa-key"></i>
-								</span>
-							</p>
-						</div>
-						<div class="field settings-field">
-							<p class="control is-expanded has-icons-left has-icons-right">
-								<input class="input " type="email" placeholder="New password" value="">
-								<span class="icon is-small is-left">
-								<i class="fas fa-key"></i>
-								</span>
-							</p>
-						</div>
-						<div class="field">
-							<div class="control">
-								<button class="button is-primary">
-								Save
-								</button>
+				<form method="POST" action="">
+					<div class="field is-horizontal ">
+						<div class="field-body">
+							<div class="field settings-field">
+								<p class="control is-expanded has-icons-left">
+									<input required class="input" name="old_password" type="password" placeholder="Current password">
+									<span class="icon is-small is-left">
+									<i class="fas fa-key"></i>
+									</span>
+								</p>
+							</div>
+							<div class="field settings-field">
+								<p class="control is-expanded has-icons-left has-icons-right">
+									<input required class="input" name="new_password" type="password" placeholder="New password" value="">
+									<span class="icon is-small is-left">
+									<i class="fas fa-key"></i>
+									</span>
+								</p>
+							</div>
+							<div class="field">
+								<div class="control">
+									<input type="submit" name="modifyPwd" class="button is-primary" value="Save"/>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+					<?php if (isset($user)) {?>
+                        <!-- <span class="help-block"><?php var_dump($user); echo $user->new_password_err; echo $user->confirm_password_err; ?></span> -->
+                    <?php }; ?>
+				</form>
 			</div>
 			<div class="box settings-div">
 				<h2 class="subtitle is-4">💌 Modify your email address</h2>
@@ -86,7 +104,7 @@ if (!isset($_SESSION['username']))
 					<div class="field-body">
 						<div class="field settings-field">
 							<p class="control is-expanded has-icons-left">
-								<input class="input" type="text" placeholder="Current email">
+								<input required class="input" name="old_mail" type="text" placeholder="Current email">
 								<span class="icon is-small is-left">
 								<i class="fas fa-envelope"></i>
 								</span>
@@ -94,7 +112,7 @@ if (!isset($_SESSION['username']))
 						</div>
 						<div class="field settings-field">
 							<p class="control is-expanded has-icons-left has-icons-right">
-								<input class="input " type="email" placeholder="New email" value="">
+								<input required class="input " name="new_mail" type="email" placeholder="New email" value="">
 								<span class="icon is-small is-left">
 								<i class="fas fa-envelope"></i>
 								</span>
@@ -102,9 +120,7 @@ if (!isset($_SESSION['username']))
 						</div>
 						<div class="field">
 							<div class="control">
-								<button class="button is-primary">
-								Save
-								</button>
+							<input type="submit" name="modifyMail" class="button is-primary" value="Save"/>
 							</div>
 						</div>
 					</div>

@@ -21,6 +21,16 @@ function getXMLHttpRequest() {
 	return (xhr);
 }
 
+function checkPassword() {
+	var password = document.getElementById("new_pwd").value;;
+	if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)) {
+		alert("Password must have at least 8 characters, one uppercase letter, one lowercase letter and one number. 🙏");
+		return(0);
+	}
+	modifyPassword();
+	return (1);
+}
+
 function modifyName() {
 	var oldname = document.getElementById("old_name").value;
 	var newname = document.getElementById("new_name").value;

@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 							</div>
 							<div class="field">
 								<div class="control">
-									<input type="submit" name="modifyPwd" class="button is-primary" value="Save" onclick="modifyPassword();"/>
+									<input type="submit" name="modifyPwd" class="button is-primary" value="Save" onclick="checkPassword();"/>
 								</div>
 							</div>
 						</div>

@@ -38,11 +38,25 @@ Class Setting {
 		$old_name = trim($old_name);
 		$new_name = trim($new_name);
 		if ($username === $old_name) {
-			$stmt = $this->bdd->prepare("UPDATE `user` SET `username` = :new_name WHERE `Username` = :old_name");
-			$stmt->bindParam(':new_name', $new_name, PDO::PARAM_STR);
-			$stmt->bindParam(":old_name", $old_name, PDO::PARAM_STR);
-			$stmt->execute();
-		// check nom existe pas deja
+			// check si nom existe pas deja
+			$sql = "SELECT COUNT(*) FROM `user` WHERE `username` = :new_name";
+			if ($stmt = $this->bdd->prepare($sql)) {
+				$stmt->bindParam(':new_name', $new_name, PDO::PARAM_STR);
+				if ($stmt->execute())
+				{
+					if ($stmt->rowCount() < 1)
+					{
+						var_dump($stmt->rowCount());
+						$stmt = $this->bdd->prepare("UPDATE `user` SET `username` = :new_name WHERE `Username` = :old_name");
+						$stmt->bindParam(':new_name', $new_name, PDO::PARAM_STR);
+						$stmt->bindParam(":old_name", $old_name, PDO::PARAM_STR);
+						$stmt->execute();
+						$_SESSION['username'] = $new_name;
+					}
+					else
+						echo "Oops! Something went wrong. Please try again later.";
+				}
+			}
 		}
 	}
 

@@ -8,6 +8,7 @@ $like = new Like;
 $comment = new Comment;
 $page = 0;
 $nb_pictures = $image->countPictures();
+$nb_pages = $nb_pictures / 10;
 if (isset($_GET['page']))
     $page = $_GET['page'];
 $allImages = $image->allPictures($page);
@@ -32,7 +33,7 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 </head>
 <body>
 	<?php include_once 'navigation.php'; ?>
-	<?php echo "$nb_pictures"; ?>
+	<?php var_dump($nb_pages); ?>
 	<div class="modal" id="myModal">
 		<div class="modal-background"></div>
 		<div class="modal-card">
@@ -126,13 +127,9 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 		<a class="pagination-previous" id="previous" href="?page=<?php echo $page - 1; ?>">Previous</a>
 		<a class="pagination-next" id="next" href="?page=<?php echo $page + 1; ?>">Next page</a>
 		<ul class="pagination-list">
-			<li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-			<li><span class="pagination-ellipsis">&hellip;</span></li>
-			<li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-			<li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
-			<li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-			<li><span class="pagination-ellipsis">&hellip;</span></li>
-			<li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+			<?php for ($i = 0; $i < $nb_pages ; $i++) {?>
+			<li><a class="pagination-link" aria-label="Goto page <?= $i ?> "><?= $i ?></a></li>
+			<?php } ?>
 		</ul>
 	</nav>
 	<script type="text/javascript" src="gallery.js"></script>

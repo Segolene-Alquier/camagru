@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 		<div class="settings-wrapper">
 			<div class="box settings-div">
 				<h2 class="subtitle is-4">👋 Modify your username</h2>
-				<!-- <form method="POST" action=""> -->
+				<form method="" action="">
 					<div class="field is-horizontal ">
 						<div class="field-body">
 							<div class="field settings-field">
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 							</div>
 						</div>
 					</div>
-				<!-- </form> -->
+				</form>
 			</div>
 			<div class="box settings-div">
 				<h2 class="subtitle is-4">🔑 Modify your password</h2>

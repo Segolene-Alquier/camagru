@@ -21,12 +21,21 @@ function getXMLHttpRequest() {
 	return (xhr);
 }
 
+function checkFields(field1, field2) {
+	if (field1 === "" ||  field2 === "") {
+		alert("The fields cannot be empty! 🤓");
+		return (0);
+	}
+	return (1);
+}
+
 function checkPassword() {
 	var password = document.getElementById("new_pwd").value;;
 	if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)) {
 		alert("Password must have at least 8 characters, one uppercase letter, one lowercase letter and one number. 🙏");
 		return(0);
 	}
+
 	modifyPassword();
 	return (1);
 }
@@ -34,45 +43,49 @@ function checkPassword() {
 function modifyName() {
 	var oldname = document.getElementById("old_name").value;
 	var newname = document.getElementById("new_name").value;
-	var xhr = getXMLHttpRequest();
-	xhr.onreadystatechange = function(event) {
-		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			console.log(this.response);
-		}
-	};
-	xhr.open("POST", "./settings_handler.php", true);
-	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhr.send("oldname=" + oldname + "&newname=" + newname);
+	if (checkFields(oldname, newname)) {
+		var xhr = getXMLHttpRequest();
+		xhr.onreadystatechange = function(event) {
+			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+				console.log(this.response);
+			}
+		};
+		xhr.open("POST", "./settings_handler.php", true);
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhr.send("oldname=" + oldname + "&newname=" + newname);
+	}
 }
 
 function modifyPassword() {
 	var oldpwd = document.getElementById("old_pwd").value;
 	var newpwd = document.getElementById("new_pwd").value;
-	console.log(oldpwd);
-	console.log(newpwd);
-	var xhr = getXMLHttpRequest();
-	xhr.onreadystatechange = function(event) {
-		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			console.log(this.response);
-		}
-	};
-	xhr.open("POST", "./settings_handler.php", true);
-	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhr.send("oldpwd=" + oldpwd + "&newpwd=" + newpwd);
+	if (checkFields(oldpwd, newpwd)) {
+		var xhr = getXMLHttpRequest();
+		xhr.onreadystatechange = function(event) {
+			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+				console.log(this.response);
+			}
+		};
+		xhr.open("POST", "./settings_handler.php", true);
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhr.send("oldpwd=" + oldpwd + "&newpwd=" + newpwd);
+	}
 }
 
 function modifyMail() {
 	var oldmail = document.getElementById("old_mail").value;
 	var newmail = document.getElementById("new_mail").value;
-	var xhr = getXMLHttpRequest();
-	xhr.onreadystatechange = function(event) {
-		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			console.log(this.response);
-		}
-	};
-	xhr.open("POST", "./settings_handler.php", true);
-	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhr.send("oldmail=" + oldmail + "&newmail=" + newmail);
+	if (checkFields(oldmail, newmail)) {
+		var xhr = getXMLHttpRequest();
+		xhr.onreadystatechange = function(event) {
+			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+				console.log(this.response);
+			}
+		};
+		xhr.open("POST", "./settings_handler.php", true);
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhr.send("oldmail=" + oldmail + "&newmail=" + newmail);
+	}
 }
 
 

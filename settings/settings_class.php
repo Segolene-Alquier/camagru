@@ -69,8 +69,25 @@ Class Setting {
 
 	}
 
-	function modifyMail() {
-
+	function modifyMail($username, $old_mail, $new_mail) {
+		$sql = "SELECT * FROM `user` WHERE `Username` = :username AND `email` = :email";
+		if ($stmt = $this->bdd->prepare($sql)) {
+			$stmt->bindParam(":username", $username, PDO::PARAM_STR);
+			$stmt->bindParam(":email", $old_mail, PDO::PARAM_STR);
+			if ($stmt->execute())
+			{
+				if ($stmt->rowCount() == 1)
+				{
+					if ($row = $stmt->fetch())
+					{
+						$stmt = $this->bdd->prepare("UPDATE `user` SET `email` = :new_email WHERE `Username` = :username");
+						$stmt->bindParam(':new_email', $new_mail, PDO::PARAM_STR);
+						$stmt->bindParam(":username", $username, PDO::PARAM_STR);
+						$stmt->execute();
+					}
+				}
+			}
+		}
 
 	}
 }

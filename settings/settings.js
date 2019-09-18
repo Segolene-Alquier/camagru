@@ -21,6 +21,23 @@ function getXMLHttpRequest() {
 	return (xhr);
 }
 
+function modifyMail() {
+	var oldmail = document.getElementById("old_mail").value;
+	var newmail = document.getElementById("new_mail").value;
+	console.log(oldmail);
+	console.log(newmail);
+	// var xhr = getXMLHttpRequest();
+// xhr.onreadystatechange = function(event) {
+	// 	if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+	// 		console.log(this.response);
+	// 	}
+	// };
+	// xhr.open("POST", "./settings_handler.php", true);
+	// xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	// xhr.send("mail=" + 0);
+}
+
+
 function notifNo() {
 	yes.classList.remove("is-success");
 	no.classList.add("is-danger");
@@ -68,4 +85,4 @@ function wantsNotification() {
 	xhr.send("notif=" + 1);
 }
 
-window.onload = wantsNotification();
+// window.onload = wantsNotification();

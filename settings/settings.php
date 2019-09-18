@@ -35,24 +35,23 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 	<?php include_once '../navigation.php'; ?>
 	<div class="section ">
 		<h1 class="title is-2 settings-title">Welcome to your page <?= $_SESSION['username']?>!</h1>
-		<!-- <div class="settings-wrapper">
+		<div class="settings-wrapper">
 			<div class="box settings-div">
 				<h2 class="subtitle is-4">👋 Modify your username</h2>
-				<form method="POST" action="">
+				<!-- <form method="POST" action=""> -->
 					<div class="field is-horizontal ">
 						<div class="field-body">
 							<div class="field settings-field">
 								<p class="control is-expanded has-icons-left">
-									<input required class="input" type="text" placeholder="Current username">
+									<input required class="input" id="old_name" type="text" placeholder="Current username">
 									<span class="icon is-small is-left">
 									<i class="fas fa-user"></i>
 									</span>
 								</p>
-
 							</div>
 							<div class="field settings-field">
 								<p class="control is-expanded has-icons-left has-icons-right">
-									<input required class="input " type="email" placeholder="New username" value="">
+									<input required class="input " id="new_name" type="text" placeholder="New username" value="">
 									<span class="icon is-small is-left">
 									<i class="fas fa-user"></i>
 									</span>
@@ -60,21 +59,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 							</div>
 							<div class="field">
 								<div class="control">
-									<input type="submit" name="modifyUsername" class="button is-primary" value="Save"/>
+									<input type="submit" name="modifyUsername" class="button is-primary" value="Save" onclick="modifyName();"/>
 								</div>
 							</div>
 						</div>
 					</div>
-				</form>
+				<!-- </form> -->
 			</div>
 			<div class="box settings-div">
 				<h2 class="subtitle is-4">🔑 Modify your password</h2>
-				<form method="POST" action="">
+				<!-- <form method="POST" action=""> -->
 					<div class="field is-horizontal ">
 						<div class="field-body">
 							<div class="field settings-field">
 								<p class="control is-expanded has-icons-left">
-									<input required class="input" name="old_password" type="password" placeholder="Current password">
+									<input required class="input" id="old_pwd" name="old_password" type="password" placeholder="Current password">
 									<span class="icon is-small is-left">
 									<i class="fas fa-key"></i>
 									</span>
@@ -82,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 							</div>
 							<div class="field settings-field">
 								<p class="control is-expanded has-icons-left has-icons-right">
-									<input required class="input" name="new_password" type="password" placeholder="New password" value="">
+									<input required class="input" id="new_pwd" name="new_password" type="password" placeholder="New password" value="">
 									<span class="icon is-small is-left">
 									<i class="fas fa-key"></i>
 									</span>
@@ -96,8 +95,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 						</div>
 					</div>
 
-				</form>
-			</div> -->
+				<!-- </form> -->
+			</div>
 			<div class="box settings-div">
 				<h2 class="subtitle is-4">💌 Modify your email address</h2>
 				<!-- <form method="POST" action="" > -->

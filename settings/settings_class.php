@@ -33,9 +33,17 @@ Class Setting {
 		unset($this->bdd);
 	}
 
-	function modifyName() {
-
-
+	function modifyName($username, $old_name, $new_name) {
+		$username = trim($username);
+		$old_name = trim($old_name);
+		$new_name = trim($new_name);
+		if ($username === $old_name) {
+			$stmt = $this->bdd->prepare("UPDATE `user` SET `username` = :new_name WHERE `Username` = :old_name");
+			$stmt->bindParam(':new_name', $new_name, PDO::PARAM_STR);
+			$stmt->bindParam(":old_name", $old_name, PDO::PARAM_STR);
+			$stmt->execute();
+		// check nom existe pas deja
+		}
 	}
 
 	function modifyPassword($username, $old_password, $new_password) {
@@ -88,7 +96,6 @@ Class Setting {
 				}
 			}
 		}
-
 	}
 }
 

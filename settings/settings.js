@@ -20,12 +20,37 @@ function getXMLHttpRequest() {
 	}
 	return (xhr);
 }
+function modifyName() {
+	var oldname = document.getElementById("old_name").value;
+	var newname = document.getElementById("new_name").value;
+	var xhr = getXMLHttpRequest();
+	xhr.onreadystatechange = function(event) {
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			console.log(this.response);
+		}
+	};
+	xhr.open("POST", "./settings_handler.php", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send("oldname=" + oldname + "&newname=" + newname);
+}
+
+function modifyPassword() {
+	var oldpwd = document.getElementById("old_pwd").value;
+	var newpwd = document.getElementById("new_pwd").value;
+	var xhr = getXMLHttpRequest();
+	xhr.onreadystatechange = function(event) {
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			console.log(this.response);
+		}
+	};
+	xhr.open("POST", "./settings_handler.php", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send("oldpwd=" + oldpwd + "&newpwd=" + newpwd);
+}
 
 function modifyMail() {
 	var oldmail = document.getElementById("old_mail").value;
 	var newmail = document.getElementById("new_mail").value;
-	// console.log(oldmail);
-	// console.log(newmail);
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function(event) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {

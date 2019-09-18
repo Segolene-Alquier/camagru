@@ -24,17 +24,17 @@ function getXMLHttpRequest() {
 function modifyMail() {
 	var oldmail = document.getElementById("old_mail").value;
 	var newmail = document.getElementById("new_mail").value;
-	console.log(oldmail);
-	console.log(newmail);
-	// var xhr = getXMLHttpRequest();
-// xhr.onreadystatechange = function(event) {
-	// 	if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-	// 		console.log(this.response);
-	// 	}
-	// };
-	// xhr.open("POST", "./settings_handler.php", true);
-	// xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	// xhr.send("mail=" + 0);
+	// console.log(oldmail);
+	// console.log(newmail);
+	var xhr = getXMLHttpRequest();
+	xhr.onreadystatechange = function(event) {
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			console.log(this.response);
+		}
+	};
+	xhr.open("POST", "./settings_handler.php", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send("oldmail=" + oldmail + "&newmail=" + newmail);
 }
 
 

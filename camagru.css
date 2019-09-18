@@ -270,3 +270,9 @@ body{
 	min-width: 350px;
 	max-width: 550px;
 }
+
+/* PAGINATION  */
+
+.pagination-div {
+	padding: 3vh 3vw;
+}

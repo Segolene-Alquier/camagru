@@ -38,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 		<div class="settings-wrapper">
 			<div class="box settings-div">
 				<h2 class="subtitle is-4">👋 Modify your username</h2>
-				<form method="" action="">
 					<div class="field is-horizontal ">
 						<div class="field-body">
 							<div class="field settings-field">
@@ -64,11 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 							</div>
 						</div>
 					</div>
-				</form>
 			</div>
 			<div class="box settings-div">
 				<h2 class="subtitle is-4">🔑 Modify your password</h2>
-				<!-- <form method="POST" action=""> -->
 					<div class="field is-horizontal ">
 						<div class="field-body">
 							<div class="field settings-field">
@@ -94,12 +91,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 							</div>
 						</div>
 					</div>
-				<!-- </form> -->
 			</div>
 			<div class="box settings-div">
 				<h2 class="subtitle is-4">💌 Modify your email address</h2>
-				<!-- <form method="POST" action="" > -->
-
 				<div class="field is-horizontal ">
 					<div class="field-body">
 						<div class="field settings-field">
@@ -123,12 +117,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 							<input type="submit" name="modifyMail" class="button is-primary" value="Save" onclick="modifyMail();"/>
 							</div>
 						</div>
-
 					</div>
-
 				</div>
-				<!-- </form> -->
-
 			</div>
 			<div class="box settings-div">
 				<h2 class="subtitle is-4">🔔 Your notification preferences</h2>

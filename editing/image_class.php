@@ -168,6 +168,15 @@ Class Image {
 		return (NULL);
 	}
 
+	function countPictures() {
+		$sql = "SELECT COUNT(*) FROM `image`";
+		if ($stmt = $this->bdd->prepare($sql))
+			if ($stmt->execute()) {
+				$count = $stmt->fetchColumn();
+				return ($count);
+			}
+	}
+
 	function allPictures($page) {
 		$limit = 10;
         $offset = $page * $limit;

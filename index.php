@@ -7,6 +7,7 @@ $image = new Image;
 $like = new Like;
 $comment = new Comment;
 $page = 0;
+$nb_pictures = $image->countPictures();
 if (isset($_GET['page']))
     $page = $_GET['page'];
 $allImages = $image->allPictures($page);
@@ -31,6 +32,7 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 </head>
 <body>
 	<?php include_once 'navigation.php'; ?>
+	<?php echo "$nb_pictures"; ?>
 	<div class="modal" id="myModal">
 		<div class="modal-background"></div>
 		<div class="modal-card">

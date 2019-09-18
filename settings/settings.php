@@ -89,12 +89,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 							</div>
 							<div class="field">
 								<div class="control">
-									<input type="submit" name="modifyPwd" class="button is-primary" value="Save"/>
+									<input type="submit" name="modifyPwd" class="button is-primary" value="Save" onclick="modifyPassword();"/>
 								</div>
 							</div>
 						</div>
 					</div>
-
 				<!-- </form> -->
 			</div>
 			<div class="box settings-div">
@@ -105,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 					<div class="field-body">
 						<div class="field settings-field">
 							<p class="control is-expanded has-icons-left">
-								<input  class="input" id="old_mail" name="old_mail" type="text" placeholder="Current email">
+								<input required class="input" id="old_mail" name="old_mail" type="text" placeholder="Current email">
 								<span class="icon is-small is-left">
 								<i class="fas fa-envelope"></i>
 								</span>
@@ -113,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 						</div>
 						<div class="field settings-field">
 							<p class="control is-expanded has-icons-left has-icons-right">
-								<input  class="input" id="new_mail" name="new_mail" type="email" placeholder="New email" value="">
+								<input required class="input" id="new_mail" name="new_mail" type="email" placeholder="New email" value="">
 								<span class="icon is-small is-left">
 								<i class="fas fa-envelope"></i>
 								</span>

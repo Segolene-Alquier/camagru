@@ -20,6 +20,7 @@ function getXMLHttpRequest() {
 	}
 	return (xhr);
 }
+
 function modifyName() {
 	var oldname = document.getElementById("old_name").value;
 	var newname = document.getElementById("new_name").value;
@@ -37,6 +38,8 @@ function modifyName() {
 function modifyPassword() {
 	var oldpwd = document.getElementById("old_pwd").value;
 	var newpwd = document.getElementById("new_pwd").value;
+	console.log(oldpwd);
+	console.log(newpwd);
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function(event) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {

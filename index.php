@@ -6,16 +6,12 @@ require "./comments/comments_class.php";
 $image = new Image;
 $like = new Like;
 $comment = new Comment;
-$allImages = $image->allPictures();
-// if ()
+$page = 0;
+if (isset($_GET['page']))
+    $page = $_GET['page'];
+$allImages = $image->allPictures($page);
 if (isset($_SESSION["username"]))
 $userId = $image->findUserFromId($_SESSION["username"]);
-// $imageId = $image->getImageId();
-// if (isset($_POST['like-button']) && $_POST['like-button'] === 'submit') {
-	// var_dump("coucou");
-
-	// $image->likeImage($userId, 22);
-// }
 ?>
 
 <!DOCTYPE html>
@@ -125,8 +121,8 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 		</div>
 	</div>
 	<nav class="pagination is-centered is-rounded pagination-div" role="navigation" aria-label="pagination">
-		<a class="pagination-previous" id="previous">Previous</a>
-		<a class="pagination-next" id="next">Next page</a>
+		<a class="pagination-previous" id="previous" href="?page=<?php echo $page - 1; ?>">Previous</a>
+		<a class="pagination-next" id="next" href="?page=<?php echo $page + 1; ?>">Next page</a>
 		<ul class="pagination-list">
 			<li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
 			<li><span class="pagination-ellipsis">&hellip;</span></li>

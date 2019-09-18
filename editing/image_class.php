@@ -168,8 +168,10 @@ Class Image {
 		return (NULL);
 	}
 
-	function allPictures() {
-		$sql = "SELECT file FROM image ORDER BY date DESC";
+	function allPictures($page) {
+		$limit = 10;
+        $offset = $page * $limit;
+		$sql = "SELECT `file` FROM `image` ORDER BY `date` DESC LIMIT 10 OFFSET $offset";
 		if ($stmt = $this->bdd->prepare($sql)) {
 			if ($stmt->execute()) {
 				$allpictures = [];

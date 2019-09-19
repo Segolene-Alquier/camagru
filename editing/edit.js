@@ -15,12 +15,16 @@ if (navigator.mediaDevices.getUserMedia) {
 var canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
 var video = document.getElementById('video');
-
+var webcam = document.getElementById('webcam');
 // Trigger photo take
 document.getElementById("snap").addEventListener("click", function() {
   video.style.display = "none";
+  var width = webcam.clientWidth;
+  var height = webcam.clientHeight;
+  canvas.setAttribute('width', width);
+  canvas.setAttribute('height', height);
   document.getElementById('canvas').hidden = false;
-  context.drawImage(video, 0, 0, 500, 500);
+  context.drawImage(video, 0, 0, width, height);
   const data = canvas.toDataURL('image/png');
   // photo.setAttribute('src', data);
   document.upload_image.picture.value = data;

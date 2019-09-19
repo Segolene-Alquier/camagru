@@ -45,14 +45,14 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 					<h2 class="subtitle">📥 Upload a picture OR 📸 take a new one! </h2>
 						<div class="columns ">
 							<div class="column is-four-fifths edit-left-image" >
-							<div class="webcam">
+							<div class="webcam" id="webcam">
 								<img id="live-filter-1" class="live-filter" hidden src="../img/filters/1.png" alt="" style="width: 50%; height:50%;">
 								<img id="live-filter-2" class="live-filter" hidden src="../img/filters/2.png" alt="" style="width: 50%; height:50%;">
 								<img id="live-filter-3" class="live-filter" hidden src="../img/filters/3.png" alt="" style="width: 50%; height:50%;">
 								<img id="live-filter-4" class="live-filter" hidden src="../img/filters/4.png" alt="" style="width: 50%; height:50%;">
 								<img id="live-filter-5" class="live-filter" hidden src="../img/filters/5.png" alt="" style="width: 50%; height:50%;">
-								<video id="video" width="500" height="500" autoplay></video>
-								<canvas id="canvas" hidden width="500" height="500"></canvas>
+								<video id="video" autoplay></video>
+								<canvas id="canvas" hidden ></canvas>
 								<?php if (file_exists("montage.jpg")) { ?>
 								<img src="montage.jpg" alt="">
 								<?php }; ?>

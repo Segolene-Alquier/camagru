@@ -11,6 +11,5 @@ elseif (isset($_POST['newname']) && isset($_POST['oldname'])) {
 }
 elseif (isset($_POST['newpwd']) && isset($_POST['oldpwd'])) {
 	$user->modifyPassword($_SESSION['username'], $_POST['oldpwd'], $_POST['newpwd']);
-	echo json_encode("yo");
 }
 ?>

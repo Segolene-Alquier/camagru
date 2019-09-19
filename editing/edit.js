@@ -28,28 +28,16 @@ document.getElementById("snap").addEventListener("click", function() {
  
 });
 
-// document.getElementById("save").addEventListener("click", function() { // replaced by superimpose function
-//   video.style.display = "none";
-//   const data = canvas.toDataURL('image/png');
-//   $.ajax({
-//     url:'save_webcam.php',
-//     type:'POST',
-//     data:{
-//         data:data
-//     }
-//   });
-// });
+function openModal() {
+  var element = document.getElementById("modal-upload");
+  element.classList.add("is-active");
+}
 
-// UPLOAD MODAL APPEARS & DISAPPEARS
-$("#showModal").click(function() {
-	$(".modal").addClass("is-active"); // NEED TO REMOVE JFUCKINGQUERY
-});
-$("#modal-close").click(function() {
-	$(".modal").removeClass("is-active");
-});
-$("#cancel-close").click(function() {
-	$(".modal").removeClass("is-active");
-});
+function closeModal() {
+  var element = document.getElementById("modal-upload");
+  element.classList.remove("is-active");
+
+}
 
 // FILTERS //
 

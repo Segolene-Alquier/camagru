@@ -59,14 +59,8 @@ Class Setting {
 	}
 
 	function modifyPassword($username, $old_password, $new_password) {
-
-		// if (!preg_match ("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $new_password))
-		// 	$this->new_password_err = "Password must have at least 8 characters, one uppercase letter, one lowercase letter and one number.";
-		// else
 		$old_password = trim($old_password);
 		$new_password = trim($new_password);
-
-		//  on verifique que le old password est bien celui enregistre
 		$sql = "SELECT Passwd FROM `user` WHERE `Username` = :username";
 		if ($stmt = $this->bdd->prepare($sql)) {
 			$stmt->bindParam(":username", $username, PDO::PARAM_STR);

@@ -25,15 +25,10 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 	<link rel="stylesheet" href="camagru.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
 	<script src="https://kit.fontawesome.com/82e513fc69.js"></script>
-	<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
 	<title>Camagru</title>
 </head>
 <body>
 	<?php include_once 'navigation.php'; ?>
-	<?php var_dump($nb_pages); ?>
 	<div class="modal" id="myModal">
 		<div class="modal-background"></div>
 		<div class="modal-card">
@@ -79,7 +74,7 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 			</footer>
 		</div>
 	</div>
-	<div class="block">
+	<div class="gallery-wrapper">
 		<div class="container gallery-container">
 			<div class="columns is-multiline ">
 				<?php
@@ -121,34 +116,35 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 				}
 				?>
 			</div>
+			<nav class="pagination is-centered is-rounded pagination-div" role="navigation" aria-label="pagination">
+				<?php
+				if ($page == 1)
+					echo "<a disabled class='pagination-previous' id='previous'>Previous</a>";
+				else {
+					$prev = $page - 1;
+					echo "<a class='pagination-previous' style='background-color: white;' id='previous' href='?page=$prev";
+					echo "'>Previous</a>";
+				}
+				if ($page == $nb_pages)
+					echo "<a disabled class='pagination-next' id='next'>Next page</a>";
+				else {
+					$next = $page + 1;
+					echo "<a class='pagination-next' style='background-color: white;' id='next' href='?page=$next";
+					echo "'>Next Page</a>";
+				}
+				?>
+				<ul class="pagination-list">
+					<?php for ($i = 1; $i <= $nb_pages ; $i++) {
+					if ($page == $i)
+						echo "<li><a class='pagination-link is-current' aria-label='Goto page $i' href='?page=$i'> $i </a></li>";
+					else
+						echo "<li><a class='pagination-link' style='background-color: white;' aria-label='Goto page $i' href='?page=$i'> $i</a></li>";
+					} ?>
+				</ul>
+			</nav>
 		</div>
 	</div>
-	<nav class="pagination is-centered is-rounded pagination-div" role="navigation" aria-label="pagination">
-		<?php
-		if ($page == 1)
-			echo "<a disabled class='pagination-previous' id='previous'>Previous</a>";
-		else {
-			$prev = $page - 1;
-			echo "<a class='pagination-previous' id='previous' href='?page=$prev";
-			echo "'>Previous</a>";
-		}
-		if ($page == $nb_pages)
-			echo "<a disabled class='pagination-next' id='next'>Next page</a>";
-		else {
-			$next = $page + 1;
-			echo "<a class='pagination-next' id='next' href='?page=$next";
-			echo "'>Next Page</a>";
-		}
-		 ?>
-		<ul class="pagination-list">
-			<?php for ($i = 1; $i <= $nb_pages ; $i++) {
-			if ($page == $i)
-				echo "<li><a class='pagination-link is-current' aria-label='Goto page $i' href='?page=$i'> $i </a></li>";
-			else
-				echo "<li><a class='pagination-link' aria-label='Goto page $i' href='?page=$i'> $i</a></li>";
-			} ?>
-		</ul>
-	</nav>
+	<?php include_once 'footer.php'; ?>
 	<script type="text/javascript" src="gallery.js"></script>
 </body>
 </html>

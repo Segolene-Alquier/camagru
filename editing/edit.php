@@ -34,7 +34,6 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
     <link rel="stylesheet" type="text/css" href="../camagru.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
 	<script src="https://kit.fontawesome.com/82e513fc69.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
     <?php include_once '../navigation.php'; ?>
@@ -61,21 +60,14 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 							</div>
 							<div class="column">
 								<div class="edit-left-buttons">
-									<div class="modal">
+									<div class="modal" id="modal-upload">
 										<div class="modal-background"></div>
 											<div class="modal-card">
 											<header class="modal-card-head">
 												<p class="modal-card-title">Upload the image of your choice</p>
-												<button id="modal-close" class="delete" aria-label="close"></button>
+												<button id="modal-close" class="delete" aria-label="close" onclick="closeModal();"></button>
 											</header>
 											<section class="modal-card-body">
-												<?php
-													// if (isset($_SESSION['message']) && $_SESSION['message'])
-													// {
-													// printf('<b>%s</b>', $_SESSION['message']);
-													// unset($_SESSION['message']);
-													// }
-												?>
 												<form method="POST" action="" enctype="multipart/form-data">
 													<div>
 													<span>Upload a File:</span>
@@ -86,12 +78,12 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 											</section>
 											<footer class="modal-card-foot">
 												<button class="button is-success">Save changes</button>
-												<button id="cancel-close" class="button">Cancel</button>
+												<button id="cancel-close" class="button" onclick="closeModal();">Cancel</button>
 											</footer>
 										</div>
 									</div>
 									<div class="edit-left-button">
-										<button id="showModal" class="button button-edit" disabled style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
+										<button id="showModal" class="button button-edit" disabled style="background-color: rgb(58, 44, 200); color: white;" onclick="openModal();"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
 									</div>
 									<div class="edit-left-button ">
 										<button id="snap"  class="button button-edit" disabled name="newPicture" value="Take Picture" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-camera" style="margin-right: 5px;"></i>New</button>
@@ -160,15 +152,7 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 			</div>
 		</div>
     </div>
-	<div>
-	<?php
-		// var_dump($image->image);
-		// var_dump($image->userId);
-		// var_dump($_SESSION["user_id"]);
-		// $userId = $image->findUserFromId($_SESSION["username"]);
-		// var_dump($userId);
-	 ?>
-	</div>
+	<?php include_once '../footer.php'; ?>
 	<script type="text/javascript" src="edit.js"></script>
 </body>
 </html>

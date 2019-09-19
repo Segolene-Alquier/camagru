@@ -4,6 +4,7 @@
 body{
 	background-color: #f2f2f2;
 	width: 100%;
+	position: relative;
 	min-height: 100vh;
 	margin: 0;
 	padding: 0;
@@ -11,12 +12,32 @@ body{
 
 /* HEADER */
 
+#navbar {
+	background-color: #9366e1;
+	/* background-color: #180989; */
+	padding-top: 1vh;
+	padding-bottom: 1vh;
 
+}
 .wrapper{
 	display: flex;
 	flex-direction: row;
 	width:100%;
 	height: 100vh;
+}
+
+.icon-home:hover {
+	color: #180989;
+
+}
+
+.icon-nav {
+	color: white;
+}
+
+.icon-nav:hover {
+	/* color: #A91E8E; */
+	color: #180989;
 }
 
 /* FORMS */
@@ -37,6 +58,11 @@ body{
 
 /* GALLERY */
 
+.gallery-wrapper {
+	padding-bottom: 2.5rem;
+		/* position: relative; */
+
+}
 .card {
 	height: 15vw;
 	width: 15vw;
@@ -49,7 +75,8 @@ body{
 .gallery-container {
 	padding: 2vw;
 	padding-top: 100px;
-	/* align-content: center; */
+		/* position: relative; */
+
 }
 
 /* Container needed to position the overlay. Adjust the width as needed */
@@ -275,4 +302,17 @@ body{
 
 .pagination-div {
 	padding: 3vh 3vw;
+	/* margin-bottom: 150px; */
+}
+
+/* FOOTER */
+#footer-div {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background-color: #9366e1;
+	padding: 1.5vh 3vw;
+	color: white;
+	font-weight: 500;
+	margin-top: 2vh;
 }

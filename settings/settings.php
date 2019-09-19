@@ -130,6 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 			</div>
 		</div>
 	</div>
+	<?php include_once '../footer.php'; ?>
 	<script type="text/javascript" src="settings.js"></script>
 </body>
 </html>

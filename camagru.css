@@ -290,10 +290,12 @@ body{
 
 .settings-wrapper {
 	display: flex;
-	min-height: 90vh;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
-	padding-bottom: 3vh;
+	min-height: 90vh;
+	padding-bottom: 10vh;
+	padding-top: 5vh;
 
 }
 

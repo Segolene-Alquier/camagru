@@ -6,7 +6,7 @@
 			else
 				echo '<a href="../index.php" class="icon-home navbar-item"><i class="icon-nav fas fa-home"></i></a>';
 		?>
-		<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');">
+		<a role="button" class="icon-home navbar-burger" aria-label="menu" aria-expanded="false" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');">
 			<span aria-hidden="true"></span>
 			<span aria-hidden="true"></span>
 			<span aria-hidden="true"></span>

@@ -124,8 +124,22 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 		</div>
 	</div>
 	<nav class="pagination is-centered is-rounded pagination-div" role="navigation" aria-label="pagination">
-		<a class="pagination-previous" id="previous" href="?page=<?php echo $page - 1; ?>">Previous</a>
-		<a class="pagination-next" id="next" href="?page=<?php echo $page + 1; ?>">Next page</a>
+		<?php
+		if ($page == 1)
+			echo "<a disabled class='pagination-previous' id='previous'>Previous</a>";
+		else {
+			$prev = $page - 1;
+			echo "<a class='pagination-previous' id='previous' href='?page=$prev";
+			echo "'>Previous</a>";
+		}
+		if ($page == $nb_pages)
+			echo "<a disabled class='pagination-next' id='next'>Next page</a>";
+		else {
+			$next = $page + 1;
+			echo "<a class='pagination-next' id='next' href='?page=$next";
+			echo "'>Next Page</a>";
+		}
+		 ?>
 		<ul class="pagination-list">
 			<?php for ($i = 1; $i <= $nb_pages ; $i++) {
 			if ($page == $i)
@@ -138,10 +152,3 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 	<script type="text/javascript" src="gallery.js"></script>
 </body>
 </html>
-
-
-<!-- TO DO
-- ajoute couleur a current page					DONE
-- possible de cliquer sur chaque page, ce qui remvoie a la bonne  DONE
-- empecher d'aller plus loin
--->

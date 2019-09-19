@@ -127,11 +127,21 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 		<a class="pagination-previous" id="previous" href="?page=<?php echo $page - 1; ?>">Previous</a>
 		<a class="pagination-next" id="next" href="?page=<?php echo $page + 1; ?>">Next page</a>
 		<ul class="pagination-list">
-			<?php for ($i = 0; $i < $nb_pages ; $i++) {?>
-			<li><a class="pagination-link" aria-label="Goto page <?= $i ?> "><?= $i ?></a></li>
-			<?php } ?>
+			<?php for ($i = 1; $i < $nb_pages ; $i++) {
+			if ($page == $i)
+				echo "<li><a class='pagination-link is-current' aria-label='Goto page $i' href='?page=$i'> $i </a></li>";
+			else
+				echo "<li><a class='pagination-link' aria-label='Goto page $i' href='?page=$i'> $i</a></li>";
+			} ?>
 		</ul>
 	</nav>
 	<script type="text/javascript" src="gallery.js"></script>
 </body>
 </html>
+
+
+<!-- TO DO
+- ajoute couleur a current page					DONE
+- possible de cliquer sur chaque page, ce qui remvoie a la bonne
+- empecher d'aller plus loin
+-->

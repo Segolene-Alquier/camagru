@@ -6,9 +6,9 @@ require "./comments/comments_class.php";
 $image = new Image;
 $like = new Like;
 $comment = new Comment;
-$page = 0;
+$page = 1;
 $nb_pictures = $image->countPictures();
-$nb_pages = $nb_pictures / 10;
+$nb_pages = ceil($nb_pictures / 10);
 if (isset($_GET['page']))
     $page = $_GET['page'];
 $allImages = $image->allPictures($page);
@@ -127,7 +127,7 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 		<a class="pagination-previous" id="previous" href="?page=<?php echo $page - 1; ?>">Previous</a>
 		<a class="pagination-next" id="next" href="?page=<?php echo $page + 1; ?>">Next page</a>
 		<ul class="pagination-list">
-			<?php for ($i = 1; $i < $nb_pages ; $i++) {
+			<?php for ($i = 1; $i <= $nb_pages ; $i++) {
 			if ($page == $i)
 				echo "<li><a class='pagination-link is-current' aria-label='Goto page $i' href='?page=$i'> $i </a></li>";
 			else
@@ -142,6 +142,6 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 
 <!-- TO DO
 - ajoute couleur a current page					DONE
-- possible de cliquer sur chaque page, ce qui remvoie a la bonne
+- possible de cliquer sur chaque page, ce qui remvoie a la bonne  DONE
 - empecher d'aller plus loin
 -->

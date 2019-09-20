@@ -37,7 +37,7 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 </head>
 <body>
     <?php include_once '../navigation.php'; ?>
-	<div class="section">
+	<!-- <div class="section"> -->
 		<div class="edit-wrapper">
 			<div class="columns">
 				<div class="column is-four-fifths edit-left box">
@@ -151,7 +151,7 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 				</div>
 			</div>
 		</div>
-    </div>
+    <!-- </div> -->
 	<?php include_once '../footer.php'; ?>
 	<script type="text/javascript" src="edit.js"></script>
 </body>

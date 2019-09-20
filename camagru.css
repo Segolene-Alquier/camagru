@@ -138,26 +138,23 @@ body{
 	margin: 1vw;
 }
 .edit-left-top {
-	margin: 20px;
-	padding: 20px;
-
+	margin: 2vh 3vw;
 }
 .edit-left-image {
 	background-color: rgb(141, 142, 223, 0.3);
-	width: 600px;
-	height: 550px;
 	margin-bottom: 20px;
 	display: flex;
 	flex-direction: row;
 	margin: auto;
-
+	border-radius: 2%;
+	max-width: 500px;
 }
 #canvas {
 	/* width: 100%;
 	height: 100%; */
 }
 .webcam {
-	position: absolute;
+	position: relative;
 	display: flex;
 	flex-direction: row;
 	width: 100%;
@@ -175,12 +172,14 @@ body{
 	left: 25%;
 	z-index: 2;
 }
-
+.filters-wrapper {
+	/* background-color: #180989; */
+}
 .edit-left-button {
 	margin: 1vw;
 }
 .button-edit {
-	background-color: rgb(58, 44, 200);
+	background-color:#180989;
 }
 .image-box {
 	width: 5vw;

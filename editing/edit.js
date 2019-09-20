@@ -26,7 +26,6 @@ document.getElementById("snap").addEventListener("click", function() {
   document.getElementById('canvas').hidden = false;
   context.drawImage(video, 0, 0, width, height);
   const data = canvas.toDataURL('image/png');
-  // photo.setAttribute('src', data);
   document.upload_image.picture.value = data;
   document.getElementById('save').disabled = false;
  

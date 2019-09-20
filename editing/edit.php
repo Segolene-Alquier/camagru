@@ -98,7 +98,7 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 								</div>
 							</div>
 						</div>
-						<div class="columns ">
+						<div class="columns filters-wrapper">
 							<div class="column is-four-fifths" >
 								<h2 class="subtitle">✨ Pimp it with filters</h2>
 								<div class="level filters-wrapper">

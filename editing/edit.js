@@ -11,35 +11,11 @@ if (navigator.mediaDevices.getUserMedia) {
     });
 }
 
-var form = document.getElementById('upload-form');
-
 function uploadAppear() {
   var video = document.getElementById('video');
+  var form = document.getElementById('upload-form');
   form.hidden = false;
   video.style.display = "none";
-
-}
-
-function displayUpload() {
-  var video = document.getElementById('video');
-  alert("coucou");
-  video.style.display = "none";
-  // var canvas = document.getElementById('canvas');
-  // var context = canvas.getContext('2d');
-  // var video = document.getElementById('video');
-  // var webcam = document.getElementById('webcam');
-
-  // video.style.display = "none";
-  // var width = webcam.clientWidth;
-  // var height = webcam.clientHeight;
-  // canvas.setAttribute('width', width);
-  // canvas.setAttribute('height', height);
-  // document.getElementById('canvas').hidden = false;
-  // context.drawImage(video, 0, 0, width, height);
-  // const data = canvas.toDataURL('image/png');
-  // document.upload_image.picture.value = data;
-  // document.getElementById('save').disabled = false;
-
 }
 
 function displayPicture() {
@@ -156,4 +132,6 @@ var loadFile = function(event) {
   var image = document.getElementById('output');
   image.hidden = false;
 	image.src = URL.createObjectURL(event.target.files[0]);
+  document.getElementById('save').disabled = false;
+
 };

@@ -83,11 +83,11 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 										</div>
 									</div>
 									<div class="edit-left-button">
-										<button id="showModal" class="button button-edit" style="background-color: #180989; color: white;" onclick="uploadAppear();"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
+										<button disabled id="showModal" class="button button-edit" style="background-color: #180989; color: white;" onclick="uploadAppear();"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
 										<!-- <form hidden id="upload-form" method="POST" action="" enctype="multipart/form-data"> -->
 											<div hidden id="upload-form">
 											<input id="file" type="file" accept="image/*" onchange="loadFile(event)" name="uploadedFile" />
-											<input type="submit" name="uploadBtn" value="Upload" onclick="displayUpload(this);"/>
+											<!-- <input type="submit" name="uploadBtn" value="Upload" onclick=""/> -->
 											</div>
 										<!-- </form> -->
 									</div>

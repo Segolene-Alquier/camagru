@@ -12,7 +12,6 @@ Class Image {
 			include 'config/database.php';
 		else
         	include '../config/database.php';
-		// session_start();
 		try {
 			$this->bdd = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 			$this->bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -46,7 +45,6 @@ Class Image {
 				{
 					if ($row = $stmt->fetch())
 					{
-					// session_start();
 					$id = $row["UserID"];
 					$_SESSION['user_id'] = $id;
 					return($id);
@@ -55,7 +53,6 @@ Class Image {
 			}
 			else
 				echo "Oops! Something went wrong. Please try again later.";
-
 		}
 	}
 
@@ -85,8 +82,7 @@ Class Image {
 		}
 		else
 		$message = 'Upload failed. Allowed file types: ' . implode(',', $allowedfileExtensions);
-		header('Location: ./edit.php');
-		// $_SESSION['message'] = $message;
+		// header('Location: ./edit.php');
 	}
 
 	function savePicture($img) {
@@ -105,9 +101,7 @@ Class Image {
 	}
 
 	function overlay($src, $filterId, $userID) {
-		// $this->image = $src;
 		$this->filter = $filterId;
-		// $this->userId = $userID;
 		if (exif_imagetype($src) == IMAGETYPE_PNG)
 			$image_1 = imagecreatefrompng($src);
 		else if (exif_imagetype($src) == IMAGETYPE_JPEG)

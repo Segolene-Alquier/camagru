@@ -1,6 +1,5 @@
 <?php
 session_start();
-// creer restriction login
 require "image_class.php";
 if (!isset($_SESSION['username']))
 	header('Location: ../users/login.php');
@@ -39,8 +38,8 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
     <?php include_once '../navigation.php'; ?>
 	<div class="edit-container">
 		<div class="edit-wrapper">
-			<div class="columns edit-wrapper-columns">
-				<div class="column is-four-fifths edit-left box" style="margin-bottom: 0px;">
+			<div class="columns is-3-desktop edit-wrapper-columns">
+				<div class="column is-9 edit-left box" style="margin-bottom: 0px;">
 					<div class="edit-left-top">
 					<h2 class="subtitle">📥 Upload a picture OR 📸 take a new one! </h2>
 						<div class="columns ">
@@ -53,6 +52,7 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 								<img id="live-filter-5" class="live-filter" hidden src="../img/filters/5.png" alt="" style="width: 50%; height:50%;">
 								<video id="video" autoplay></video>
 								<canvas id="canvas" hidden ></canvas>
+								<img hidden id="output" width="" />
 								<?php if (file_exists("montage.jpg")) { ?>
 								<img src="montage.jpg" alt="">
 								<?php }; ?>
@@ -73,7 +73,7 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 													<span>Upload a File:</span>
 													<input type="file" name="uploadedFile" />
 													</div>
-													<input type="submit" name="uploadBtn" value="Upload" />
+													<input type="submit" name="uploadBtn" value="Upload" onclick="displayUpload(this);"/>
 												</form>
 											</section>
 											<footer class="modal-card-foot">
@@ -83,16 +83,22 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 										</div>
 									</div>
 									<div class="edit-left-button">
-										<button id="showModal" class="button button-edit" disabled style="background-color: rgb(58, 44, 200); color: white;" onclick="openModal();"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
+										<button id="showModal" class="button button-edit" style="background-color: #180989; color: white;" onclick="uploadAppear();"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
+										<!-- <form hidden id="upload-form" method="POST" action="" enctype="multipart/form-data"> -->
+											<div hidden id="upload-form">
+											<input id="file" type="file" accept="image/*" onchange="loadFile(event)" name="uploadedFile" />
+											<input type="submit" name="uploadBtn" value="Upload" onclick="displayUpload(this);"/>
+											</div>
+										<!-- </form> -->
 									</div>
 									<div class="edit-left-button ">
-										<button id="snap"  class="button button-edit" disabled name="newPicture" value="Take Picture" style="background-color: rgb(58, 44, 200); color: white;"><i class="fas fa-camera" style="margin-right: 5px;"></i>New</button>
+										<button id="snap"  class="button button-edit" disabled name="newPicture" value="Take Picture" onclick="displayPicture();" style="background-color: #180989; color: white;"><i class="fas fa-camera" style="margin-right: 5px;"></i>New</button>
 									</div>
 									<div class="edit-left-button ">
 										<form action="" name="upload_image" method="POST" enctype="multipart/form-data">
 											<input hidden type="hidden" name="picture" id="image_to_post" /> <!-- envoyer l'image  -->
 											<input id="chosen-filter" name="chosen-filter" type="hidden" value="">
-											<button id="save"  class="button button-edit" disabled name="savePicture" value="Save Picture" style="background-color: #A91E8E; color: white;"><i class="fas fa-save" style="margin-right: 5px;"></i>Save</button>
+											<button id="save" class="button button-edit" disabled name="savePicture" value="Save Picture" style="background-color: #A91E8E; color: white;"><i class="fas fa-save" style="margin-right: 5px;"></i>Save</button>
 										</form>
 									</div>
 								</div>
@@ -100,7 +106,7 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 						</div>
 						<div class="columns filters-wrapper">
 							<div class="column is-four-fifths" >
-								<h2 class="subtitle">✨ Pimp it with filters</h2>
+								<h2 class="subtitle" style="margin-top: 3vh;">✨ Pimp it with filters</h2>
 								<div class="level filters-wrapper">
 									<button class="image-box" id="filter-1">
 										<img src="../img/filters/1.png" alt="">
@@ -122,7 +128,8 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 						</div>
 					</div>
 				</div>
-				<div class="column edit-right box">
+				<div class="column"></div>
+				<div class="column is-2 edit-right box">
 					<div class=" edit-right-wrapper">
 					<h2 class="subtitle">🌈 Your creations</h2>
 					<?php

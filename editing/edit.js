@@ -11,13 +11,43 @@ if (navigator.mediaDevices.getUserMedia) {
     });
 }
 
-// Elements for taking the snapshot
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
-var video = document.getElementById('video');
-var webcam = document.getElementById('webcam');
-// Trigger photo take
-document.getElementById("snap").addEventListener("click", function() {
+var form = document.getElementById('upload-form');
+
+function uploadAppear() {
+  var video = document.getElementById('video');
+  form.hidden = false;
+  video.style.display = "none";
+
+}
+
+function displayUpload() {
+  var video = document.getElementById('video');
+  alert("coucou");
+  video.style.display = "none";
+  // var canvas = document.getElementById('canvas');
+  // var context = canvas.getContext('2d');
+  // var video = document.getElementById('video');
+  // var webcam = document.getElementById('webcam');
+
+  // video.style.display = "none";
+  // var width = webcam.clientWidth;
+  // var height = webcam.clientHeight;
+  // canvas.setAttribute('width', width);
+  // canvas.setAttribute('height', height);
+  // document.getElementById('canvas').hidden = false;
+  // context.drawImage(video, 0, 0, width, height);
+  // const data = canvas.toDataURL('image/png');
+  // document.upload_image.picture.value = data;
+  // document.getElementById('save').disabled = false;
+
+}
+
+function displayPicture() {
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+  var video = document.getElementById('video');
+  var webcam = document.getElementById('webcam');
+
   video.style.display = "none";
   var width = webcam.clientWidth;
   var height = webcam.clientHeight;
@@ -28,8 +58,7 @@ document.getElementById("snap").addEventListener("click", function() {
   const data = canvas.toDataURL('image/png');
   document.upload_image.picture.value = data;
   document.getElementById('save').disabled = false;
- 
-});
+}
 
 function openModal() {
   var element = document.getElementById("modal-upload");
@@ -39,7 +68,6 @@ function openModal() {
 function closeModal() {
   var element = document.getElementById("modal-upload");
   element.classList.remove("is-active");
-
 }
 
 // FILTERS //
@@ -123,3 +151,9 @@ document.getElementById("filter-5").addEventListener("click", function() {
   document.getElementById('live-filter-5').hidden = false;
   document.getElementById('filter-5').classList.add("is-selected");
 });
+
+var loadFile = function(event) {
+  var image = document.getElementById('output');
+  image.hidden = false;
+	image.src = URL.createObjectURL(event.target.files[0]);
+};

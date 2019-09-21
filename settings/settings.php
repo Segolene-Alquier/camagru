@@ -1,24 +1,8 @@
 <?php
 session_start();
 require "settings_class.php";
-// creer restriction login
 if (!isset($_SESSION['username']))
 	header('Location: ../users/login.php');
-// if (isset($_POST["modifyPwd"]))
-// {
-// 	$user = new Setting();
-// 	$user->modifyPassword($_SESSION['username'], $_POST['old_password'], $_POST['new_password']);
-
-// }
-if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
-{
-	// $user = new Setting();
-	?>
-	<script> console.log('coucou');</script>
-	<?php
-	// $user->modifyMail($_SESSION['username'], $_POST['old_mail'], $_POST['new_mail']);
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 						</div>
 						<div class="field">
 							<div class="control">
-								<input type="submit" name="modifyUsername" class="button is-primary" value="Save" onclick="modifyName();"/>
+								<input type="submit" name="modifyUsername" class="button is-primary" style="background-color: #A91E8E;" value="Save" onclick="modifyName();"/>
 							</div>
 						</div>
 					</div>
@@ -85,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 						</div>
 						<div class="field">
 							<div class="control">
-								<input type="submit" name="modifyPwd" class="button is-primary" value="Save" onclick="checkPassword();"/>
+								<input type="submit" name="modifyPwd" class="button is-primary" style="background-color: #A91E8E;" value="Save" onclick="checkPassword();"/>
 							</div>
 						</div>
 					</div>
@@ -113,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["modifyMail"]))
 					</div>
 					<div class="field">
 						<div class="control">
-						<input type="submit" name="modifyMail" class="button is-primary" value="Save" onclick="modifyMail();"/>
+						<input type="submit" name="modifyMail" class="button is-primary" style="background-color: #A91E8E;" value="Save" onclick="modifyMail();"/>
 						</div>
 					</div>
 				</div>

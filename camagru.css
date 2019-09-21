@@ -140,6 +140,7 @@ body{
 	margin-right: 10vw;
 	/* height: 80vh; */
 	position: relative;
+	/* margin-top: 5vh; */
 	/* padding-top: 2.5rem; */
 	/* padding-bottom: 2.5rem; */
 	/* max-height: 80vh; */
@@ -151,7 +152,7 @@ body{
 }
 .edit-left {
 	margin-bottom: 0;
-	margin-right: 2vw;
+	/* margin-right: 2vw; */
 }
 .edit-left-top {
 	margin: 2vh 3vw;
@@ -185,6 +186,7 @@ body{
 	z-index: 2;
 }
 .filters-wrapper {
+	/* margin-top: 5vh; */
 	/* background-color: #180989; */
 }
 .edit-left-button {

@@ -136,7 +136,7 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 				<ul class="pagination-list">
 					<?php for ($i = 1; $i <= $nb_pages ; $i++) {
 					if ($page == $i)
-						echo "<li><a class='pagination-link is-current' aria-label='Goto page $i' href='?page=$i'> $i </a></li>";
+						echo "<li><a class='pagination-link' style='background-color: #A91E8E; color: white;'; aria-label='Goto page $i' href='?page=$i'> $i </a></li>";
 					else
 						echo "<li><a class='pagination-link' style='background-color: white;' aria-label='Goto page $i' href='?page=$i'> $i</a></li>";
 					} ?>

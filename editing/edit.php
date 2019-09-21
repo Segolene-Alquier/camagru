@@ -16,7 +16,19 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 $allImagesFromCurrentUser = $image->allPicturesOfUser($userId);
 if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
 	$userId = $image->findUserFromId($_SESSION["username"]);
-    $image->overlay($_POST['picture'], $_POST['chosen-filter'], $userId);
+	// var_dump($_POST['picture']);
+		$image->overlay($_POST['picture'], $_POST['chosen-filter'], $userId);
+		echo "<script>alert('coucou');</script>";
+
+}
+if (isset($_POST['savePicture2']) && $_POST['savePicture2'] === 'Save Picture') {
+	$userId = $image->findUserFromId($_SESSION["username"]);
+	// var_dump($_POST['picture']);
+
+		$image->overlay($_POST['uploaded-file'], $_POST['chosen-filter'], $userId);
+		echo "<script>alert('yo');</script>";
+
+
 }
 $userId = $image->findUserFromId($_SESSION["username"]);
 if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET['image_id']) && isset($_GET['image_name'])) {
@@ -53,9 +65,7 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 								<video id="video" autoplay></video>
 								<canvas id="canvas" hidden ></canvas>
 								<img hidden id="output" width="" />
-								<?php if (file_exists("montage.jpg")) { ?>
-								<img src="montage.jpg" alt="">
-								<?php }; ?>
+
 							</div>
 							</div>
 							<div class="column">
@@ -84,12 +94,9 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 									</div>
 									<div class="edit-left-button">
 										<button disabled id="showModal" class="button button-edit" style="background-color: #180989; color: white;" onclick="uploadAppear();"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
-										<!-- <form hidden id="upload-form" method="POST" action="" enctype="multipart/form-data"> -->
 											<div hidden id="upload-form">
-											<input id="file" type="file" accept="image/*" onchange="loadFile(event)" name="uploadedFile" />
-											<!-- <input type="submit" name="uploadBtn" value="Upload" onclick=""/> -->
+												<input id="file" type="file" accept="image/*" onchange="loadFile(event)" name="uploadedFile" />
 											</div>
-										<!-- </form> -->
 									</div>
 									<div class="edit-left-button ">
 										<button id="snap"  class="button button-edit" disabled name="newPicture" value="Take Picture" onclick="displayPicture();" style="background-color: #180989; color: white;"><i class="fas fa-camera" style="margin-right: 5px;"></i>New</button>
@@ -98,8 +105,13 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 										<form action="" name="upload_image" method="POST" enctype="multipart/form-data">
 											<input hidden type="hidden" name="picture" id="image_to_post" /> <!-- envoyer l'image  -->
 											<input id="chosen-filter" name="chosen-filter" type="hidden" value="">
+											<input id="uploaded-file" name="uploaded-file" type="hidden" value="">
+
 											<button id="save" class="button button-edit" disabled name="savePicture" value="Save Picture" style="background-color: #A91E8E; color: white;"><i class="fas fa-save" style="margin-right: 5px;"></i>Save</button>
+											<button  id="saveUP" class="button button-edit" name="savePicture2" value="Save Picture" style="background-color: #A91E8E; color: white;"><i class="fas fa-save" style="margin-right: 5px;" ></i>Save</button>
+
 										</form>
+										<!-- onclick="fromPathToImage();" -->
 									</div>
 								</div>
 							</div>

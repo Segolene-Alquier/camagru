@@ -56,34 +56,34 @@ Class Image {
 		}
 	}
 
-	function upload() {
-		$message = '';
-		$user_id = $_SESSION['user_id'];
-		// get details of the uploaded file
-		$fileTmpPath = $_FILES['uploadedFile']['tmp_name'];
-		$fileName = $_FILES['uploadedFile']['name'];
-		$fileSize = $_FILES['uploadedFile']['size'];
-		$fileType = $_FILES['uploadedFile']['type'];
-		$fileNameCmps = explode(".", $fileName);
-		$fileExtension = strtolower(end($fileNameCmps));
-		// sanitize file-name
-		$newFileName = uniqid().".".$fileExtension;
-		$allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
-		if (in_array($fileExtension, $allowedfileExtensions))
-		{
-		$uploadFileDir = "../uploads/".$user_id."/tmp/";
-		$dest_path = $uploadFileDir . $newFileName;
-		if (!file_exists($uploadFileDir))
-			mkdir($uploadFileDir, 0777, true);
-			if(move_uploaded_file($fileTmpPath, $dest_path))
-				$message ='File is successfully uploaded.';
-			else
-				$message = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
-		}
-		else
-		$message = 'Upload failed. Allowed file types: ' . implode(',', $allowedfileExtensions);
-		// header('Location: ./edit.php');
-	}
+	// function upload() {
+	// 	$message = '';
+	// 	$user_id = $_SESSION['user_id'];
+	// 	// get details of the uploaded file
+	// 	$fileTmpPath = $_FILES['uploadedFile']['tmp_name'];
+	// 	$fileName = $_FILES['uploadedFile']['name'];
+	// 	$fileSize = $_FILES['uploadedFile']['size'];
+	// 	$fileType = $_FILES['uploadedFile']['type'];
+	// 	$fileNameCmps = explode(".", $fileName);
+	// 	$fileExtension = strtolower(end($fileNameCmps));
+	// 	// sanitize file-name
+	// 	$newFileName = uniqid().".".$fileExtension;
+	// 	$allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
+	// 	if (in_array($fileExtension, $allowedfileExtensions))
+	// 	{
+	// 	$uploadFileDir = "../uploads/".$user_id."/tmp/";
+	// 	$dest_path = $uploadFileDir . $newFileName;
+	// 	if (!file_exists($uploadFileDir))
+	// 		mkdir($uploadFileDir, 0777, true);
+	// 		if(move_uploaded_file($fileTmpPath, $dest_path))
+	// 			$message ='File is successfully uploaded.';
+	// 		else
+	// 			$message = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
+	// 	}
+	// 	else
+	// 	$message = 'Upload failed. Allowed file types: ' . implode(',', $allowedfileExtensions);
+	// 	// header('Location: ./edit.php');
+	// }
 
 	function savePicture($img) {
 		$user_id = $_SESSION['user_id'];
@@ -101,7 +101,7 @@ Class Image {
 	}
 
 	function overlay($src, $filterId, $userID) {
-		$this->filter = $filterId;
+		$this->filter = $src;
 		if (exif_imagetype($src) == IMAGETYPE_PNG)
 			$image_1 = imagecreatefrompng($src);
 		else if (exif_imagetype($src) == IMAGETYPE_JPEG)

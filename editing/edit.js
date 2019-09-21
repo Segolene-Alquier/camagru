@@ -32,19 +32,20 @@ function displayPicture() {
   document.getElementById('canvas').hidden = false;
   context.drawImage(video, 0, 0, width, height);
   const data = canvas.toDataURL('image/png');
+  console.log(data);
   document.upload_image.picture.value = data;
   document.getElementById('save').disabled = false;
 }
 
-function openModal() {
-  var element = document.getElementById("modal-upload");
-  element.classList.add("is-active");
-}
+// function openModal() {
+//   var element = document.getElementById("modal-upload");
+//   element.classList.add("is-active");
+// }
 
-function closeModal() {
-  var element = document.getElementById("modal-upload");
-  element.classList.remove("is-active");
-}
+// function closeModal() {
+//   var element = document.getElementById("modal-upload");
+//   element.classList.remove("is-active");
+// }
 
 // FILTERS //
 
@@ -131,7 +132,47 @@ document.getElementById("filter-5").addEventListener("click", function() {
 var loadFile = function(event) {
   var image = document.getElementById('output');
   image.hidden = false;
-	image.src = URL.createObjectURL(event.target.files[0]);
+  var path = URL.createObjectURL(event.target.files[0])
+  image.src = path;
+  // const file = path.toDataURL('image/png');
+  console.log(path);
+  document.getElementById("uploaded-file").value = path;
   document.getElementById('save').disabled = false;
 
+
+
 };
+
+function fromPathToImage() {
+  // alert("coucou");
+  var fileReader = new FileReader();
+
+  fileReader.addEventListener("load", function () {
+    console.log(fileReader.readAsDataURL(path));
+  });
+}
+  // fileReader.onload = (fileLoadedEvent) => {
+  //     photo.src = fileLoadedEvent.target.result;
+  //     document.upload_image.picture.value = fileLoadedEvent.target.result;
+
+  // }
+
+
+  // var canvas = document.getElementById('canvas');
+  // var context = image.getContext('2d');
+  // var video = document.getElementById('video');
+  // var webcam = document.getElementById('webcam');
+
+  // // video.style.display = "none";
+  // var width = webcam.clientWidth;
+  // var height = webcam.clientHeight;
+  // // canvas.setAttribute('width', width);
+  // // canvas.setAttribute('height', height);
+  // // document.getElementById('canvas').hidden = false;
+  // context.drawImage(path, 0, 0, width, height);
+  // const dataUp = image.toDataURL('image/png');
+  // console.log(dataUp);
+  // document.upload_image.picture.value = data;
+
+
+// }

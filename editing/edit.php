@@ -37,10 +37,10 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 </head>
 <body>
     <?php include_once '../navigation.php'; ?>
-	<!-- <div class="section"> -->
+	<div class="edit-container">
 		<div class="edit-wrapper">
-			<div class="columns">
-				<div class="column is-four-fifths edit-left box">
+			<div class="columns edit-wrapper-columns">
+				<div class="column is-four-fifths edit-left box" style="margin-bottom: 0px;">
 					<div class="edit-left-top">
 					<h2 class="subtitle">📥 Upload a picture OR 📸 take a new one! </h2>
 						<div class="columns ">
@@ -122,8 +122,8 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 						</div>
 					</div>
 				</div>
-				<div class="column edit-right">
-					<div class="box edit-right-wrapper">
+				<div class="column edit-right box">
+					<div class=" edit-right-wrapper">
 					<h2 class="subtitle">🌈 Your creations</h2>
 					<?php
 						if (empty($allImagesFromCurrentUser)) {
@@ -151,8 +151,8 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 				</div>
 			</div>
 		</div>
-    <!-- </div> -->
-	<?php include_once '../footer.php'; ?>
+		<?php include_once '../footer.php'; ?>
+    </div>
 	<script type="text/javascript" src="edit.js"></script>
 </body>
 </html>

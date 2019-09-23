@@ -16,16 +16,18 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 $allImagesFromCurrentUser = $image->allPicturesOfUser($userId);
 if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
 	$userId = $image->findUserFromId($_SESSION["username"]);
-	// var_dump($_POST['picture']);
+	var_dump($_POST['picture']);
 		$image->overlay($_POST['picture'], $_POST['chosen-filter'], $userId);
 		echo "<script>alert('coucou');</script>";
+
+
 
 }
 if (isset($_POST['savePicture2']) && $_POST['savePicture2'] === 'Save Picture') {
 	$userId = $image->findUserFromId($_SESSION["username"]);
-	// var_dump($_POST['picture']);
+	var_dump($_POST['uploadedFile']);
 
-		$image->overlay($_POST['uploaded-file'], $_POST['chosen-filter'], $userId);
+		$image->overlay($_POST['uploadedFile'], $_POST['chosen-filter'], $userId);
 		echo "<script>alert('yo');</script>";
 
 
@@ -103,12 +105,12 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 									</div>
 									<div class="edit-left-button ">
 										<form action="" name="upload_image" method="POST" enctype="multipart/form-data">
-											<input hidden type="hidden" name="picture" id="image_to_post" /> <!-- envoyer l'image  -->
+											<input hidden type="hidden" name="picture" id="image_to_post" value=""/> <!-- envoyer l'image  -->
 											<input id="chosen-filter" name="chosen-filter" type="hidden" value="">
-											<input id="uploaded-file" name="uploaded-file" type="hidden" value="">
+											<input id="uploaded-file" name="uploadedFile" type="hidden" value="">
 
-											<button id="save" class="button button-edit" disabled name="savePicture" value="Save Picture" style="background-color: #A91E8E; color: white;"><i class="fas fa-save" style="margin-right: 5px;"></i>Save</button>
-											<button  id="saveUP" class="button button-edit" name="savePicture2" value="Save Picture" style="background-color: #A91E8E; color: white;"><i class="fas fa-save" style="margin-right: 5px;" ></i>Save</button>
+											<button hidden id="save" class="button button-edit"  name="savePicture" value="Save Picture" style="background-color: #A91E8E; color: white; display: none;"><i class="fas fa-save" style="margin-right: 5px;"></i>Save</button>
+											<button hidden id="saveUP" class="button button-edit" name="savePicture2" value="Save Picture" style="background-color: #A91E8E; color: white; display: none;"><i class="fas fa-save" style="margin-right: 5px;" ></i>SaveUP</button>
 
 										</form>
 										<!-- onclick="fromPathToImage();" -->

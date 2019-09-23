@@ -129,19 +129,37 @@ document.getElementById("filter-5").addEventListener("click", function() {
   document.getElementById('filter-5').classList.add("is-selected");
 });
 
+// var loadFile = function(event) {
+//   var image = document.getElementById('output');
+//   image.hidden = false;
+//   var path = URL.createObjectURL(event.target.files[0])
+//   image.src = path;
+//   // const file = path.toDataURL('image/png');
+//   console.log(path);
+//   document.getElementById("uploaded-file").value = path;
+//   document.getElementById('saveUP').disabled = false;
+
+
+
+// };
+
 var loadFile = function(event) {
   var image = document.getElementById('output');
   image.hidden = false;
-  var path = URL.createObjectURL(event.target.files[0])
-  image.src = path;
-  // const file = path.toDataURL('image/png');
-  console.log(path);
-  document.getElementById("uploaded-file").value = path;
-  document.getElementById('save').disabled = false;
+  let blob = new Blob([event.target.files[0]], {type: 'image/jpg'});
+  var reader = new FileReader();
+  reader.readAsDataURL(blob);
+  reader.onload = function() {
+    image.src = reader.result;
+    console.log(reader.result);
+  };
+  document.getElementById("uploaded-file").value = blob;
+  document.getElementById('saveUP').disabled = false;
 
 
 
 };
+
 
 function fromPathToImage() {
   // alert("coucou");

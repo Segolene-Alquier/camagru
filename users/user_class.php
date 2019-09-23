@@ -42,6 +42,10 @@ Class User {
 
 	function	create_user($username, $email, $password, $confirm_password) {
 
+		if (!ctype_alpha($username)) {
+			$this->username_err = "The username must contain letters only.";
+			return ;
+		}
 		$sql = "SELECT UserID FROM user WHERE username= :username";
 		if ($stmt = $this->bdd->prepare($sql))
 		{

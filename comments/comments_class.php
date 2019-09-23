@@ -79,7 +79,7 @@ Class Comment {
 	}
 
 	function commentNotification($image_id, $commentator, $content) {
-		$sql = "SELECT user.email as `email`, user.username as `username`
+		$sql = "SELECT user.email as `email`, user.username as `username`, user.notification AS `notification`
 		FROM user
 		INNER JOIN image
 		WHERE image.user = user.userid
@@ -87,9 +87,8 @@ Class Comment {
 		$retour = $this->bdd->prepare($sql);
 		$retour->execute(array($image_id));
 		$user = $retour->fetch();
-		echo "Ok";
 		$message = "Hi $user[username]!\n\nYou are very popular, $commentator just commented your picture #$image_id.\nThe comment says:\n\n'$content'\n";
-		if ($user['notification']) // not found
+		if ($user['notification'])
 			$this->send_mail($user['email'], "You've got a new comment on Camagru!", $message);
 	}
 }

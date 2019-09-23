@@ -25,10 +25,9 @@ else {
 		$filename = $_POST['src'];
 		$imageId = $image->getImageId($filename);
 		$userId = $image->findUserFromId($_SESSION["username"]);
-		$content = $_POST['content'];
+		$content = htmlspecialchars($_POST['content']);
 		$comment->addCommentToDB($content, $imageId, $userId, $_SESSION["username"]);
 		$comment->commentNotification($imageId, $_SESSION["username"], $content);
-
 	}
 	else
 		echo json_encode("error");

@@ -77,6 +77,7 @@ function comment(src, content) {
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.send("src=" + src + "&content=" + content);
 }
+
 var content = "";
 var src = "";
 

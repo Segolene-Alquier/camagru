@@ -34,8 +34,8 @@ Class Setting {
 	}
 
 	function modifyName($username, $old_name, $new_name) {
-		$old_name = trim($old_name);
-		$new_name = trim($new_name);
+		$old_name = htmlspecialchars(trim($old_name));
+		$new_name = htmlspecialchars(trim($new_name));
 		if ($username === $old_name) {
 			$sql = "SELECT COUNT(*) FROM `user` WHERE `username` = :new_name";
 			if ($stmt = $this->bdd->prepare($sql)) {
@@ -59,8 +59,8 @@ Class Setting {
 	}
 
 	function modifyPassword($username, $old_password, $new_password) {
-		$old_password = trim($old_password);
-		$new_password = trim($new_password);
+		$old_password = htmlspecialchars(trim($old_password));
+		$new_password = htmlspecialchars(trim($new_password));
 		$sql = "SELECT Passwd FROM `user` WHERE `Username` = :username";
 		if ($stmt = $this->bdd->prepare($sql)) {
 			$stmt->bindParam(":username", $username, PDO::PARAM_STR);
@@ -85,8 +85,8 @@ Class Setting {
 	}
 
 	function modifyMail($username, $old_mail, $new_mail) {
-		$old_mail = trim($old_mail);
-		$new_mail = trim($new_mail);
+		$old_mail = htmlspecialchars(trim($old_mail));
+		$new_mail = htmlspecialchars(trim($new_mail));
 		$sql = "SELECT * FROM `user` WHERE `Username` = :username AND `email` = :email";
 		if ($stmt = $this->bdd->prepare($sql)) {
 			$stmt->bindParam(":username", $username, PDO::PARAM_STR);

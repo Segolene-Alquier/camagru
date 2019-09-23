@@ -46,13 +46,13 @@ Class User {
 		if ($stmt = $this->bdd->prepare($sql))
 		{
 			$stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
-			$param_username = trim($username);
+			$param_username = htmlspecialchars(trim($username));
 			if ($stmt->execute())
 			{
 				if ($stmt->rowCount() == 1)
 					$this->username_err = "This username is already taken.";
 				else
-					$this->username = trim($username);
+					$this->username = htmlspecialchars(trim($username));
 			}
 			else
 				echo "Oops! Something went wrong. Please try again later.";
@@ -67,13 +67,13 @@ Class User {
 			if ($stmt = $this->bdd->prepare($sql))
 			{
 				$stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
-				$param_email = trim($email);
+				$param_email = htmlspecialchars(trim($email));
 				if ($stmt->execute())
 				{
 					if ($stmt->rowCount() >= 1)
 						 $this->email_err = "This email is alrady taken.";
 					else
-						$this->email = trim($email);
+						$this->email = htmlspecialchars(trim($email));
 				}
 				else
 					echo "Oops! Something went wrong. Please try again later.";
@@ -84,9 +84,9 @@ Class User {
 		if (!preg_match ("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $password))
 			$this->password_err = "Password must have at least 8 characters, one uppercase letter, one lowercase letter and one number.";
 		else
-			$this->password = trim($password);
+			$this->password = htmlspecialchars(trim($password));
 
-		$this->confirm_password = trim($confirm_password);
+		$this->confirm_password = htmlspecialchars(trim($confirm_password));
 		if (empty($this->password_err) && ($this->password != $this->confirm_password))
 			$this->confirm_password_err = "Password did not match.";
 
@@ -101,8 +101,8 @@ Class User {
 				$stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
 				$stmt->bindParam(":cle", $cle, PDO::PARAM_STR);
 				// Set parameters
-				$param_username = $username;
-				$param_email = $email;
+				$param_username = htmlspecialchars($username);
+				$param_email = htmlspecialchars($email);
 				$param_password = password_hash($password, PASSWORD_DEFAULT);
 				$cle = md5(microtime(TRUE)*100000);
 
@@ -215,7 +215,7 @@ Class User {
 		if ($stmt = $this->bdd->prepare($sql))
 		{
 			$stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
-			$param_email = trim($email);
+			$param_email = htmlspecialchars(trim($email));
 
 			if ($stmt->execute())
 			{
@@ -233,7 +233,7 @@ Class User {
 		{
 			$this->email_sent = "Please check your email box, we sent you the link to reset your password";
 			$stmt->bindParam(":reset", $reset, PDO::PARAM_STR);
-			$stmt->bindParam(":email", $email, PDO::PARAM_STR);
+			$stmt->bindParam(":email", htmlspecialchars($email), PDO::PARAM_STR);
 			$reset = md5(microtime(TRUE)*100000);
 			if ($stmt->execute())
 			{
@@ -260,7 +260,7 @@ Class User {
 	}
 
 	function	reset_pwd($email, $new_password, $confirm_password) {
-		$this->email = $email;
+		$this->email = htmlspecialchars($email);
 		$resetbdd = "";
 
 		// checking if email and reset match
@@ -272,9 +272,9 @@ Class User {
 		if (!preg_match ("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $new_password))
 			$this->new_password_err = "Password must have at least 8 characters, one uppercase letter, one lowercase letter and one number.";
 		else
-			$this->new_password = trim($new_password);
+			$this->new_password = htmlspecialchars(trim($new_password));
 		// Validate confirm password
-		$this->confirm_password = trim($confirm_password);
+		$this->confirm_password = htmlspecialchars(trim($confirm_password));
 
 		if (empty($this->new_password_err) && ($this->new_password != $this->confirm_password))
 			$this->confirm_password_err = "Password did not match.";
@@ -308,22 +308,20 @@ Class User {
 	function wantsNotif($username) {
 		$sql = "SELECT `notification` FROM `user` WHERE `username` = :username";
 		if ($stmt = $this->bdd->prepare($sql)) {
-			$stmt->bindParam(":username", $username, PDO::PARAM_STR);
+			$stmt->bindParam(":username", htmlspecialchars($username), PDO::PARAM_STR);
 			$stmt->execute();
 			$result = $stmt->fetch();
 			return ($result[0]);
 		}
-
 	}
 
 	function changeNotif($boolean, $username) {
 		$sql = "UPDATE `user` SET `notification` = :bool WHERE `username` = :username";
 		if ($stmt = $this->bdd->prepare($sql)) {
-			$stmt->bindParam(":bool", $boolean, PDO::PARAM_STR);
-			$stmt->bindParam(":username", $username, PDO::PARAM_STR);
+			$stmt->bindParam(":bool", htmlspecialchars($boolean), PDO::PARAM_STR);
+			$stmt->bindParam(":username", htmlspecialchars($username), PDO::PARAM_STR);
 			if (!$stmt->execute()) {
 				echo "Oops! Something went wrong. Please try again later.";
-
 			}
 		}
 

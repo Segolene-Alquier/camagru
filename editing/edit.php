@@ -4,14 +4,6 @@ require "image_class.php";
 if (!isset($_SESSION['username']))
 	header('Location: ../users/login.php');
 $image = new Image;
-// if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
-// {
-// 	if (isset($_FILES['uploadedFile']) && $_FILES['uploadedFile']['error'] === UPLOAD_ERR_OK)
-// 	{
-// 		$userId = $image->findUserFromId($_SESSION["username"]);
-// 		$image->upload();
-// 	}
-// }
 $userId = $image->findUserFromId($_SESSION["username"]);
 $allImagesFromCurrentUser = $image->allPicturesOfUser($userId);
 if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
@@ -61,30 +53,8 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 							</div>
 							<div class="column">
 								<div class="edit-left-buttons">
-									<div class="modal" id="modal-upload">
-										<div class="modal-background"></div>
-											<div class="modal-card">
-											<header class="modal-card-head">
-												<p class="modal-card-title">Upload the image of your choice</p>
-												<button id="modal-close" class="delete" aria-label="close" onclick="closeModal();"></button>
-											</header>
-											<section class="modal-card-body">
-												<form method="POST" action="" enctype="multipart/form-data">
-													<div>
-													<span>Upload a File:</span>
-													<input type="file" name="uploadedFile" />
-													</div>
-													<input type="submit" name="uploadBtn" value="Upload" onclick="displayUpload(this);"/>
-												</form>
-											</section>
-											<footer class="modal-card-foot">
-												<button class="button is-success">Save changes</button>
-												<button id="cancel-close" class="button" onclick="closeModal();">Cancel</button>
-											</footer>
-										</div>
-									</div>
 									<div class="edit-left-button">
-										<button  id="showModal" class="button button-edit" style="background-color: #180989; color: white;" onclick="uploadAppear();"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
+										<button disabled id="showModal" class="button button-edit" style="background-color: #180989; color: white;" onclick="uploadAppear();"><i class="fas fa-file-upload" style="margin-right: 5px;"></i>Upload</button>
 											<div hidden id="upload-form">
 												<input id="file" type="file" accept="image/*" onchange="loadFile(event)" name="uploadedFile" />
 											</div>

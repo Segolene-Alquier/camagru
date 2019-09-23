@@ -157,8 +157,8 @@ Class User {
 	}
 
 	function	login($username, $password) {
-    	$this->username = trim($username);
-        $this->password = trim($password);
+    	$this->username = htmlspecialchars(trim($username));
+        $this->password = htmlspecialchars(trim($password));
 
 		if (empty($this->username_err) && empty($this->password_err))
 		{

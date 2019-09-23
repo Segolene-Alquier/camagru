@@ -15,7 +15,6 @@ function getXMLHttpRequest() {
 		alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
 		return (null);
 	}
-
 	return (xhr);
 }
 
@@ -30,7 +29,7 @@ function request(src) {
 				document.getElementById('comment-content').disabled = false;
 				document.getElementById('comment-button').disabled = false;
 			}
-			console.log(this.response);
+			// console.log(this.response);
 		}
 	};
 	xhr.open("POST", "./likes/likes_handler.php", true);
@@ -43,7 +42,7 @@ function isLiked(src) {
 	var heart = document.getElementById("like-button");
 	xhr.onreadystatechange = function(event) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			console.log(this.response);
+			// console.log(this.response);
 			if (this.response.match(/error/)) {
 				heart.classList.remove("far");
 				heart.classList.add("fas");
@@ -108,7 +107,7 @@ function displayComments(src) {
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function(event) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			console.log(this.response);
+			// console.log(this.response);
 			var allComments = this.response;
 			var tab = JSON.parse(allComments, null, 4);
 			var list = document.createElement('ul');
@@ -130,7 +129,7 @@ function isLogged() {
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function(event) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			console.log(this.response);
+			// console.log(this.response);
 			if (this.response.match(/logged/)) {
 				document.getElementById('comment-content').disabled = false;
 				document.getElementById('comment-button').disabled = false;

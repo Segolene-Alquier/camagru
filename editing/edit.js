@@ -32,10 +32,13 @@ function displayPicture() {
   document.getElementById('canvas').hidden = false;
   context.drawImage(video, 0, 0, width, height);
   const data = canvas.toDataURL('image/png');
-  console.log(data);
   document.upload_image.picture.value = data;
+  document.getElementById('save').style.display = 'block';
+}
 
-  document.getElementById('save').disabled = false;
+function saveUploadButton() {
+  var button = document.getElementById('saveUP');
+  button.style.display = 'block';
 }
 
 var loadFile = function(event) {
@@ -47,12 +50,10 @@ var loadFile = function(event) {
   reader.onload = function() {
     image.src = reader.result;
     document.upload_image.uploadedFile.value = reader.result;
-    console.log(reader.result);
-    console.log(document.upload_image.picture.value);
-
+    saveUploadButton();
   };
-  document.getElementById('saveUP').hidden = false;
 };
+
 
 // function openModal() {
 //   var element = document.getElementById("modal-upload");
@@ -145,20 +146,3 @@ document.getElementById("filter-5").addEventListener("click", function() {
   document.getElementById('live-filter-5').hidden = false;
   document.getElementById('filter-5').classList.add("is-selected");
 });
-
-// var loadFile = function(event) {
-//   var image = document.getElementById('output');
-//   image.hidden = false;
-//   var path = URL.createObjectURL(event.target.files[0])
-//   image.src = path;
-//   // const file = path.toDataURL('image/png');
-//   console.log(path);
-//   document.getElementById("uploaded-file").value = path;
-//   document.getElementById('saveUP').disabled = false;
-
-
-
-// };
-
-
-

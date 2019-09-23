@@ -4,33 +4,23 @@ require "image_class.php";
 if (!isset($_SESSION['username']))
 	header('Location: ../users/login.php');
 $image = new Image;
-if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
-{
-	if (isset($_FILES['uploadedFile']) && $_FILES['uploadedFile']['error'] === UPLOAD_ERR_OK)
-	{
-		$userId = $image->findUserFromId($_SESSION["username"]);
-		$image->upload();
-	}
-}
+// if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
+// {
+// 	if (isset($_FILES['uploadedFile']) && $_FILES['uploadedFile']['error'] === UPLOAD_ERR_OK)
+// 	{
+// 		$userId = $image->findUserFromId($_SESSION["username"]);
+// 		$image->upload();
+// 	}
+// }
 $userId = $image->findUserFromId($_SESSION["username"]);
 $allImagesFromCurrentUser = $image->allPicturesOfUser($userId);
 if (isset($_POST['savePicture']) && $_POST['savePicture'] === 'Save Picture') {
 	$userId = $image->findUserFromId($_SESSION["username"]);
-	var_dump($_POST['picture']);
-		$image->overlay($_POST['picture'], $_POST['chosen-filter'], $userId);
-		echo "<script>alert('coucou');</script>";
-
-
-
+	$image->overlay($_POST['picture'], $_POST['chosen-filter'], $userId);
 }
 if (isset($_POST['savePicture2']) && $_POST['savePicture2'] === 'Save Picture') {
 	$userId = $image->findUserFromId($_SESSION["username"]);
-	var_dump($_POST['uploadedFile']);
-
-		$image->overlay($_POST['uploadedFile'], $_POST['chosen-filter'], $userId);
-		echo "<script>alert('yo');</script>";
-
-
+	$image->overlay($_POST['uploadedFile'], $_POST['chosen-filter'], $userId);
 }
 $userId = $image->findUserFromId($_SESSION["username"]);
 if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET['image_id']) && isset($_GET['image_name'])) {
@@ -67,7 +57,6 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 								<video id="video" autoplay></video>
 								<canvas id="canvas" hidden ></canvas>
 								<img hidden id="output" width="" />
-
 							</div>
 							</div>
 							<div class="column">
@@ -108,12 +97,9 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 											<input hidden type="hidden" name="picture" id="image_to_post" value=""/> <!-- envoyer l'image  -->
 											<input id="chosen-filter" name="chosen-filter" type="hidden" value="">
 											<input id="uploaded-file" name="uploadedFile" type="hidden" value="">
-
 											<button hidden id="save" class="button button-edit"  name="savePicture" value="Save Picture" style="background-color: #A91E8E; color: white; display: none;"><i class="fas fa-save" style="margin-right: 5px;"></i>Save</button>
 											<button hidden id="saveUP" class="button button-edit" name="savePicture2" value="Save Picture" style="background-color: #A91E8E; color: white; display: none;"><i class="fas fa-save" style="margin-right: 5px;" ></i>SaveUP</button>
-
 										</form>
-										<!-- onclick="fromPathToImage();" -->
 									</div>
 								</div>
 							</div>

@@ -89,7 +89,7 @@ Class Comment {
 		$user = $retour->fetch();
 		echo "Ok";
 		$message = "Hi $user[username]!\n\nYou are very popular, $commentator just commented your picture #$image_id.\nThe comment says:\n\n'$content'\n";
-		if ($user['notification'])
+		if ($user['notification']) // not found
 			$this->send_mail($user['email'], "You've got a new comment on Camagru!", $message);
 	}
 }

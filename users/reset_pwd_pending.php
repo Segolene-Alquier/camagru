@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sign Up</title>
     <link rel="stylesheet" type="text/css" href="../camagru.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
     <script src="https://kit.fontawesome.com/82e513fc69.js"></script></head>
 <body>
     <?php include_once '../navigation.php'; ?>

@@ -23,7 +23,9 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="camagru.css">
+	<!-- <link rel="stylesheet" href="main.css"> -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"> -->
 	<script src="https://kit.fontawesome.com/82e513fc69.js"></script>
 	<title>Camagru</title>
 </head>
@@ -136,7 +138,7 @@ $userId = $image->findUserFromId($_SESSION["username"]);
 				<ul class="pagination-list">
 					<?php for ($i = 1; $i <= $nb_pages ; $i++) {
 					if ($page == $i)
-						echo "<li><a class='pagination-link' style='background-color: #A91E8E; color: white;'; aria-label='Goto page $i' href='?page=$i'> $i </a></li>";
+						echo "<li><a class='pagination-link' style='background-color: #180989; color: white;'; aria-label='Goto page $i' href='?page=$i'> $i </a></li>";
 					else
 						echo "<li><a class='pagination-link' style='background-color: white;' aria-label='Goto page $i' href='?page=$i'> $i</a></li>";
 					} ?>

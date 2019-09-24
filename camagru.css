@@ -140,24 +140,13 @@ body{
 .edit-wrapper {
 	display: flex;
 	flex-direction: column;
-	/* justify-content: center; */
 	margin-left: 10vw;
 	margin-right: 10vw;
-	/* height: 80vh; */
 	position: relative;
-	/* margin-top: 5vh; */
-	/* padding-top: 2.5rem; */
-	/* padding-bottom: 2.5rem; */
-	/* max-height: 80vh; */
-
 }
-.edit-wrapper-columns {
 
-	/* height: 100%; */
-}
 .edit-left {
 	margin-bottom: 0;
-	/* margin-right: 2vw; */
 }
 .edit-left-top {
 	margin: 2vh 3vw;
@@ -190,10 +179,7 @@ body{
 	left: 25%;
 	z-index: 2;
 }
-.filters-wrapper {
-	/* margin-top: 5vh; */
-	/* background-color: #180989; */
-}
+
 .edit-left-button {
 	margin: 1vw;
 }

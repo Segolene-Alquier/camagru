@@ -80,6 +80,9 @@ Class Image {
 		else
 			return (NULL);
 		$newFileName = time()."-".uniqid().".jpg";
+		$filepath = "../uploads/".$userID."/";
+		if (!file_exists($filepath))
+			mkdir($filepath, 0777, true);
 		$dest = "../uploads/".$userID."/".$newFileName;
 		$filterFile = "../img/filters/".$filterId.".png";
 		$filter = imagecreatefrompng($filterFile);
@@ -173,11 +176,6 @@ Class Image {
 			else
 				return(0);
 		}
-	}
-
-	function deleteCommentsFromDeletedPicture() {
-
-
 	}
 
 	function deletePictureFromDB($user_id, $image_id, $image_name) {

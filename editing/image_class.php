@@ -181,24 +181,18 @@ Class Image {
 	}
 
 	function deletePictureFromDB($user_id, $image_id, $image_name) {
-		// checker que l'id de l'imagea ppartient bien au user
-		// if ($this->pictureBelongsToUser($user_id, $image_id)) {
-			$sql = "DELETE FROM `image` WHERE id = :image_id";
-			if ($stmt = $this->bdd->prepare($sql)) {
-				$stmt->bindParam(":image_id", $image_id, PDO::PARAM_STR);
-				if ($stmt->execute()) {
-					if (file_exists($image_name))
-						if (unlink($image_name))
-							echo "supprime";
-					else
-						echo "pas trouve";
-					header('Location: ./edit.php');
-				}
+		$sql = "DELETE FROM `image` WHERE id = :image_id";
+		if ($stmt = $this->bdd->prepare($sql)) {
+			$stmt->bindParam(":image_id", $image_id, PDO::PARAM_STR);
+			if ($stmt->execute()) {
+				if (file_exists($image_name))
+					if (unlink($image_name))
+						echo "supprime";
+				else
+					echo "pas trouve";
+				header('Location: ./edit.php');
 			}
-		// }
-		// else
-		// 	echo "The picture you wish to delete doesn't belong to you, nice try!";
-
+		}
 	}
 
 	function getImageId($filename) {

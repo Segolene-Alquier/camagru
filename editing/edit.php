@@ -16,7 +16,10 @@ if (isset($_POST['savePicture2']) && $_POST['savePicture2'] === 'Save Picture') 
 }
 $userId = $image->findUserFromId($_SESSION["username"]);
 if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET['image_id']) && isset($_GET['image_name'])) {
-	$image->deletePictureFromDB($userId, $_GET['image_id'], $_GET['image_name']);
+	if ($image->pictureBelongsToUser($userId, $_GET['image_id']))
+		$image->deletePictureFromDB($userId, $_GET['image_id'], $_GET['image_name']);
+	else
+		echo "The picture you wish to delete doesn't belong to you, nice try!";
 }
 ?>
 

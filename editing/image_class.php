@@ -56,35 +56,6 @@ Class Image {
 		}
 	}
 
-	// function upload() {
-	// 	$message = '';
-	// 	$user_id = $_SESSION['user_id'];
-	// 	// get details of the uploaded file
-	// 	$fileTmpPath = $_FILES['uploadedFile']['tmp_name'];
-	// 	$fileName = $_FILES['uploadedFile']['name'];
-	// 	$fileSize = $_FILES['uploadedFile']['size'];
-	// 	$fileType = $_FILES['uploadedFile']['type'];
-	// 	$fileNameCmps = explode(".", $fileName);
-	// 	$fileExtension = strtolower(end($fileNameCmps));
-	// 	// sanitize file-name
-	// 	$newFileName = uniqid().".".$fileExtension;
-	// 	$allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
-	// 	if (in_array($fileExtension, $allowedfileExtensions))
-	// 	{
-	// 	$uploadFileDir = "../uploads/".$user_id."/tmp/";
-	// 	$dest_path = $uploadFileDir . $newFileName;
-	// 	if (!file_exists($uploadFileDir))
-	// 		mkdir($uploadFileDir, 0777, true);
-	// 		if(move_uploaded_file($fileTmpPath, $dest_path))
-	// 			$message ='File is successfully uploaded.';
-	// 		else
-	// 			$message = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
-	// 	}
-	// 	else
-	// 	$message = 'Upload failed. Allowed file types: ' . implode(',', $allowedfileExtensions);
-	// 	// header('Location: ./edit.php');
-	// }
-
 	function savePicture($img) {
 		$user_id = $_SESSION['user_id'];
 		$image_parts = explode(";base64,", $img);
@@ -186,19 +157,48 @@ Class Image {
 		return (NULL);
 	}
 
-	function deletePictureFromDB($user_id, $image_id, $image_name) {
-		$sql = "DELETE FROM `image` WHERE id = :image_id";
-		if ($stmt = $this->bdd->prepare($sql)) {
+	function pictureBelongsToUser($user_id, $image_id) {
+		$sql = "SELECT id FROM `image` WHERE id = :image_id AND user = :user_id";
+		if ($stmt = $this->bdd->prepare($sql))
+		{
 			$stmt->bindParam(":image_id", $image_id, PDO::PARAM_STR);
-			if ($stmt->execute()) {
-				if (file_exists($image_name))
-					if (unlink($image_name))
-						echo "supprime";
+			$stmt->bindParam(":user_id", $user_id, PDO::PARAM_STR);
+			if ($stmt->execute())
+			{
+				if ($stmt->rowCount() == 1)
+					return(1);
 				else
-					echo "pas trouve";
-				header('Location: ./edit.php');
+					return(0);
 			}
+			else
+				return(0);
 		}
+	}
+
+	function deleteCommentsFromDeletedPicture() {
+
+
+	}
+
+	function deletePictureFromDB($user_id, $image_id, $image_name) {
+		// checker que l'id de l'imagea ppartient bien au user
+		// if ($this->pictureBelongsToUser($user_id, $image_id)) {
+			$sql = "DELETE FROM `image` WHERE id = :image_id";
+			if ($stmt = $this->bdd->prepare($sql)) {
+				$stmt->bindParam(":image_id", $image_id, PDO::PARAM_STR);
+				if ($stmt->execute()) {
+					if (file_exists($image_name))
+						if (unlink($image_name))
+							echo "supprime";
+					else
+						echo "pas trouve";
+					header('Location: ./edit.php');
+				}
+			}
+		// }
+		// else
+		// 	echo "The picture you wish to delete doesn't belong to you, nice try!";
+
 	}
 
 	function getImageId($filename) {

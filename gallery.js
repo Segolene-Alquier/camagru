@@ -70,7 +70,7 @@ function comment(src, content) {
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function(event) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-
+			location.reload();
 		}
 	};
 	xhr.open("POST", "./comments/comments_handler.php", true);
@@ -98,10 +98,7 @@ function getComment() {
 	content = document.getElementById("comment-content").value;
 	if (checkComment(content)) {
 		comment(src, content);
-		// commentNotification(src, content);
 	}
-
-	// location.reload();
 }
 
 function displayComments(src) {

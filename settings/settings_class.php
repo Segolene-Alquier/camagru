@@ -56,7 +56,6 @@ Class Setting {
 				$stmt->bindParam(':new_name', $new_name, PDO::PARAM_STR);
 				if ($stmt->execute())
 				{
-					var_dump($stmt->rowCount());
 					if ($stmt->rowCount() < 1)
 					{
 						$stmt2 = $this->bdd->prepare("UPDATE `user` SET `username` = :new_name WHERE `Username` = :old_name");

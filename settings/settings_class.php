@@ -43,19 +43,15 @@ Class Setting {
 					$email = $row['Email'];
 					return ($email);
 				}
-
 			}
 		}
 	}
 
 	function modifyName($username, $old_name, $new_name) {
 		$old_name = htmlspecialchars(trim($old_name));
-		var_dump($old_name);
 		$new_name = htmlspecialchars(trim($new_name));
-
 		if ($username === $old_name) {
-			var_dump($new_name);
-			$sql = "SELECT COUNT(*) FROM `user` WHERE `username` = :new_name";
+			$sql = "SELECT `Username` FROM `user` WHERE `Username` = :new_name";
 			if ($stmt = $this->bdd->prepare($sql)) {
 				$stmt->bindParam(':new_name', $new_name, PDO::PARAM_STR);
 				if ($stmt->execute())
@@ -63,7 +59,6 @@ Class Setting {
 					var_dump($stmt->rowCount());
 					if ($stmt->rowCount() < 1)
 					{
-
 						$stmt2 = $this->bdd->prepare("UPDATE `user` SET `username` = :new_name WHERE `Username` = :old_name");
 						$stmt2->bindParam(':new_name', $new_name, PDO::PARAM_STR);
 						$stmt2->bindParam(":old_name", $old_name, PDO::PARAM_STR);

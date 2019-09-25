@@ -35,7 +35,6 @@ function checkPassword() {
 		alert("Password must have at least 8 characters, one uppercase letter, one lowercase letter and one number. 🙏");
 		return(0);
 	}
-
 	modifyPassword();
 	return (1);
 }
@@ -47,7 +46,6 @@ function modifyName() {
 		var xhr = getXMLHttpRequest();
 		xhr.onreadystatechange = function(event) {
 			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-				console.log(this.response);
 				document.location.reload(true);
 			}
 		};
@@ -64,7 +62,6 @@ function modifyPassword() {
 		var xhr = getXMLHttpRequest();
 		xhr.onreadystatechange = function(event) {
 			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-				console.log(this.response);
 				document.location.reload(true);
 			}
 		};
@@ -81,7 +78,6 @@ function modifyMail() {
 		var xhr = getXMLHttpRequest();
 		xhr.onreadystatechange = function(event) {
 			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-				console.log(this.response);
 				document.location.reload(true);
 			}
 		};

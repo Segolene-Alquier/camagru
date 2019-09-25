@@ -21,9 +21,6 @@
 		-- Database: `camagru`
 		--
 
-		CREATE DATABASE IF NOT EXISTS `camagru` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-		USE `camagru`;
-
 		-- --------------------------------------------------------
 
 		--
@@ -31,11 +28,11 @@
 		--
 
 		CREATE TABLE `comment` (
-		  `id` int(255) NOT NULL,
-		  `content` text NOT NULL,
-		  `image` int(255) NOT NULL,
-		  `user` int(255) NOT NULL,
-		  `username` varchar(255) NOT NULL
+		`id` int(255) NOT NULL,
+		`content` text NOT NULL,
+		`image` int(255) NOT NULL,
+		`user` int(255) NOT NULL,
+		`username` varchar(255) NOT NULL
 		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 		--
@@ -90,16 +87,17 @@
 		(52, 'dd', 3, 17, 'Segogo'),
 		(53, 'ddd', 3, 17, 'Segogo'),
 		(54, 'ddd', 3, 17, 'Segogo'),
-		(55, 'maminette ❤️', 89, 17, 'Segogo'),
-		(56, 'xgsfgdh', 90, 17, 'Segogo'),
-		(57, 'xgsfgdh', 90, 17, 'Segogo'),
-		(58, 'xgsfgdh', 90, 17, 'Segogo'),
-		(59, 'xgsfgdh', 90, 17, 'Segogo'),
-		(60, 'xgsfgdh', 90, 17, 'Segogo'),
-		(61, 'xgsfgdh', 90, 17, 'Segogo'),
-		(62, 'xgsfgdh', 90, 17, 'Segogo'),
-		(63, 'xgsfgdh', 90, 17, 'Segogo'),
-		(64, 'werwer', 90, 17, 'Segogo');
+		(65, 'sexy', 82, 28, 'Segolene'),
+		(66, 'hello there', 93, 17, 'Segogo'),
+		(67, 'yooo', 93, 17, 'Segogo'),
+		(68, 'tyuuty', 93, 28, 'Segolene'),
+		(69, 'hkjhkl', 82, 28, 'Segolene'),
+		(72, 'trop mims', 94, 17, 'Segogo'),
+		(73, 'hello', 93, 17, 'Segogo'),
+		(74, 'hello', 94, 29, 'Salquier'),
+		(75, 'mamineeeette', 95, 29, 'Salquier'),
+		(76, 'la plus woof woof', 95, 29, 'Salquier'),
+		(77, 'peace gurl', 96, 30, 'Salquier');
 
 		-- --------------------------------------------------------
 
@@ -108,11 +106,11 @@
 		--
 
 		CREATE TABLE `image` (
-		  `id` int(255) NOT NULL,
-		  `file` varchar(200) NOT NULL,
-		  `date` datetime NOT NULL,
-		  `likes` int(255) NOT NULL,
-		  `user` int(255) NOT NULL
+		`id` int(255) NOT NULL,
+		`file` varchar(200) NOT NULL,
+		`date` datetime NOT NULL,
+		`likes` int(255) NOT NULL,
+		`user` int(255) NOT NULL
 		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 		--
@@ -179,15 +177,16 @@
 		(72, '../uploads/17/1568974297-5d84a5d9ca2ce.jpg', '2019-09-20 03:11:37', 0, 17),
 		(73, '../uploads/17/1568975833-5d84abd924daf.jpg', '2019-09-20 03:37:13', 0, 17),
 		(74, '../uploads/17/1568976212-5d84ad546d935.jpg', '2019-09-20 03:43:32', 0, 17),
-		(75, '../uploads/17/1568976297-5d84ada935cf9.jpg', '2019-09-20 03:44:57', 0, 17),
 		(77, '../uploads/17/1569069117-5d86183d118a8.jpg', '2019-09-21 05:31:57', 0, 17),
 		(79, '../uploads/17/1569073664-5d862a00d1d8c.jpg', '2019-09-21 06:47:44', 0, 17),
 		(80, '../uploads/17/1569073700-5d862a241f768.jpg', '2019-09-21 06:48:20', 0, 17),
 		(81, '../uploads/17/1569073705-5d862a295e046.jpg', '2019-09-21 06:48:25', 0, 17),
 		(82, '../uploads/17/1569076346-5d86347a2bee8.jpg', '2019-09-21 07:32:26', 0, 17),
-		(88, '../uploads/17/1569253795-5d88e9a395ec7.jpg', '2019-09-23 08:49:55', 0, 17),
-		(89, '../uploads/17/1569253920-5d88ea204bf5b.jpg', '2019-09-23 08:52:00', 0, 17),
-		(90, '../uploads/17/1569254515-5d88ec7360c56.jpg', '2019-09-23 09:01:55', 0, 17);
+		(93, '../uploads/28/1569334852-5d8a26449aaef.jpg', '2019-09-24 07:20:52', 0, 28),
+		(94, '../uploads/17/1569404607-5d8b36bf53b0a.jpg', '2019-09-25 02:43:27', 0, 17),
+		(95, '../uploads/29/1569405650-5d8b3ad22e44b.jpg', '2019-09-25 03:00:50', 0, 29),
+		(96, '../uploads/29/1569405685-5d8b3af5f0f78.jpg', '2019-09-25 03:01:26', 0, 29),
+		(98, '../uploads/30/1569415013-5d8b5f6502b33.jpg', '2019-09-25 05:36:53', 0, 30);
 
 		-- --------------------------------------------------------
 
@@ -196,9 +195,9 @@
 		--
 
 		CREATE TABLE `liked_photos` (
-		  `id` int(11) NOT NULL,
-		  `user_id` int(11) NOT NULL,
-		  `image_id` int(11) NOT NULL
+		`id` int(11) NOT NULL,
+		`user_id` int(11) NOT NULL,
+		`image_id` int(11) NOT NULL
 		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 		--
@@ -226,9 +225,15 @@
 		(421, 17, 67),
 		(424, 17, 65),
 		(425, 17, 68),
-		(432, 17, 75),
 		(433, 17, 66),
-		(434, 17, 89);
+		(435, 17, 80),
+		(436, 28, 82),
+		(437, 17, 79),
+		(440, 17, 94),
+		(441, 17, 93),
+		(443, 29, 94),
+		(444, 29, 95),
+		(445, 30, 96);
 
 		-- --------------------------------------------------------
 
@@ -237,14 +242,14 @@
 		--
 
 		CREATE TABLE `user` (
-		  `UserID` int(11) NOT NULL,
-		  `Username` varchar(20) NOT NULL,
-		  `Passwd` varchar(255) NOT NULL,
-		  `Email` varchar(255) NOT NULL,
-		  `Confirmed` tinyint(1) NOT NULL DEFAULT '0',
-		  `Cle` varchar(32) NOT NULL,
-		  `Reset` varchar(32) NOT NULL,
-		  `notification` tinyint(1) NOT NULL DEFAULT '1'
+		`UserID` int(11) NOT NULL,
+		`Username` varchar(20) NOT NULL,
+		`Passwd` varchar(255) NOT NULL,
+		`Email` varchar(255) NOT NULL,
+		`Confirmed` tinyint(1) NOT NULL DEFAULT '0',
+		`Cle` varchar(32) NOT NULL,
+		`Reset` varchar(32) NOT NULL,
+		`notification` tinyint(1) NOT NULL DEFAULT '1'
 		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 		--
@@ -252,10 +257,12 @@
 		--
 
 		INSERT INTO `user` (`UserID`, `Username`, `Passwd`, `Email`, `Confirmed`, `Cle`, `Reset`, `notification`) VALUES
-		(17, 'Segogo', '$2y$10$T5PlrrDbbEzbmFzaVQYvqe.rb7PMK0aA4vfLzx4Fnqx.tNauH31Vq', 'segolene.alquier@yahoo.com', 1, '06ee51b03fc25d6033132191d24089e7', '318cc37adb03ff9ab9d47473734a5c43', 0),
-		(22, 'Sego', '$2y$10$lmeL/chXZZ3A3QqdJe8ICumF1zH/vSfr.cC6s/0Z3rulg9DrHkpqe', 'segolene.alquier@yahoo.com', 1, '6fcb24559c1c47ba94cfd5a7f4d0a3a0', '4be1df8c8aa87d0ee54d768cb16734be', 1),
+		(17, 'Segogo', '$2y$10$T5PlrrDbbEzbmFzaVQYvqe.rb7PMK0aA4vfLzx4Fnqx.tNauH31Vq', 'segolene.alquier@kikou.com', 1, '06ee51b03fc25d6033132191d24089e7', '318cc37adb03ff9ab9d47473734a5c43', 0),
+		(22, 'Sego', '$2y$10$lmeL/chXZZ3A3QqdJe8ICumF1zH/vSfr.cC6s/0Z3rulg9DrHkpqe', 'segolene.alquier@coucou.com', 1, '6fcb24559c1c47ba94cfd5a7f4d0a3a0', '4be1df8c8aa87d0ee54d768cb16734be', 1),
 		(25, 'Seg', '$2y$10$az4sSPLQa25B6x23j.LXSOis60riTF4.0g7LSjAC5liei9LVYkq8i', 'segolene_38@hotmail.fr', 1, 'd91bb379e6e0d2ffce4c18c7b9f2c5e4', '', 1),
-		(26, 'abwat', '$2y$10$aUc.iCrDt0GBMs2PPtm0Fe24jFjPIvrclOlBY7rM4J9WI/wifZAZS', 'alban.boitier@ieseg.fr', 0, '6b6f0da0855543c2067ff3384a01b9f9', '', 1);
+		(28, 'Segolene', '$2y$10$Gw2OXp42eZw4Y/eUXAWTSueLvY8yTKgSF.dDgZeEAWr07l2AjoQFm', 'segolene.alquier@ya.com', 1, '674a9b45f3ef8cc34ec17726fb765557', '1fc62edeb503bba0989711d481c6d675', 0),
+		(29, 'Smogo', '$2y$10$LDiQbNf.NZsZd3AL3f4aHujdpnQIC/rb7soTGRJ9rJT.hxKiFegU.', 'segolene@yopmail.com', 1, 'de9dd873f8caae3b765ddb09ae8caf51', '', 0),
+		(30, 'Fiona', '$2y$10$sA1pQauN5m8FgfdKK0XAQuc/c05PTy/tuz6BVMoizw527CYLBm1x.', 'test@yopmail.com', 1, 'e72ed0b954cf023875f9c02ad626a291', '', 1);
 
 		--
 		-- Indexes for dumped tables
@@ -265,30 +272,30 @@
 		-- Indexes for table `comment`
 		--
 		ALTER TABLE `comment`
-		  ADD PRIMARY KEY (`id`),
-		  ADD KEY `image` (`image`),
-		  ADD KEY `user` (`user`);
+		ADD PRIMARY KEY (`id`),
+		ADD KEY `user` (`user`),
+		ADD KEY `comment_ibfk_1` (`image`);
 
 		--
 		-- Indexes for table `image`
 		--
 		ALTER TABLE `image`
-		  ADD PRIMARY KEY (`id`),
-		  ADD KEY `user` (`user`);
+		ADD PRIMARY KEY (`id`),
+		ADD KEY `user` (`user`);
 
 		--
 		-- Indexes for table `liked_photos`
 		--
 		ALTER TABLE `liked_photos`
-		  ADD PRIMARY KEY (`id`),
-		  ADD KEY `user_id` (`user_id`),
-		  ADD KEY `image_id` (`image_id`);
+		ADD PRIMARY KEY (`id`),
+		ADD KEY `user_id` (`user_id`),
+		ADD KEY `liked_photos_ibfk_2` (`image_id`);
 
 		--
 		-- Indexes for table `user`
 		--
 		ALTER TABLE `user`
-		  ADD PRIMARY KEY (`UserID`);
+		ADD PRIMARY KEY (`UserID`);
 
 		--
 		-- AUTO_INCREMENT for dumped tables
@@ -298,25 +305,25 @@
 		-- AUTO_INCREMENT for table `comment`
 		--
 		ALTER TABLE `comment`
-		  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+		MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 		--
 		-- AUTO_INCREMENT for table `image`
 		--
 		ALTER TABLE `image`
-		  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+		MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 		--
 		-- AUTO_INCREMENT for table `liked_photos`
 		--
 		ALTER TABLE `liked_photos`
-		  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=435;
+		MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=447;
 
 		--
 		-- AUTO_INCREMENT for table `user`
 		--
 		ALTER TABLE `user`
-		  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+		MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 		--
 		-- Constraints for dumped tables
@@ -326,21 +333,21 @@
 		-- Constraints for table `comment`
 		--
 		ALTER TABLE `comment`
-		  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`image`) REFERENCES `image` (`id`),
-		  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`user`) REFERENCES `user` (`UserID`);
+		ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`image`) REFERENCES `image` (`id`) ON DELETE CASCADE,
+		ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`user`) REFERENCES `user` (`UserID`);
 
 		--
 		-- Constraints for table `image`
 		--
 		ALTER TABLE `image`
-		  ADD CONSTRAINT `image_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`UserID`);
+		ADD CONSTRAINT `image_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`UserID`);
 
 		--
 		-- Constraints for table `liked_photos`
 		--
 		ALTER TABLE `liked_photos`
-		  ADD CONSTRAINT `liked_photos_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`UserID`),
-		  ADD CONSTRAINT `liked_photos_ibfk_2` FOREIGN KEY (`image_id`) REFERENCES `image` (`id`);
+		ADD CONSTRAINT `liked_photos_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`UserID`),
+		ADD CONSTRAINT `liked_photos_ibfk_2` FOREIGN KEY (`image_id`) REFERENCES `image` (`id`) ON DELETE CASCADE;
 		COMMIT;
 
 		/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

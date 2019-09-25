@@ -3,6 +3,7 @@ session_start();
 require "settings_class.php";
 if (!isset($_SESSION['username']))
 	header('Location: ../users/login.php');
+$setting = new Setting;
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +20,10 @@ if (!isset($_SESSION['username']))
 	<?php include_once '../navigation.php'; ?>
 	<div class="settings-wrapper">
 		<h1 class="title is-3 settings-title">Welcome to your page <?= $_SESSION['username']?>!</h1>
+		<div class="box settings-div settings-info">
+			<div><span class="has-text-weight-semi-bold is-size-5" style="color: #A91E8E;">👋 Your username:</span>  <?= $_SESSION['username']?></div>
+			<div><span class="has-text-weight-semi-bold is-size-5" style="color: #A91E8E;">💌 Your email:</span> <?= $setting->findEmail($_SESSION['username'])?></div>
+		</div>
 		<div class="box settings-div">
 			<h2 class="subtitle is-4">👋 Modify your username</h2>
 				<div class="field is-horizontal ">
@@ -41,7 +46,7 @@ if (!isset($_SESSION['username']))
 						</div>
 						<div class="field">
 							<div class="control">
-								<input type="submit" name="modifyUsername" class="button is-primary" style="background-color: #A91E8E;" value="Save" onclick="modifyName();"/>
+								<input type="submit" name="modifyUsername" class="button is-primary" style="background-color: #180989;" value="Save" onclick="modifyName();"/>
 							</div>
 						</div>
 					</div>
@@ -69,7 +74,7 @@ if (!isset($_SESSION['username']))
 						</div>
 						<div class="field">
 							<div class="control">
-								<input type="submit" name="modifyPwd" class="button is-primary" style="background-color: #A91E8E;" value="Save" onclick="checkPassword();"/>
+								<input type="submit" name="modifyPwd" class="button is-primary" style="background-color: #180989;" value="Save" onclick="checkPassword();"/>
 							</div>
 						</div>
 					</div>
@@ -97,7 +102,7 @@ if (!isset($_SESSION['username']))
 					</div>
 					<div class="field">
 						<div class="control">
-						<input type="submit" name="modifyMail" class="button is-primary" style="background-color: #A91E8E;" value="Save" onclick="modifyMail();"/>
+						<input type="submit" name="modifyMail" class="button is-primary" style="background-color: #180989;" value="Save" onclick="modifyMail();"/>
 						</div>
 					</div>
 				</div>

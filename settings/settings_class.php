@@ -33,22 +33,41 @@ Class Setting {
 		unset($this->bdd);
 	}
 
+	function findEmail($username) {
+		$username = htmlspecialchars(trim($username));
+		$sql = "SELECT `Email` FROM `user` WHERE `Username` = :username";
+		if ($stmt = $this->bdd->prepare($sql)) {
+			$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+			if ($stmt->execute()) {
+				if ($row = $stmt->fetch()) {
+					$email = $row['Email'];
+					return ($email);
+				}
+
+			}
+		}
+	}
+
 	function modifyName($username, $old_name, $new_name) {
 		$old_name = htmlspecialchars(trim($old_name));
+		var_dump($old_name);
 		$new_name = htmlspecialchars(trim($new_name));
+
 		if ($username === $old_name) {
+			var_dump($new_name);
 			$sql = "SELECT COUNT(*) FROM `user` WHERE `username` = :new_name";
 			if ($stmt = $this->bdd->prepare($sql)) {
 				$stmt->bindParam(':new_name', $new_name, PDO::PARAM_STR);
 				if ($stmt->execute())
 				{
+					var_dump($stmt->rowCount());
 					if ($stmt->rowCount() < 1)
 					{
-						var_dump($stmt->rowCount());
-						$stmt = $this->bdd->prepare("UPDATE `user` SET `username` = :new_name WHERE `Username` = :old_name");
-						$stmt->bindParam(':new_name', $new_name, PDO::PARAM_STR);
-						$stmt->bindParam(":old_name", $old_name, PDO::PARAM_STR);
-						$stmt->execute();
+
+						$stmt2 = $this->bdd->prepare("UPDATE `user` SET `username` = :new_name WHERE `Username` = :old_name");
+						$stmt2->bindParam(':new_name', $new_name, PDO::PARAM_STR);
+						$stmt2->bindParam(":old_name", $old_name, PDO::PARAM_STR);
+						$stmt2->execute();
 						$_SESSION['username'] = $new_name;
 					}
 					else

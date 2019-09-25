@@ -306,6 +306,11 @@ body{
 	max-width: 550px;
 }
 
+.settings-info {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
 /* PAGINATION  */
 
 .pagination-div {

@@ -48,6 +48,7 @@ function modifyName() {
 		xhr.onreadystatechange = function(event) {
 			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 				console.log(this.response);
+				document.location.reload(true);
 			}
 		};
 		xhr.open("POST", "./settings_handler.php", true);
@@ -64,6 +65,7 @@ function modifyPassword() {
 		xhr.onreadystatechange = function(event) {
 			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 				console.log(this.response);
+				document.location.reload(true);
 			}
 		};
 		xhr.open("POST", "./settings_handler.php", true);
@@ -80,6 +82,7 @@ function modifyMail() {
 		xhr.onreadystatechange = function(event) {
 			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 				console.log(this.response);
+				document.location.reload(true);
 			}
 		};
 		xhr.open("POST", "./settings_handler.php", true);
@@ -96,7 +99,6 @@ function notifNo() {
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function(event) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			console.log(this.response);
 		}
 	};
 	xhr.open("POST", "./notif_handler.php", true);
@@ -111,7 +113,6 @@ function notifYes() {
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function(event) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			console.log(this.response);
 		}
 	};
 	xhr.open("POST", "./notif_handler.php", true);
@@ -124,7 +125,6 @@ function wantsNotification() {
 
 	xhr.onreadystatechange = function(event) {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			console.log(this.response);
 			if (this.response.match(/1/))
 				no.classList.remove("is-danger");
 			else
@@ -135,5 +135,3 @@ function wantsNotification() {
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.send("notif=" + 1);
 }
-
-// window.onload = wantsNotification();

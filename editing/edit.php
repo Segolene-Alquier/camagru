@@ -71,7 +71,7 @@ if (isset($_GET['delete']) && $_GET['delete'] === "deletePicture" && isset($_GET
 											<input id="chosen-filter" name="chosen-filter" type="hidden" value="">
 											<input id="uploaded-file" name="uploadedFile" type="hidden" value="">
 											<button hidden id="save" class="button button-edit"  name="savePicture" value="Save Picture" style="background-color: #A91E8E; color: white; display: none;"><i class="fas fa-save" style="margin-right: 5px;"></i>Save</button>
-											<button hidden id="save" class="button button-edit" name="savePicture2" value="Save Picture" style="background-color: #A91E8E; color: white; display: none;"><i class="fas fa-save" style="margin-right: 5px;" ></i>SaveUP</button>
+											<button hidden id="saveUP" class="button button-edit" name="savePicture2" value="Save Picture" style="background-color: #A91E8E; color: white; display: none;"><i class="fas fa-save" style="margin-right: 5px;" ></i>Save</button>
 										</form>
 									</div>
 								</div>

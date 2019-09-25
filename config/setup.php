@@ -18,9 +18,11 @@
 		/*!40101 SET NAMES utf8mb4 */;
 
 		--
-		-- Database: `camagru`
+		-- Database: `$DB_NAME`
 		--
 
+		CREATE DATABASE IF NOT EXISTS `$DB_NAME` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+		USE `$DB_NAME`;
 		-- --------------------------------------------------------
 
 		--
@@ -361,6 +363,4 @@
 	catch(exception $e) {
 		die('Erreur '.$e->getMessage());
 	}
-	// $reponse = $bdd->query('SELECT * FROM user');
-	// $reponse->closeCursor();
 ?>
